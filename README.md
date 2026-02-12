@@ -1,4 +1,4 @@
-# Sakhi (ASHA-G) MVP
+# Sakhi MVP
 
 Sakhi is an offline-first assistant for ASHA workflows: register digitization, protocol guidance, newborn visit scheduling, and incentive claim tracking.
 
