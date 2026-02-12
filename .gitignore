@@ -11,3 +11,7 @@ apps/mobile/android/build
 backend/sync-gateway/dist
 apps/web/dist
 *.xcresult
+*.db
+apps/web/src/**/*.js
+apps/web/vite.config.js
+packages/shared-types/src/*.js
