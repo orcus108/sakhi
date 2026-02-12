@@ -1,0 +1,111 @@
+:root {
+  --bg: #fbf6ef;
+  --card: #ffffff;
+  --accent: #cc6b2c;
+  --text: #1f1f1f;
+  --muted: #5d5d5d;
+  --line: #ecd6c0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top right, #ffe8d1, transparent 36%), var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.hero p {
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 14px;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d7d7d7;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+button {
+  background: var(--accent);
+  border: 0;
+  color: white;
+  border-radius: 9px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+pre {
+  margin-top: 10px;
+  background: #f6f7f9;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.statRow {
+  margin-top: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.badge {
+  background: #fff0e3;
+  border: 1px solid #f5c99e;
+  color: #7f3f12;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: 14px;
+  }
+
+  .row,
+  .statRow {
+    grid-template-columns: 1fr;
+  }
+}

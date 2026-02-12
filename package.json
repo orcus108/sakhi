@@ -1,0 +1,15 @@
+{
+  "name": "asha-g",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "backend/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "npm --workspace apps/mobile run start",
+    "dev:web": "npm --workspace apps/web run dev",
+    "dev:backend": "npm --workspace backend/sync-gateway run dev",
+    "build": "npm --workspaces run build"
+  }
+}

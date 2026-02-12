@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+*.log
+.expo
+apps/mobile/.expo
+apps/mobile/dist
+apps/mobile/ios/Pods
+apps/mobile/ios/build
+apps/mobile/android/.gradle
+apps/mobile/android/build
+backend/sync-gateway/dist
+apps/web/dist
+*.xcresult

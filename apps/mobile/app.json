@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Sakhi",
+    "slug": "sakhi",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "ASHA-G uses camera to capture register pages for OCR digitization.",
+        "NSSpeechRecognitionUsageDescription": "Allow $(PRODUCT_NAME) to use speech recognition.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone."
+      },
+      "bundleIdentifier": "com.anonymous.sakhi"
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      "expo-speech-recognition"
+    ]
+  }
+}
