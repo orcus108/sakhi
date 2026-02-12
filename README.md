@@ -1,6 +1,8 @@
-# Sakhi MVP
+# Sakhi
 
 Sakhi is an offline-first assistant for ASHA workflows: register digitization, protocol guidance, newborn visit scheduling, and incentive claim tracking.
+
+I started building this for the [The MedGemma Impact Challenge](https://www.kaggle.com/competitions/med-gemma-impact-challenge). This is the first MVP (minimum viable product), I will continue iterating upon this.
 
 This repository is a TypeScript monorepo with:
 - A React Native mobile app (primary field workflow)
