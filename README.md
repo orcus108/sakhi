@@ -4,7 +4,7 @@
 
 Sakhi is a mobile-first clinical decision-support tool for ASHA (Accredited Social Health Activist) workers in rural India. It uses a **MedGemma-backed AI cascade** to assess antenatal and newborn patient visits in real time, flagging high-risk cases and guiding referral decisions — in the field, on a phone, with no specialist nearby.
 
-**[Live Demo →](https://sakhi-seven.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://orcus108-sakhi-api.hf.space/health)**
+**[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)**
 
 ---
 
@@ -296,15 +296,3 @@ The `medgemma-space/` directory is a complete, deployable Hugging Face Space tha
 | 5 | Assessment | AI output — risk banner, clinical notices, patient script, next action |
 | 6 | Ask Sakhi | Free-form chat; patient context injected automatically if selected |
 | 7 | Schedule | Follow-up appointments across all patients |
-
----
-
-## Judging Criteria
-
-| Criterion | Weight | How Sakhi addresses it |
-|---|---|---|
-| **Effective use of HAI-DEF models** | 20% | MedGemma is first in the cascade; Ollama Space is production-ready; fine-tuning notebook targets clinical domain gaps specific to rural India |
-| **Problem domain** | 15% | ASHA workers are a real, underserved user group; antenatal + newborn care is high-stakes and high-volume; problem is clearly scoped to a specific user journey |
-| **Impact potential** | 15% | ~1M ASHA workers in India; even partial adoption affects millions of patient touchpoints annually; architecture is deployable at PHC level with existing infrastructure |
-| **Product feasibility** | 20% | Full-stack app live in production; model abstraction enables provider swap with one env var; Docker-based MedGemma deployment is fully reproducible from this repo |
-| **Execution & communication** | 30% | Single-responsibility file architecture; all routes, models, and prompts documented; reusable model layer; live demo available |
