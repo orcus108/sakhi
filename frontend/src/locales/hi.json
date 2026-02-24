@@ -1,0 +1,299 @@
+{
+  "common": {
+    "disclaimer": "Sakhi आपके निर्णय में सहयोग करती है — हमेशा संदेह होने पर PHC भेजें।",
+    "goBack": "वापस जाएं",
+    "unknown": "अज्ञात",
+    "loading": "सखी सोच रही है...",
+    "risk": {
+      "normal": "सामान्य",
+      "monitor": "निगरानी",
+      "high": "उच्च जोखिम"
+    }
+  },
+  "nav": {
+    "patients": "मरीज़",
+    "newCheckup": "नई जाँच",
+    "askSakhi": "सखी से पूछें",
+    "schedule": "कार्यक्रम"
+  },
+  "onboarding": {
+    "tagline": "माँ और बच्चे की देखभाल, साथ मिलकर",
+    "nameLabel": "आपका नाम क्या है?",
+    "nameHelper": "अपना नाम दर्ज करें ताकि Sakhi आपको पहचान सके।",
+    "namePlaceholder": "जैसे: अनिता देवी",
+    "startButton": "शुरू करें",
+    "footer": "कोई पासवर्ड नहीं चाहिए। बस आपका नाम।",
+    "nameError": "जारी रखने के लिए नाम दर्ज करें।",
+    "langLabel": "भाषा"
+  },
+  "home": {
+    "welcomeBack": "वापस स्वागत है,",
+    "searchPlaceholder": "नाम से खोजें...",
+    "allVillages": "सभी गाँव",
+    "filters": {
+      "all": "सभी",
+      "high": "उच्च जोखिम",
+      "monitor": "निगरानी",
+      "normal": "सामान्य"
+    },
+    "sections": {
+      "highRisk": "उच्च जोखिम",
+      "overdue": "विलंबित",
+      "dueToday": "आज देय"
+    },
+    "showMore": "{{count}} और दिखाएं",
+    "empty": {
+      "noResults": "कोई मरीज़ नहीं मिले",
+      "allCaughtUp": "सब ठीक है",
+      "allCaughtUpSub": "आज कोई उच्च जोखिम वाला मरीज़ या जाँच नहीं है"
+    },
+    "relative": {
+      "daysOverdue_one": "1 दिन की देरी",
+      "daysOverdue_other": "{{count}} दिन की देरी",
+      "dueToday": "आज देय",
+      "dueTomorrow": "कल देय",
+      "inDays_one": "1 दिन में",
+      "inDays_other": "{{count}} दिनों में"
+    }
+  },
+  "patient": {
+    "notFound": "मरीज़ नहीं मिले",
+    "latestVitals": "नवीनतम जाँच",
+    "checkupHistory": "जाँच इतिहास",
+    "startCheckup": "नई जाँच शुरू करें",
+    "symptomsReported": "बताए गए लक्षण",
+    "recorded": "दर्ज:",
+    "gestationalAge": "गर्भावस्था की आयु",
+    "weeksPregnant": "सप्ताह गर्भवती",
+    "fundalHeight": "Fundal Height",
+    "fetalHR": "Fetal HR",
+    "haemoglobin": "Haemoglobin"
+  },
+  "newborn": {
+    "notFound": "नवजात नहीं मिला",
+    "weight": "वजन",
+    "birthWeight": "जन्म वजन",
+    "currentWeight": "वर्तमान वजन",
+    "gained": "बढ़ा",
+    "lost": "घटा",
+    "nextVisitDue": "अगली जाँच",
+    "allVisitsDone": "सभी 6 जाँच पूरी हो गई",
+    "latestVisit": "नवीनतम जाँच",
+    "visitHistory": "जाँच इतिहास",
+    "startCheckup": "आज की जाँच शुरू करें",
+    "daysOld_one": "{{count}} दिन का",
+    "daysOld_other": "{{count}} दिन का",
+    "born": "जन्मतिथि:",
+    "mother": "माँ:",
+    "dob": "जन्म:"
+  },
+  "checkupForm": {
+    "title": "जाँच",
+    "notFound": "मरीज़ नहीं मिले",
+    "steps": {
+      "vitals": "शारीरिक माप",
+      "symptoms": "लक्षण"
+    },
+    "bp": {
+      "label": "Blood Pressure",
+      "systolic": "Systolic (ऊपर)",
+      "diastolic": "Diastolic (नीचे)",
+      "placeholderSystolic": "जैसे: 120",
+      "placeholderDiastolic": "जैसे: 80",
+      "elevated": "BP बढ़ा हुआ है — PHC भेजें"
+    },
+    "weight": {
+      "label": "वजन (kg) *",
+      "hint": "तराज़ू का उपयोग करें"
+    },
+    "fundalHeight": {
+      "label": "Fundal Height (cm) *",
+      "hint": "प्यूबिक हड्डी से गर्भाशय के शीर्ष तक नापें"
+    },
+    "fetalHR": {
+      "label": "Fetal Heart Rate (bpm)",
+      "hint": "वैकल्पिक — अगर मापा हो तो लिखें"
+    },
+    "haemoglobin": {
+      "label": "Haemoglobin (g/dL)",
+      "hint": "वैकल्पिक — आज परीक्षण हुआ हो तो"
+    },
+    "symptomsQuestion": "क्या मरीज़ को इनमें से कोई लक्षण है?",
+    "symptomsHint": "जो भी लागू हो, चुनें",
+    "otherSymptom": "कोई और लक्षण?",
+    "otherPlaceholder": "यहाँ लिखें...",
+    "symptoms": {
+      "headache": "सिरदर्द",
+      "blurred_vision": "धुंधली दृष्टि",
+      "swelling_in_feet": "पैरों में सूजन",
+      "swelling_in_hands_or_face": "हाथ या चेहरे में सूजन",
+      "upper_abdominal_pain": "पेट के ऊपरी हिस्से में दर्द",
+      "reduced_fetal_movement": "शिशु की कम हलचल",
+      "difficulty_breathing": "साँस लेने में तकलीफ",
+      "nausea_or_vomiting": "मतली या उल्टी",
+      "dizziness": "चक्कर आना",
+      "fatigue": "थकान",
+      "fever": "बुखार",
+      "vaginal_bleeding": "योनि से रक्तस्राव"
+    },
+    "validationBP": "Blood pressure (systolic और diastolic) ज़रूरी है।",
+    "validationWeight": "वजन दर्ज करना ज़रूरी है।",
+    "validationFundal": "Fundal height दर्ज करना ज़रूरी है।",
+    "buttons": {
+      "askSakhi": "सखी से पूछें",
+      "nextSymptoms": "अगला: लक्षण",
+      "getAssessment": "आकलन करें"
+    }
+  },
+  "newbornCheckup": {
+    "title": "नवजात जाँच",
+    "notFound": "नवजात नहीं मिला",
+    "steps": {
+      "measurements": "माप",
+      "observations": "अवलोकन"
+    },
+    "visitSelector": {
+      "label": "यह कौन सी जाँच है?",
+      "hint": "अनुशंसित अगली जाँच हाइलाइट की गई है"
+    },
+    "currentWeight": {
+      "label": "वर्तमान वजन (kg) *",
+      "hint": "शिशु की तराज़ू का उपयोग करें",
+      "placeholder": "जैसे: 3.2",
+      "aboveBirth": "+{{delta}} kg जन्म वजन से अधिक",
+      "belowBirth": "{{delta}} kg जन्म वजन से कम"
+    },
+    "birthWeight": "जन्म वजन:",
+    "observationsTitle": "आप क्या देख रही हैं?",
+    "observationsHint": "जो भी लागू हो, चुनें।",
+    "groups": {
+      "feeding": "आहार और गतिविधि",
+      "breathing": "साँस लेना",
+      "skin": "त्वचा, नाभि और आँखें"
+    },
+    "obs": {
+      "feeding_well": "अच्छी तरह स्तनपान कर रहा है",
+      "baby_alert": "शिशु सक्रिय और जागरूक है",
+      "baby_lethargic": "शिशु सुस्त या प्रतिक्रिया नहीं कर रहा",
+      "breathing_normal": "साँस सामान्य है",
+      "breathing_labored": "साँस कठिन या तेज़ है",
+      "cord_clean": "नाभि — साफ और सूखी है",
+      "cord_infected": "नाभि — लाल / सूजी / बदबूदार है",
+      "jaundice": "पीलिया दिख रहा है (पीली त्वचा / आँखें)",
+      "skin_rash": "त्वचा पर दाने या फुंसी",
+      "eye_discharge": "आँखों से स्राव हो रहा है"
+    },
+    "dangerWarning": "चेतावनी के संकेत चुने गए:",
+    "dangerNote": "Sakhi इन्हें जाँच के दिन के अनुसार आकलित करेगी। संदेह होने पर हमेशा PHC भेजें।",
+    "otherObs": "कोई और अवलोकन?",
+    "otherPlaceholder": "जो भी आपने देखा, यहाँ लिखें...",
+    "validationWeight": "कृपया सही वजन दर्ज करें।",
+    "buttons": {
+      "askSakhi": "सखी से पूछें",
+      "nextObs": "अगला: अवलोकन",
+      "getAssessment": "आकलन करें"
+    }
+  },
+  "assessment": {
+    "title": "आकलन",
+    "noAssessment": "कोई आकलन उपलब्ध नहीं है।",
+    "completeCheckup": "पहले एक जाँच पूरी करें।",
+    "startCheckup": "जाँच शुरू करें",
+    "whatNoticed": "सखी ने क्या देखा",
+    "tellPatient": "मरीज़ को बताएं",
+    "tellMother": "माँ को बताएं",
+    "nextAction": "अगला कदम",
+    "todaysReadings": "आज की रीडिंग",
+    "bloodPressure": "Blood Pressure",
+    "weight": "वजन",
+    "fundalHt": "Fundal Ht.",
+    "visit": "जाँच",
+    "followUp": "अनुवर्ती:",
+    "referWhatsapp": "WhatsApp से रेफर करें",
+    "askSakhi": "सखी से पूछें",
+    "checkupRecorded": "जाँच दर्ज हो गई",
+    "backToPatients": "मरीज़ों पर वापस जाएं",
+    "whatsapp": {
+      "header": "*Sakhi नैदानिक चेतावनी*",
+      "patient": "मरीज़",
+      "riskLevel": "जोखिम स्तर: उच्च जोखिम",
+      "noticed": "सखी ने देखा:",
+      "action": "कार्रवाई:",
+      "footer": "ASHA {{name}} द्वारा Sakhi ऐप से आकलित।"
+    }
+  },
+  "askSakhi": {
+    "title": "सखी से पूछें",
+    "emptyHeading": "मुझसे कुछ भी पूछें",
+    "emptySubtitle": "गर्भावस्था, ANC प्रोटोकॉल, या मरीज़ की देखभाल के बारे में।",
+    "advisingOn": "आपको सलाह दे रही हूँ:",
+    "readingsContext": "मेरे पास आज की रीडिंग उपलब्ध है।",
+    "commonQuestions": "सामान्य प्रश्न",
+    "q1": "गर्भावस्था में सामान्य BP क्या है?",
+    "q2": "मरीज़ को PHC कब भेजना चाहिए?",
+    "q3": "प्री-एक्लेम्पसिया के संकेत क्या हैं?",
+    "q4": "सामान्य वजन बढ़ना कितना होता है?",
+    "placeholder": "सखी से पूछें...",
+    "listening": "सुन रही हूँ...",
+    "listeningHint": "सुन रही हूँ... रोकने के लिए माइक दबाएं",
+    "transcribing": "लिख रही हूँ...",
+    "thinking": "सखी सोच रही है...",
+    "couldNotReach": "Sakhi तक नहीं पहुँच सकी:",
+    "micError": "माइक्रोफोन की अनुमति नहीं मिली। कृपया अनुमति दें और फिर प्रयास करें।",
+    "transcribeError": "लिखाई विफल रही:",
+    "listen": "सुनें",
+    "stop": "रोकें"
+  },
+  "newCheckupPicker": {
+    "title": "नई जाँच",
+    "subtitle": "शुरू करने के लिए मरीज़ खोजें।",
+    "resting": "आपकी वजह से वे सुरक्षित हैं।",
+    "searchPlaceholder": "मरीज़ का नाम लिखें...",
+    "viewSchedule": "कार्यक्रम देखें →",
+    "checkedRecently": "हाल में जाँची गई",
+    "viewFullSchedule": "पूरा कार्यक्रम देखें →",
+    "noPatients": "कोई मरीज़ नहीं मिले",
+    "tryDifferent": "कोई और नाम आज़माएं",
+    "daysOld_one": "{{count}} दिन का",
+    "daysOld_other": "{{count}} दिन का"
+  },
+  "schedule": {
+    "title": "कार्यक्रम",
+    "showUpcoming": "आगामी दिखाएं:",
+    "ranges": {
+      "week": "1 सप्ताह",
+      "month": "1 महीना",
+      "all": "सभी"
+    },
+    "pills": {
+      "overdue_one": "{{count}} विलंबित",
+      "overdue_other": "{{count}} विलंबित",
+      "today_one": "{{count}} आज",
+      "today_other": "{{count}} आज",
+      "thisWeek_one": "{{count}} इस सप्ताह",
+      "thisWeek_other": "{{count}} इस सप्ताह"
+    },
+    "sections": {
+      "overdue": "विलंबित",
+      "today": "आज",
+      "thisWeek": "इस सप्ताह",
+      "comingUp": "आगामी"
+    },
+    "allClear": "सब ठीक है!",
+    "allClearSub": "अभी कोई जाँच निर्धारित नहीं है।",
+    "hiddenCount_one": "{{count}} और जाँच इस सीमा से बाहर —",
+    "hiddenCount_other": "{{count}} और जाँच इस सीमा से बाहर —",
+    "showAll": "सभी दिखाएं",
+    "switchWorker": "{{name}} नहीं हैं? कर्मी बदलें",
+    "ancCheckup": "ANC जाँच",
+    "newbornVisit": "नवजात जाँच — {{label}}",
+    "startCheckup": "जाँच शुरू करें →",
+    "relative": {
+      "daysOverdue_one": "1 दिन की देरी",
+      "daysOverdue_other": "{{count}} दिन की देरी",
+      "today": "आज",
+      "inDays_one": "1 दिन में",
+      "inDays_other": "{{count}} दिनों में"
+    }
+  }
+}

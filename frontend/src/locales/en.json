@@ -1,0 +1,299 @@
+{
+  "common": {
+    "disclaimer": "Sakhi supports your judgment — always refer when unsure.",
+    "goBack": "Go back",
+    "unknown": "Unknown",
+    "loading": "Sakhi is thinking...",
+    "risk": {
+      "normal": "Normal",
+      "monitor": "Monitor",
+      "high": "High Risk"
+    }
+  },
+  "nav": {
+    "patients": "Patients",
+    "newCheckup": "New Checkup",
+    "askSakhi": "Ask Sakhi",
+    "schedule": "Schedule"
+  },
+  "onboarding": {
+    "tagline": "Caring for mothers and children, together",
+    "nameLabel": "What is your name?",
+    "nameHelper": "Enter your name so Sakhi knows who you are.",
+    "namePlaceholder": "e.g. Anita Devi",
+    "startButton": "Start",
+    "footer": "No password needed. Just your name.",
+    "nameError": "Please enter your name to continue.",
+    "langLabel": "Language"
+  },
+  "home": {
+    "welcomeBack": "Welcome back,",
+    "searchPlaceholder": "Search by name...",
+    "allVillages": "All villages",
+    "filters": {
+      "all": "All",
+      "high": "High Risk",
+      "monitor": "Monitor",
+      "normal": "Normal"
+    },
+    "sections": {
+      "highRisk": "High Risk",
+      "overdue": "Overdue",
+      "dueToday": "Due Today"
+    },
+    "showMore": "Show {{count}} more",
+    "empty": {
+      "noResults": "No patients found",
+      "allCaughtUp": "All caught up",
+      "allCaughtUpSub": "No high-risk patients or checkups due today"
+    },
+    "relative": {
+      "daysOverdue_one": "1 day overdue",
+      "daysOverdue_other": "{{count}} days overdue",
+      "dueToday": "Due today",
+      "dueTomorrow": "Due tomorrow",
+      "inDays_one": "In 1 day",
+      "inDays_other": "In {{count}} days"
+    }
+  },
+  "patient": {
+    "notFound": "Patient not found",
+    "latestVitals": "Latest Vitals",
+    "checkupHistory": "Checkup History",
+    "startCheckup": "Start New Checkup",
+    "symptomsReported": "Symptoms reported",
+    "recorded": "Recorded:",
+    "gestationalAge": "gestational age",
+    "weeksPregnant": "weeks pregnant",
+    "fundalHeight": "Fundal Height",
+    "fetalHR": "Fetal HR",
+    "haemoglobin": "Haemoglobin"
+  },
+  "newborn": {
+    "notFound": "Newborn not found",
+    "weight": "Weight",
+    "birthWeight": "Birth Weight",
+    "currentWeight": "Current Weight",
+    "gained": "Gained",
+    "lost": "Lost",
+    "nextVisitDue": "Next visit due",
+    "allVisitsDone": "All 6 visits completed",
+    "latestVisit": "Latest Visit",
+    "visitHistory": "Visit History",
+    "startCheckup": "Start Today's Checkup",
+    "daysOld_one": "{{count}} day old",
+    "daysOld_other": "{{count}} days old",
+    "born": "Born",
+    "mother": "Mother:",
+    "dob": "DOB:"
+  },
+  "checkupForm": {
+    "title": "Checkup",
+    "notFound": "Patient not found",
+    "steps": {
+      "vitals": "Vitals",
+      "symptoms": "Symptoms"
+    },
+    "bp": {
+      "label": "Blood Pressure",
+      "systolic": "Systolic (top)",
+      "diastolic": "Diastolic (bottom)",
+      "placeholderSystolic": "e.g. 120",
+      "placeholderDiastolic": "e.g. 80",
+      "elevated": "BP is elevated — refer to PHC"
+    },
+    "weight": {
+      "label": "Weight (kg) *",
+      "hint": "Use the weighing scale"
+    },
+    "fundalHeight": {
+      "label": "Fundal Height (cm) *",
+      "hint": "Measure with tape from pubic bone to top of uterus"
+    },
+    "fetalHR": {
+      "label": "Fetal Heart Rate (bpm)",
+      "hint": "Optional — record if measured"
+    },
+    "haemoglobin": {
+      "label": "Haemoglobin (g/dL)",
+      "hint": "Optional — if tested today"
+    },
+    "symptomsQuestion": "Is the patient experiencing any of these?",
+    "symptomsHint": "Select all that apply",
+    "otherSymptom": "Any other symptom?",
+    "otherPlaceholder": "Type here...",
+    "symptoms": {
+      "headache": "Headache",
+      "blurred_vision": "Blurred vision",
+      "swelling_in_feet": "Swelling in feet",
+      "swelling_in_hands_or_face": "Swelling in hands or face",
+      "upper_abdominal_pain": "Upper abdominal pain",
+      "reduced_fetal_movement": "Reduced fetal movement",
+      "difficulty_breathing": "Difficulty breathing",
+      "nausea_or_vomiting": "Nausea or vomiting",
+      "dizziness": "Dizziness",
+      "fatigue": "Fatigue",
+      "fever": "Fever",
+      "vaginal_bleeding": "Vaginal bleeding"
+    },
+    "validationBP": "Blood pressure (systolic and diastolic) is required.",
+    "validationWeight": "Weight is required.",
+    "validationFundal": "Fundal height is required.",
+    "buttons": {
+      "askSakhi": "Ask Sakhi",
+      "nextSymptoms": "Next: Symptoms",
+      "getAssessment": "Get Assessment"
+    }
+  },
+  "newbornCheckup": {
+    "title": "Newborn Checkup",
+    "notFound": "Newborn not found",
+    "steps": {
+      "measurements": "Measurements",
+      "observations": "Observations"
+    },
+    "visitSelector": {
+      "label": "Which visit is this?",
+      "hint": "Recommended next visit is highlighted"
+    },
+    "currentWeight": {
+      "label": "Current weight (kg) *",
+      "hint": "Use the baby weighing scale",
+      "placeholder": "e.g. 3.2",
+      "aboveBirth": "+{{delta}} kg above birth weight",
+      "belowBirth": "{{delta}} kg below birth weight"
+    },
+    "birthWeight": "Birth weight:",
+    "observationsTitle": "What do you observe?",
+    "observationsHint": "Select all that apply.",
+    "groups": {
+      "feeding": "Feeding & Activity",
+      "breathing": "Breathing",
+      "skin": "Skin, Cord & Eyes"
+    },
+    "obs": {
+      "feeding_well": "Feeding well (breastfeeding established)",
+      "baby_alert": "Baby alert and active",
+      "baby_lethargic": "Baby lethargic or not responding",
+      "breathing_normal": "Breathing normal",
+      "breathing_labored": "Breathing labored or fast",
+      "cord_clean": "Umbilical cord — clean and dry",
+      "cord_infected": "Umbilical cord — red / swollen / smelly",
+      "jaundice": "Jaundice visible (yellow skin / eyes)",
+      "skin_rash": "Skin rash or pustules",
+      "eye_discharge": "Eyes — discharge present"
+    },
+    "dangerWarning": "Warning signs selected:",
+    "dangerNote": "Sakhi will assess these against the visit day. Always refer to PHC if unsure.",
+    "otherObs": "Any other observations?",
+    "otherPlaceholder": "Describe anything else you noticed...",
+    "validationWeight": "Please enter a valid weight.",
+    "buttons": {
+      "askSakhi": "Ask Sakhi",
+      "nextObs": "Next: Observations",
+      "getAssessment": "Get Assessment"
+    }
+  },
+  "assessment": {
+    "title": "Assessment",
+    "noAssessment": "No assessment available.",
+    "completeCheckup": "Complete a checkup first.",
+    "startCheckup": "Start Checkup",
+    "whatNoticed": "What Sakhi noticed",
+    "tellPatient": "Tell the patient",
+    "tellMother": "Tell the mother",
+    "nextAction": "Next action",
+    "todaysReadings": "Today's readings",
+    "bloodPressure": "Blood Pressure",
+    "weight": "Weight",
+    "fundalHt": "Fundal Ht.",
+    "visit": "Visit",
+    "followUp": "Follow-up:",
+    "referWhatsapp": "Refer via WhatsApp",
+    "askSakhi": "Ask Sakhi",
+    "checkupRecorded": "Checkup recorded",
+    "backToPatients": "Back to patients",
+    "whatsapp": {
+      "header": "*Sakhi Clinical Alert*",
+      "patient": "Patient",
+      "riskLevel": "Risk Level: HIGH RISK",
+      "noticed": "Sakhi noticed:",
+      "action": "Action:",
+      "footer": "Assessed by ASHA {{name}} via Sakhi app."
+    }
+  },
+  "askSakhi": {
+    "title": "Ask Sakhi",
+    "emptyHeading": "Ask me anything",
+    "emptySubtitle": "About pregnancy, ANC protocols, or patient care.",
+    "advisingOn": "Advising you on",
+    "readingsContext": "I have today's readings in context.",
+    "commonQuestions": "Common questions",
+    "q1": "What is normal BP in pregnancy?",
+    "q2": "When should I refer a patient to PHC?",
+    "q3": "What are signs of pre-eclampsia?",
+    "q4": "How much weight gain is normal?",
+    "placeholder": "Ask Sakhi...",
+    "listening": "Listening...",
+    "listeningHint": "Listening... tap mic to stop",
+    "transcribing": "Transcribing...",
+    "thinking": "Sakhi is thinking...",
+    "couldNotReach": "Could not reach Sakhi:",
+    "micError": "Microphone access denied. Please allow mic permissions and try again.",
+    "transcribeError": "Transcription failed:",
+    "listen": "Listen",
+    "stop": "Stop"
+  },
+  "newCheckupPicker": {
+    "title": "New Checkup",
+    "subtitle": "Search for a patient to begin.",
+    "resting": "You're the reason they're safe.",
+    "searchPlaceholder": "Type a patient name...",
+    "viewSchedule": "View schedule \u2192",
+    "checkedRecently": "Checked recently",
+    "viewFullSchedule": "View full schedule \u2192",
+    "noPatients": "No patients found",
+    "tryDifferent": "Try a different name",
+    "daysOld_one": "{{count}} day old",
+    "daysOld_other": "{{count}} days old"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "showUpcoming": "Show upcoming:",
+    "ranges": {
+      "week": "1 Week",
+      "month": "1 Month",
+      "all": "All"
+    },
+    "pills": {
+      "overdue_one": "{{count}} overdue",
+      "overdue_other": "{{count}} overdue",
+      "today_one": "{{count}} today",
+      "today_other": "{{count}} today",
+      "thisWeek_one": "{{count}} this week",
+      "thisWeek_other": "{{count}} this week"
+    },
+    "sections": {
+      "overdue": "Overdue",
+      "today": "Today",
+      "thisWeek": "This Week",
+      "comingUp": "Coming Up"
+    },
+    "allClear": "All clear!",
+    "allClearSub": "No checkups scheduled right now.",
+    "hiddenCount_one": "{{count}} more visit beyond this range —",
+    "hiddenCount_other": "{{count}} more visits beyond this range —",
+    "showAll": "show all",
+    "switchWorker": "Not {{name}}? Switch worker",
+    "ancCheckup": "ANC Checkup",
+    "newbornVisit": "Newborn Visit — {{label}}",
+    "startCheckup": "Start checkup \u2192",
+    "relative": {
+      "daysOverdue_one": "1 day overdue",
+      "daysOverdue_other": "{{count}} days overdue",
+      "today": "Today",
+      "inDays_one": "In 1 day",
+      "inDays_other": "In {{count}} days"
+    }
+  }
+}

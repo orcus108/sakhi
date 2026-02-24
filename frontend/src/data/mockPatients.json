@@ -1,0 +1,705 @@
+[
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "abdm_id": "91-0000-0000-0001",
+    "patient_type": "anc",
+    "name": "Meena Devi",
+    "name_hi": "मीना देवी",
+    "age": 24,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-09-10",
+    "gestational_weeks": 23,
+    "gravida": 2,
+    "para": 1,
+    "risk_level": "green",
+    "phone": "9876543210",
+    "checkup_history": [
+      {
+        "date": "2026-01-15",
+        "weight_kg": 58,
+        "fundal_height_cm": 18,
+        "symptoms": [],
+        "risk_level": "green",
+        "notes": "Normal progress. IFA tablets given.",
+        "bp_systolic": 112,
+        "bp_diastolic": 72,
+        "fetal_heart_rate": 142,
+        "hemoglobin": 11.2
+      },
+      {
+        "date": "2026-02-10",
+        "weight_kg": 60,
+        "fundal_height_cm": 22,
+        "symptoms": [],
+        "risk_level": "green",
+        "notes": "Good weight gain. Next visit in 4 weeks.",
+        "bp_systolic": 114,
+        "bp_diastolic": 74,
+        "fetal_heart_rate": 138,
+        "hemoglobin": 11.5
+      }
+    ]
+  },
+  {
+    "id": "e3d4c5b6-7a89-4012-b345-67890abcdef1",
+    "abdm_id": "91-0000-0000-0002",
+    "patient_type": "anc",
+    "name": "Sunita Kumari",
+    "name_hi": "सुनीता कुमारी",
+    "age": 22,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-10-05",
+    "gestational_weeks": 20,
+    "gravida": 1,
+    "para": 0,
+    "risk_level": "green",
+    "phone": "9812345678",
+    "checkup_history": [
+      {
+        "date": "2026-01-20",
+        "weight_kg": 52,
+        "fundal_height_cm": 16,
+        "symptoms": [
+          "mild nausea"
+        ],
+        "risk_level": "green",
+        "notes": "First pregnancy, mild nausea normal. Advised small frequent meals.",
+        "bp_systolic": 108,
+        "bp_diastolic": 68,
+        "fetal_heart_rate": 145,
+        "hemoglobin": 10.8
+      },
+      {
+        "date": "2026-02-14",
+        "weight_kg": 53.5,
+        "fundal_height_cm": 19,
+        "symptoms": [],
+        "risk_level": "green",
+        "notes": "Nausea resolved. Good progress.",
+        "bp_systolic": 110,
+        "bp_diastolic": 70,
+        "fetal_heart_rate": 148,
+        "hemoglobin": 11.0
+      }
+    ]
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4789-9abc-def012345678",
+    "abdm_id": "91-0000-0000-0003",
+    "patient_type": "anc",
+    "name": "Priya Sharma",
+    "name_hi": "प्रिया शर्मा",
+    "age": 26,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-11-01",
+    "gestational_weeks": 16,
+    "gravida": 1,
+    "para": 0,
+    "risk_level": "green",
+    "phone": "9823456789",
+    "checkup_history": [
+      {
+        "date": "2026-02-18",
+        "weight_kg": 54,
+        "fundal_height_cm": 14,
+        "symptoms": [],
+        "risk_level": "green",
+        "notes": "First ANC visit. All normal. IFA and calcium started.",
+        "bp_systolic": 110,
+        "bp_diastolic": 70,
+        "fetal_heart_rate": 144,
+        "hemoglobin": 11.8
+      }
+    ]
+  },
+  {
+    "id": "c1b2a3d4-e5f6-4789-8012-3456789abcde",
+    "abdm_id": "91-0000-0000-0004",
+    "patient_type": "anc",
+    "name": "Rekha Sharma",
+    "name_hi": "रेखा शर्मा",
+    "age": 28,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-08-20",
+    "gestational_weeks": 26,
+    "gravida": 3,
+    "para": 2,
+    "risk_level": "yellow",
+    "phone": "9867452310",
+    "checkup_history": [
+      {
+        "date": "2026-01-05",
+        "weight_kg": 68,
+        "fundal_height_cm": 22,
+        "symptoms": [
+          "mild swelling in feet"
+        ],
+        "risk_level": "yellow",
+        "notes": "BP slightly elevated. Hemoglobin borderline. Monitoring closely.",
+        "bp_systolic": 130,
+        "bp_diastolic": 84,
+        "fetal_heart_rate": 136,
+        "hemoglobin": 9.8
+      },
+      {
+        "date": "2026-02-05",
+        "weight_kg": 70,
+        "fundal_height_cm": 25,
+        "symptoms": [
+          "swelling in feet",
+          "mild headache"
+        ],
+        "risk_level": "yellow",
+        "notes": "BP still elevated. Referred to PHC for review. Advised rest.",
+        "bp_systolic": 128,
+        "bp_diastolic": 82,
+        "fetal_heart_rate": 134,
+        "hemoglobin": 10.0
+      }
+    ]
+  },
+  {
+    "id": "b0a1b2c3-d4e5-4678-9012-3456789abcdf",
+    "abdm_id": "91-0000-0000-0005",
+    "patient_type": "anc",
+    "name": "Geeta Patel",
+    "name_hi": "गीता पटेल",
+    "age": 25,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-09-28",
+    "gestational_weeks": 21,
+    "gravida": 2,
+    "para": 1,
+    "risk_level": "yellow",
+    "phone": "9845671234",
+    "checkup_history": [
+      {
+        "date": "2026-01-25",
+        "weight_kg": 55,
+        "fundal_height_cm": 17,
+        "symptoms": [
+          "fatigue",
+          "dizziness on standing"
+        ],
+        "risk_level": "yellow",
+        "notes": "Hemoglobin low — anemia likely. IFA tablets doubled. Dietary counseling done.",
+        "bp_systolic": 122,
+        "bp_diastolic": 78,
+        "fetal_heart_rate": 140,
+        "hemoglobin": 9.2
+      },
+      {
+        "date": "2026-02-18",
+        "weight_kg": 56,
+        "fundal_height_cm": 20,
+        "symptoms": [
+          "mild fatigue"
+        ],
+        "risk_level": "yellow",
+        "notes": "Hb improving slowly. Continue IFA. Follow up in 3 weeks.",
+        "bp_systolic": 118,
+        "bp_diastolic": 76,
+        "fetal_heart_rate": 144,
+        "hemoglobin": 9.5
+      }
+    ]
+  },
+  {
+    "id": "d2e3f4a5-b6c7-4890-d123-4567890abcdf",
+    "abdm_id": "91-0000-0000-0006",
+    "patient_type": "anc",
+    "name": "Saroj Kumari",
+    "name_hi": "सरोज कुमारी",
+    "age": 29,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-07-20",
+    "gestational_weeks": 31,
+    "gravida": 3,
+    "para": 2,
+    "risk_level": "yellow",
+    "phone": "9856781234",
+    "checkup_history": [
+      {
+        "date": "2026-01-10",
+        "weight_kg": 72,
+        "fundal_height_cm": 28,
+        "symptoms": [
+          "mild swelling in feet"
+        ],
+        "risk_level": "yellow",
+        "notes": "Edema mild. Hemoglobin borderline. Advised rest and iron-rich diet.",
+        "bp_systolic": 126,
+        "bp_diastolic": 80,
+        "fetal_heart_rate": 136,
+        "hemoglobin": 9.6
+      },
+      {
+        "date": "2026-02-20",
+        "weight_kg": 74,
+        "fundal_height_cm": 30,
+        "symptoms": [
+          "mild swelling"
+        ],
+        "risk_level": "yellow",
+        "notes": "Improving. Continue monitoring. Next visit in 2 weeks.",
+        "bp_systolic": 124,
+        "bp_diastolic": 80,
+        "fetal_heart_rate": 138,
+        "hemoglobin": 10.1
+      }
+    ]
+  },
+  {
+    "id": "e3f4a5b6-c7d8-4901-e234-5678901bcdef",
+    "abdm_id": "91-0000-0000-0007",
+    "patient_type": "anc",
+    "name": "Vandana Devi",
+    "name_hi": "वंदना देवी",
+    "age": 23,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-10-12",
+    "gestational_weeks": 19,
+    "gravida": 1,
+    "para": 0,
+    "risk_level": "yellow",
+    "phone": "9834567890",
+    "checkup_history": [
+      {
+        "date": "2026-02-17",
+        "weight_kg": 50,
+        "fundal_height_cm": 17,
+        "symptoms": [
+          "fatigue",
+          "mild nausea"
+        ],
+        "risk_level": "yellow",
+        "notes": "Low hemoglobin for primigravida. IFA doubled. Dietary advice given.",
+        "bp_systolic": 120,
+        "bp_diastolic": 80,
+        "fetal_heart_rate": 146,
+        "hemoglobin": 9.3
+      }
+    ]
+  },
+  {
+    "id": "a9b8c7d6-e5f4-4321-8765-4321fedcba98",
+    "abdm_id": "91-0000-0000-0008",
+    "patient_type": "anc",
+    "name": "Kamla Verma",
+    "name_hi": "कमला वर्मा",
+    "age": 32,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-07-15",
+    "gestational_weeks": 31,
+    "gravida": 4,
+    "para": 3,
+    "risk_level": "red",
+    "phone": "9834561230",
+    "checkup_history": [
+      {
+        "date": "2025-12-10",
+        "weight_kg": 78,
+        "fundal_height_cm": 27,
+        "symptoms": [
+          "severe headache",
+          "blurred vision",
+          "swelling in hands and face"
+        ],
+        "risk_level": "red",
+        "notes": "HIGH RISK — BP dangerously elevated. Signs of pre-eclampsia. Immediate PHC referral done.",
+        "bp_systolic": 148,
+        "bp_diastolic": 96,
+        "fetal_heart_rate": 158,
+        "hemoglobin": 9.0
+      },
+      {
+        "date": "2026-01-20",
+        "weight_kg": 80,
+        "fundal_height_cm": 30,
+        "symptoms": [
+          "severe headache",
+          "swelling in face and hands",
+          "reduced fetal movement"
+        ],
+        "risk_level": "red",
+        "notes": "BP worsening. Followed up post-PHC visit. Medication started. Close monitoring.",
+        "bp_systolic": 152,
+        "bp_diastolic": 98,
+        "fetal_heart_rate": 162,
+        "hemoglobin": 8.8
+      },
+      {
+        "date": "2026-02-20",
+        "weight_kg": 82,
+        "fundal_height_cm": 29,
+        "symptoms": [
+          "severe headache",
+          "swelling",
+          "upper abdominal pain"
+        ],
+        "risk_level": "red",
+        "notes": "Critical — re-referred to district hospital. Fundal height not progressing.",
+        "bp_systolic": 156,
+        "bp_diastolic": 100,
+        "fetal_heart_rate": 164,
+        "hemoglobin": 8.6
+      }
+    ]
+  },
+  {
+    "id": "98765432-10fe-4dcb-a987-654321fedcba",
+    "abdm_id": "91-0000-0000-0009",
+    "patient_type": "anc",
+    "name": "Savitri Singh",
+    "name_hi": "सावित्री सिंह",
+    "age": 19,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-08-01",
+    "gestational_weeks": 29,
+    "gravida": 1,
+    "para": 0,
+    "risk_level": "red",
+    "phone": "9823456701",
+    "checkup_history": [
+      {
+        "date": "2026-01-10",
+        "weight_kg": 48,
+        "fundal_height_cm": 24,
+        "symptoms": [
+          "severe fatigue",
+          "headache",
+          "swelling in feet and ankles"
+        ],
+        "risk_level": "red",
+        "notes": "Young first-time mother, very low weight, high BP, severe anemia. PHC referral made.",
+        "bp_systolic": 144,
+        "bp_diastolic": 92,
+        "fetal_heart_rate": 155,
+        "hemoglobin": 8.2
+      },
+      {
+        "date": "2026-02-19",
+        "weight_kg": 49.5,
+        "fundal_height_cm": 27,
+        "symptoms": [
+          "headache",
+          "swelling",
+          "difficulty breathing on exertion"
+        ],
+        "risk_level": "red",
+        "notes": "BP slightly better but still high. Anemia persisting. Advised hospital delivery.",
+        "bp_systolic": 142,
+        "bp_diastolic": 94,
+        "fetal_heart_rate": 152,
+        "hemoglobin": 8.5
+      }
+    ]
+  },
+  {
+    "id": "f5a6b7c8-d9e0-4123-f456-7890123456ab",
+    "abdm_id": "91-0000-0000-0010",
+    "patient_type": "anc",
+    "name": "Damini Sharma",
+    "name_hi": "दामिनी शर्मा",
+    "age": 30,
+    "village": "Rampur Village, Rajasthan",
+    "lmp": "2025-06-25",
+    "gestational_weeks": 35,
+    "gravida": 2,
+    "para": 1,
+    "risk_level": "red",
+    "phone": "9812341234",
+    "checkup_history": [
+      {
+        "date": "2026-01-15",
+        "weight_kg": 76,
+        "fundal_height_cm": 32,
+        "symptoms": [
+          "severe headache",
+          "blurred vision",
+          "swelling in face"
+        ],
+        "risk_level": "red",
+        "notes": "Pre-eclampsia suspected. Immediate PHC referral. Strict BP monitoring.",
+        "bp_systolic": 145,
+        "bp_diastolic": 95,
+        "fetal_heart_rate": 160,
+        "hemoglobin": 8.4
+      },
+      {
+        "date": "2026-02-22",
+        "weight_kg": 78,
+        "fundal_height_cm": 33,
+        "symptoms": [
+          "severe headache",
+          "swelling",
+          "reduced fetal movement"
+        ],
+        "risk_level": "red",
+        "notes": "BP worsening. Hospital admission advised. High-risk delivery expected.",
+        "bp_systolic": 150,
+        "bp_diastolic": 98,
+        "fetal_heart_rate": 158,
+        "hemoglobin": 8.1
+      }
+    ]
+  },
+  {
+    "id": "1a2b3c4d-5e6f-4789-ab01-23456789cdef",
+    "abdm_id": "91-0000-0000-0011",
+    "patient_type": "newborn",
+    "name": "Baby Arjun",
+    "name_hi": "बेबी अर्जुन",
+    "gender": "male",
+    "date_of_birth": "2026-02-09",
+    "village": "Rampur Village, Rajasthan",
+    "mother_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "mother_name": "Meena Devi",
+    "mother_name_hi": "मीना देवी",
+    "birth_weight_kg": 3.2,
+    "current_weight_kg": 3.45,
+    "risk_level": "green",
+    "visit_history": [
+      {
+        "date": "2026-02-09",
+        "visit_day": "day_1",
+        "weight_kg": 3.2,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Normal day 1 visit. Breastfeeding established well. Birth weight 3.2 kg."
+      },
+      {
+        "date": "2026-02-12",
+        "visit_day": "day_3",
+        "weight_kg": 3.1,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Weight dipped to 3.1 kg (3% loss — normal). No jaundice visible. Cord clean."
+      },
+      {
+        "date": "2026-02-19",
+        "visit_day": "day_7",
+        "weight_kg": 3.45,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Weight back above birth weight — excellent recovery. Cord nearly dry."
+      }
+    ]
+  },
+  {
+    "id": "2c3d4e5f-6a7b-4890-c123-4567890123ef",
+    "abdm_id": "91-0000-0000-0012",
+    "patient_type": "newborn",
+    "name": "Baby Ritu",
+    "name_hi": "बेबी रितु",
+    "gender": "female",
+    "date_of_birth": "2026-02-19",
+    "village": "Rampur Village, Rajasthan",
+    "mother_id": "7d8e9f0a-1b2c-4d3e-8f45-6789012345bc",
+    "mother_name": "Ritu Meena",
+    "mother_name_hi": "रितु मीना",
+    "birth_weight_kg": 2.9,
+    "current_weight_kg": 2.95,
+    "risk_level": "green",
+    "visit_history": [
+      {
+        "date": "2026-02-19",
+        "visit_day": "day_1",
+        "weight_kg": 2.9,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Normal term delivery. Good birth weight. Breastfeeding initiated."
+      },
+      {
+        "date": "2026-02-22",
+        "visit_day": "day_3",
+        "weight_kg": 2.82,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "2.7% weight loss — within normal range. Cord clean. No jaundice."
+      }
+    ]
+  },
+  {
+    "id": "2b3c4d5e-6f78-4901-bc12-3456789012de",
+    "abdm_id": "91-0000-0000-0013",
+    "patient_type": "newborn",
+    "name": "Baby Priya",
+    "name_hi": "बेबी प्रिया",
+    "gender": "female",
+    "date_of_birth": "2026-02-16",
+    "village": "Rampur Village, Rajasthan",
+    "mother_id": "e3d4c5b6-7a89-4012-b345-67890abcdef1",
+    "mother_name": "Sunita Kumari",
+    "mother_name_hi": "सुनीता कुमारी",
+    "birth_weight_kg": 2.8,
+    "current_weight_kg": 2.65,
+    "risk_level": "yellow",
+    "visit_history": [
+      {
+        "date": "2026-02-16",
+        "visit_day": "day_1",
+        "weight_kg": 2.8,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Birth weight 2.8 kg — on the lower side but acceptable. Normal day 1."
+      },
+      {
+        "date": "2026-02-19",
+        "visit_day": "day_3",
+        "weight_kg": 2.65,
+        "observations": [
+          "jaundice visible (yellow skin/eyes)",
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Mild yellow tinge on face and chest",
+        "risk_level": "yellow",
+        "notes": "Mild jaundice at day 3 — likely physiological. Weight loss 5.4% (acceptable). Advised frequent feeding. Monitor closely — recheck at day 7."
+      }
+    ]
+  },
+  {
+    "id": "4e5f6a7b-8c90-4bcd-d345-6789012345ef",
+    "abdm_id": "91-0000-0000-0014",
+    "patient_type": "newborn",
+    "name": "Baby Kavita",
+    "name_hi": "बेबी कविता",
+    "gender": "female",
+    "date_of_birth": "2026-02-13",
+    "village": "Rampur Village, Rajasthan",
+    "mother_id": "8e9f0a1b-2c3d-4e5f-9a67-890123456bcd",
+    "mother_name": "Kavita Yadav",
+    "mother_name_hi": "कविता यादव",
+    "birth_weight_kg": 2.4,
+    "current_weight_kg": 2.5,
+    "risk_level": "yellow",
+    "visit_history": [
+      {
+        "date": "2026-02-13",
+        "visit_day": "day_1",
+        "weight_kg": 2.4,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Low birth weight baby, mother had mild anemia",
+        "risk_level": "yellow",
+        "notes": "Low birth weight (2.4 kg). Breastfeeding initiated. Close monitoring advised."
+      },
+      {
+        "date": "2026-02-16",
+        "visit_day": "day_3",
+        "weight_kg": 2.35,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Mild weight loss but feeding improving",
+        "risk_level": "yellow",
+        "notes": "Weight dip to 2.35 kg (2% loss). No jaundice. Feeding improving. Continue monitoring."
+      },
+      {
+        "date": "2026-02-20",
+        "visit_day": "day_7",
+        "weight_kg": 2.5,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Weight recovered above birth weight. Good progress for LBW baby."
+      }
+    ]
+  },
+  {
+    "id": "3c4d5e6f-7890-4abc-8d23-456789012345",
+    "abdm_id": "91-0000-0000-0015",
+    "patient_type": "newborn",
+    "name": "Baby of Rekha Sharma",
+    "name_hi": "रेखा शर्मा का बच्चा",
+    "gender": "female",
+    "date_of_birth": "2026-02-18",
+    "village": "Rampur Village, Rajasthan",
+    "mother_id": "c1b2a3d4-e5f6-4789-8012-3456789abcde",
+    "mother_name": "Rekha Sharma",
+    "mother_name_hi": "रेखा शर्मा",
+    "birth_weight_kg": 2.1,
+    "current_weight_kg": 2.0,
+    "risk_level": "red",
+    "visit_history": [
+      {
+        "date": "2026-02-18",
+        "visit_day": "day_1",
+        "weight_kg": 2.1,
+        "observations": [
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Low birth weight baby. Mother had elevated BP during pregnancy.",
+        "risk_level": "yellow",
+        "notes": "Low birth weight (2.1 kg). Breastfeeding not yet fully established. PHC notified."
+      },
+      {
+        "date": "2026-02-21",
+        "visit_day": "day_3",
+        "weight_kg": 2.0,
+        "observations": [
+          "jaundice visible (yellow skin/eyes)",
+          "umbilical cord — clean and dry",
+          "breathing labored or fast",
+          "baby lethargic or not responding"
+        ],
+        "other_observations": "Baby barely woke for feeds. Breathing rate high (~65/min). Jaundice spreading to trunk.",
+        "risk_level": "red",
+        "notes": "HIGH RISK — Lethargy, labored breathing, and worsening jaundice. Weight still falling at day 3. Immediate PHC referral. Low birth weight baby with multiple danger signs."
+      }
+    ]
+  }
+]
