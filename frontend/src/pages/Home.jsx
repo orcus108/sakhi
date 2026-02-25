@@ -141,9 +141,9 @@ function ShowMoreButton({ shown, total, onShowMore, t }) {
  * Home.jsx — Patient list dashboard (Screen 1)
  *
  * Displays ANC patients and newborns in priority sections:
- *  1. High Risk   – all red-level patients, regardless of next-due date
- *  2. Overdue     – non-red patients whose next checkup date has passed
- *  3. Due Today   – non-red patients due for a checkup today
+ *  1. Overdue     – all patients (any risk) whose next checkup date has passed
+ *  2. Due Today   – all patients (any risk) due for a checkup today
+ *  3. High Risk   – red-level patients not already shown in Overdue or Due Today
  *
  * When a risk filter pill is active, the sectioned view collapses into a
  * flat list of all patients at that risk level, sorted by next-due date.
@@ -226,17 +226,19 @@ export default function Home() {
     }
 
     // Default "all" mode
-    const urgent = filtered
-      .filter(r => r.risk_level === 'red')
-      .sort((a, b) => (a.nextDue ?? new Date(9e15)) - (b.nextDue ?? new Date(9e15)))
-
     const overdue = filtered
-      .filter(r => r.risk_level !== 'red' && r.nextDue && daysDiff(r.nextDue) < 0)
+      .filter(r => r.nextDue && daysDiff(r.nextDue) < 0)
       .sort((a, b) => a.nextDue - b.nextDue)
 
     const dueToday = filtered
-      .filter(r => r.risk_level !== 'red' && r.nextDue && daysDiff(r.nextDue) === 0)
+      .filter(r => r.nextDue && daysDiff(r.nextDue) === 0)
       .sort((a, b) => a.nextDue - b.nextDue)
+
+    // High risk: red patients not already captured in overdue or dueToday
+    const shownIds = new Set([...overdue, ...dueToday].map(r => r.id))
+    const urgent = filtered
+      .filter(r => r.risk_level === 'red' && !shownIds.has(r.id))
+      .sort((a, b) => (a.nextDue ?? new Date(9e15)) - (b.nextDue ?? new Date(9e15)))
 
     return { urgent, overdue, dueToday, byRisk: [] }
   }, [patients, newborns, debouncedSearch, village, riskFilter])
@@ -355,24 +357,6 @@ export default function Home() {
         {/* Default "all" mode sections */}
         {riskFilter === 'all' && (
           <>
-            {/* High risk */}
-            {urgent.length > 0 && (
-              <div>
-                <SectionHeader title={t('home.sections.highRisk')} count={urgent.length} />
-                <div className="space-y-2.5 mt-1">
-                  {urgent.slice(0, urgentLimit).map(r => (
-                    <PatientRow key={r.id} record={r} nextDue={r.nextDue} onClick={() => handleClick(r)} t={t} language={language} />
-                  ))}
-                </div>
-                <ShowMoreButton
-                  shown={urgentLimit}
-                  total={urgent.length}
-                  onShowMore={() => setUrgentLimit(prev => prev + PAGE_SIZE)}
-                  t={t}
-                />
-              </div>
-            )}
-
             {/* Overdue */}
             {overdue.length > 0 && (
               <div>
@@ -404,6 +388,24 @@ export default function Home() {
                   shown={dueTodayLimit}
                   total={dueToday.length}
                   onShowMore={() => setDueTodayLimit(prev => prev + PAGE_SIZE)}
+                  t={t}
+                />
+              </div>
+            )}
+
+            {/* High risk — red patients not already in overdue or due today */}
+            {urgent.length > 0 && (
+              <div>
+                <SectionHeader title={t('home.sections.highRisk')} count={urgent.length} urgent />
+                <div className="space-y-2.5 mt-1">
+                  {urgent.slice(0, urgentLimit).map(r => (
+                    <PatientRow key={r.id} record={r} nextDue={r.nextDue} onClick={() => handleClick(r)} t={t} language={language} />
+                  ))}
+                </div>
+                <ShowMoreButton
+                  shown={urgentLimit}
+                  total={urgent.length}
+                  onShowMore={() => setUrgentLimit(prev => prev + PAGE_SIZE)}
                   t={t}
                 />
               </div>

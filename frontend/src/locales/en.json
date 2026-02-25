@@ -68,7 +68,8 @@
     "weeksPregnant": "weeks pregnant",
     "fundalHeight": "Fundal Height",
     "fetalHR": "Fetal HR",
-    "haemoglobin": "Haemoglobin"
+    "haemoglobin": "Haemoglobin",
+    "vitalsOverTime": "Vitals Over Time"
   },
   "newborn": {
     "notFound": "Newborn not found",

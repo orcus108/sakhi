@@ -44,6 +44,57 @@ function VitalItem({ label, value, unit, valueClass = 'text-gray-900', cardBg = 
   )
 }
 
+/**
+ * Sparkline — minimal inline SVG trend chart. No external dependencies.
+ * Normalises values to fit a 100×36 viewBox with 4px x-padding, 5px y-padding.
+ */
+function Sparkline({ values, color }) {
+  if (!values || values.length < 2) return null
+  const min = Math.min(...values)
+  const max = Math.max(...values)
+  const range = max - min || 1
+  const W = 100, H = 36, px = 4, py = 5
+  const pts = values.map((v, i) => ({
+    x: +(px + (i / (values.length - 1)) * (W - px * 2)).toFixed(1),
+    y: +(H - py - ((v - min) / range) * (H - py * 2)).toFixed(1),
+  }))
+  const area = `M${pts[0].x},${H} ${pts.map(p => `L${p.x},${p.y}`).join(' ')} L${pts.at(-1).x},${H} Z`
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 36 }}>
+      <path d={area} fill={color} fillOpacity="0.12" />
+      <polyline
+        points={pts.map(p => `${p.x},${p.y}`).join(' ')}
+        fill="none" stroke={color} strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round"
+      />
+      {pts.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 3.5 : 2} fill={color} />
+      ))}
+    </svg>
+  )
+}
+
+/**
+ * TrendCard — compact vital card showing current value, sparkline, and net
+ * change from the first recorded visit.
+ */
+function TrendCard({ label, unit, values, color }) {
+  const latest = values[values.length - 1]
+  const delta = Math.round((latest - values[0]) * 10) / 10
+  const sign = delta > 0 ? '+' : ''
+  return (
+    <div className="bg-white rounded-2xl p-3 shadow-sm">
+      <p className="text-xs text-gray-400 uppercase tracking-wide truncate">{label}</p>
+      <p className="mt-0.5">
+        <span className="text-xl font-bold" style={{ color }}>{latest}</span>
+        <span className="text-xs text-gray-400 ml-1">{unit}</span>
+      </p>
+      <Sparkline values={values} color={color} />
+      <p className="text-xs text-gray-400 mt-1">{sign}{delta} over {values.length} visits</p>
+    </div>
+  )
+}
+
 export default function PatientProfile() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -67,6 +118,18 @@ export default function PatientProfile() {
   const bpStyle = lastCheckup
     ? getBpStyle(lastCheckup.bp_systolic, lastCheckup.bp_diastolic)
     : { text: 'text-gray-900', bg: 'bg-white' }
+
+  // Trend chart data — sorted chronologically
+  const sortedHistory = [...patient.checkup_history].sort((a, b) => new Date(a.date) - new Date(b.date))
+  const bpValues = sortedHistory.map(c => c.bp_systolic)
+  const weightValues = sortedHistory.map(c => c.weight_kg)
+  const hbValues = sortedHistory.map(c => c.hemoglobin).filter(Boolean)
+  const latestBp = bpValues.at(-1)
+  const latestHb = hbValues.at(-1) ?? null
+  const bpTrendColor = latestBp >= 140 ? '#ef4444' : latestBp >= 120 ? '#ca8a04' : '#2563eb'
+  const hbTrendColor = latestHb != null ? (latestHb < 10 ? '#ef4444' : latestHb < 11 ? '#ca8a04' : '#2563eb') : '#2563eb'
+  const showTrend = patient.checkup_history.length >= 2
+  const showHbTrend = hbValues.length >= 2
 
   function startCheckup() {
     setSelectedPatient(patient)
@@ -141,6 +204,37 @@ export default function PatientProfile() {
               </div>
             )}
             <p className="text-xs text-gray-400 mt-2 text-right">{t('patient.recorded')} {lastCheckup.date}</p>
+          </div>
+        )}
+
+        {/* Vitals over time */}
+        {showTrend && (
+          <div className="px-4 mt-6">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+              {t('patient.vitalsOverTime')}
+            </h3>
+            <div className={`grid gap-2 ${showHbTrend ? 'grid-cols-3' : 'grid-cols-2'}`}>
+              <TrendCard
+                label={t('assessment.bloodPressure')}
+                unit="mmHg"
+                values={bpValues}
+                color={bpTrendColor}
+              />
+              <TrendCard
+                label={t('assessment.weight')}
+                unit="kg"
+                values={weightValues}
+                color="#2563eb"
+              />
+              {showHbTrend && (
+                <TrendCard
+                  label={t('patient.haemoglobin')}
+                  unit="g/dL"
+                  values={hbValues}
+                  color={hbTrendColor}
+                />
+              )}
+            </div>
           </div>
         )}
 

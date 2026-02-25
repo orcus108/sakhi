@@ -55,6 +55,45 @@ function StatCard({ label, value, unit, valueClass = 'text-gray-900' }) {
   )
 }
 
+/**
+ * WeightChart — SVG sparkline for newborn weight trajectory.
+ * Draws a dashed horizontal reference line at birth weight so the
+ * "dip below → recovery above" pattern is immediately visible.
+ * Birth weight is included in the Y-scale so the reference line
+ * is always visible even when all visit weights are above/below it.
+ */
+function WeightChart({ weights, birthWeight, color }) {
+  if (!weights || weights.length < 2) return null
+  const all = [...weights, birthWeight]
+  const min = Math.min(...all)
+  const max = Math.max(...all)
+  const range = max - min || 1
+  const W = 100, H = 52, px = 4, py = 7
+  const toY = v => +(H - py - ((v - min) / range) * (H - py * 2)).toFixed(1)
+  const pts = weights.map((v, i) => ({
+    x: +(px + (i / (weights.length - 1)) * (W - px * 2)).toFixed(1),
+    y: toY(v),
+  }))
+  const refY = toY(birthWeight)
+  const area = `M${pts[0].x},${H} ${pts.map(p => `L${p.x},${p.y}`).join(' ')} L${pts.at(-1).x},${H} Z`
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 52 }}>
+      {/* Birth weight reference line */}
+      <line x1={px} y1={refY} x2={W - px} y2={refY}
+        stroke="#9ca3af" strokeWidth="1" strokeDasharray="3,2" />
+      <path d={area} fill={color} fillOpacity="0.12" />
+      <polyline
+        points={pts.map(p => `${p.x},${p.y}`).join(' ')}
+        fill="none" stroke={color} strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round"
+      />
+      {pts.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 3.5 : 2} fill={color} />
+      ))}
+    </svg>
+  )
+}
+
 export default function NewbornProfile() {
   const { id } = useParams()
   const navigate = useNavigate()
