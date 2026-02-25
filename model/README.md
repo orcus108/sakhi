@@ -16,7 +16,7 @@ model/
 
 ## Published Adapter
 
-**HuggingFace:** [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal) *(private)*
+**HuggingFace:** [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal)
 
 Base model: `google/medgemma-1.5-4b-it`
 
