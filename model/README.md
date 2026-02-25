@@ -14,9 +14,12 @@ model/
 
 ---
 
-## Published Adapter
+## HuggingFace Artifacts
 
-**HuggingFace:** [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal)
+| Repo | Type | Purpose |
+|---|---|---|
+| [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal) | LoRA adapter | Fine-tuned on maternal/neonatal data — output of this pipeline |
+| [`docvm/medgemma-1.5-4b-it-GGUF`](https://huggingface.co/docvm/medgemma-1.5-4b-it-GGUF) | GGUF (Q4_K_M, ~2.5 GB) | Quantized base model for self-hosted serving via `medgemma-space/` |
 
 Base model: `google/medgemma-1.5-4b-it`
 
