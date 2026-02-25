@@ -126,7 +126,13 @@ sakhi/
 │   ├── Dockerfile                   # Ollama + MedGemma GGUF server for HF Spaces
 │   └── start.sh                     # Pulls medgemma-1.5-4b-it-GGUF:Q4_K_M on startup
 │
-├── finetuning-medgemma.ipynb        # Fine-tuning pipeline (Kaggle / Colab)
+├── model/                           # Fine-tuning + evaluation pipeline (Kaggle notebooks)
+│   ├── finetuning-medgemma.ipynb    # QLoRA fine-tuning on maternal/neonatal data
+│   ├── testing-ft-model.ipynb       # Triage evaluation harness (75 labelled cases)
+│   ├── data/
+│   │   └── maternal_triage_cases.json  # MOHFW-aligned triage dataset for evaluation
+│   └── README.md                    # Training config, eval metrics, dataset documentation
+│
 ├── render.yaml                      # Render deployment config (alternative to HF)
 └── CLAUDE.md                        # Architecture decisions + dev guidelines
 ```
@@ -266,7 +272,7 @@ The `medgemma-space/` directory is a complete, deployable Hugging Face Space tha
 
 ### Fine-tuning
 
-`finetuning-medgemma.ipynb` documents the fine-tuning pipeline, targeting two key gaps:
+[`model/finetuning-medgemma.ipynb`](model/finetuning-medgemma.ipynb) documents the fine-tuning pipeline, targeting two key gaps:
 - **Indian clinical context:** Recognition of locally prevalent risk factors (severe anaemia, eclampsia, low birth weight patterns common in Rajasthan)
 - **Output reliability:** Improving JSON schema compliance to reduce post-processing failures in production
 

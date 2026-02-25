@@ -1,0 +1,1052 @@
+[
+  {
+    "case_id": 1,
+    "age": 22,
+    "gestational_stage": "36 weeks pregnant",
+    "vitals": {
+      "bp": "168/112 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Severe headache, blurred vision, swelling of face and hands since morning",
+    "history": "Primigravida, no prior ANC visits, no known medical history",
+    "guideline_triage": "HIGH RISK",
+    "justification": "BP ≥160/110 mmHg with headache and visual disturbances meets criteria for severe preeclampsia. Immediate referral to FRU/CHC with IV MgSO4 and antihypertensives as per MOHFW maternal referral guidelines."
+  },
+  {
+    "case_id": 2,
+    "age": 28,
+    "gestational_stage": "32 weeks pregnant",
+    "vitals": {
+      "bp": "150/98 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild headache, mild pedal edema, no visual disturbances",
+    "history": "G2P1, previous pregnancy normal, regular ANC",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "BP 150/98 is elevated but below severe range; no severe features yet. Monitor closely, repeat BP in 4–6 hours, urine for protein, refer if BP worsens or proteinuria confirmed."
+  },
+  {
+    "case_id": 3,
+    "age": 19,
+    "gestational_stage": "38 weeks pregnant",
+    "vitals": {
+      "bp": "110/70 mmHg",
+      "temperature": "36.8°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild lower back pain, no bleeding, fetal movements normal",
+    "history": "Primigravida, regular ANC, no complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "All vitals normal, symptoms are common at term. Routine ANC counseling, birth preparedness plan, scheduled follow-up."
+  },
+  {
+    "case_id": 4,
+    "age": 30,
+    "gestational_stage": "39 weeks pregnant",
+    "vitals": {
+      "bp": "170/115 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Convulsion episode (tonic-clonic, ~2 min) witnessed by husband, now drowsy and confused",
+    "history": "G3P2, no prior hypertension, no ANC in last 6 weeks",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Eclampsia — convulsion in a pregnant woman with high BP. Life-threatening emergency. Immediate referral with IV/IM MgSO4 loading dose, lateral positioning, IV antihypertensive en route."
+  },
+  {
+    "case_id": 5,
+    "age": 25,
+    "gestational_stage": "Postpartum day 3",
+    "vitals": {
+      "bp": "100/60 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Heavy vaginal bleeding, soaked >5 pads in last 2 hours, feeling dizzy",
+    "history": "G1P1, delivered vaginally at home, placenta delivered but bleeding persisted",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Primary/secondary PPH with haemodynamic compromise (low BP, dizziness). Immediate referral, IV access, uterotonic administration, IV fluids per AMTSL protocol."
+  },
+  {
+    "case_id": 6,
+    "age": 35,
+    "gestational_stage": "28 weeks pregnant",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "38.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Burning urination, lower abdominal pain, chills, rigors since yesterday",
+    "history": "G3P2, history of recurrent UTI in previous pregnancies",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Fever ≥38.5°C with rigors in pregnancy suggests pyelonephritis or sepsis. Risk of preterm labor. Immediate referral for IV antibiotics, blood and urine cultures, obstetric evaluation."
+  },
+  {
+    "case_id": 7,
+    "age": 24,
+    "gestational_stage": "34 weeks pregnant",
+    "vitals": {
+      "bp": "112/72 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "168 mg/dL (fasting)"
+    },
+    "symptoms": "Increased thirst, frequent urination, fatigue",
+    "history": "G2P1, family history of diabetes, previous baby weight >3.8 kg",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Fasting blood sugar 168 mg/dL with symptoms and risk factors is diagnostic of gestational diabetes mellitus (GDM). Requires dietary counseling, glucose monitoring, endocrinology/specialist referral within 24–48 hours."
+  },
+  {
+    "case_id": 8,
+    "age": 21,
+    "gestational_stage": "20 weeks pregnant",
+    "vitals": {
+      "bp": "108/68 mmHg",
+      "temperature": "36.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Pallor, extreme fatigue, breathlessness on exertion, palpitations",
+    "history": "Primigravida, vegetarian diet, no iron supplementation",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Clinical features suggest severe anaemia (likely Hb <7 g/dL). Breathlessness at rest is a danger sign. Immediate referral for Hb testing and possible blood transfusion as per MOHFW guidelines."
+  },
+  {
+    "case_id": 9,
+    "age": 27,
+    "gestational_stage": "Postpartum day 7",
+    "vitals": {
+      "bp": "115/75 mmHg",
+      "temperature": "38.7°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Foul-smelling lochia, lower abdominal tenderness, malaise, chills",
+    "history": "G2P2, delivered at home, placenta manually removed by TBA",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Postpartum endometritis/sepsis indicated by fever, foul lochia, and uterine tenderness after home delivery with instrumentation. Immediate referral for IV antibiotics and surgical evaluation."
+  },
+  {
+    "case_id": 10,
+    "age": 32,
+    "gestational_stage": "26 weeks pregnant",
+    "vitals": {
+      "bp": "122/80 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "105 mg/dL (fasting)"
+    },
+    "symptoms": "Mild swelling of feet in evenings, no headache, no vision changes",
+    "history": "G2P1, no complications in last pregnancy, regular ANC",
+    "guideline_triage": "LOW RISK",
+    "justification": "Dependent pedal edema in mid-trimester without hypertension or proteinuria is physiological. Reassure, advise rest, elevation of legs, and routine follow-up."
+  },
+  {
+    "case_id": 11,
+    "age": 29,
+    "gestational_stage": "37 weeks pregnant",
+    "vitals": {
+      "bp": "145/95 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Headache, no visual disturbance, 1+ proteinuria on dipstick",
+    "history": "Primigravida, BP was normal until 34 weeks",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "BP 145/95 with proteinuria is mild preeclampsia at term. Monitor closely; if BP rises to ≥160/110 or symptoms worsen, immediate referral. Plan for delivery at FRU given term gestation."
+  },
+  {
+    "case_id": 12,
+    "age": 18,
+    "gestational_stage": "16 weeks pregnant",
+    "vitals": {
+      "bp": "100/65 mmHg",
+      "temperature": "36.8°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Severe nausea and vomiting, unable to retain fluids for 3 days, weight loss",
+    "history": "Primigravida, first ANC visit today",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Hyperemesis gravidarum with dehydration risk. Unable to retain fluids for >24 hours warrants IV hydration and antiemetics. Refer to CHC if unable to maintain oral intake after initial management."
+  },
+  {
+    "case_id": 13,
+    "age": 40,
+    "gestational_stage": "35 weeks pregnant",
+    "vitals": {
+      "bp": "160/105 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "190 mg/dL (random)"
+    },
+    "symptoms": "Epigastric pain, nausea, headache, 2+ proteinuria on dipstick",
+    "history": "G4P3, chronic hypertension, type 2 diabetes pre-pregnancy",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Severe preeclampsia with epigastric pain (possible HELLP syndrome) in a high-risk woman with comorbidities. Immediate referral for specialist care, MgSO4, antihypertensives, delivery planning."
+  },
+  {
+    "case_id": 14,
+    "age": 26,
+    "gestational_stage": "Postpartum day 2",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "temperature": "37.5°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Breast engorgement, mild fever, breastfeeding difficulty, newborn latching poorly",
+    "history": "G1P1, normal vaginal delivery at PHC",
+    "guideline_triage": "LOW RISK",
+    "justification": "Mild fever on day 2 is consistent with breast engorgement (milk let-down fever). Temperature <38°C. Support with breastfeeding counseling, warm compress, frequent feeding. Monitor for mastitis if fever persists."
+  },
+  {
+    "case_id": 15,
+    "age": 33,
+    "gestational_stage": "Postpartum day 5",
+    "vitals": {
+      "bp": "165/110 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Severe headache since yesterday, visual blurring, no convulsions yet",
+    "history": "G2P2, was normotensive throughout pregnancy, LSCS 5 days ago",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Postpartum preeclampsia with severe features (BP ≥160/110, headache, visual symptoms). Eclampsia can occur up to 6 weeks postpartum. Immediate referral with MgSO4 and antihypertensives."
+  },
+  {
+    "case_id": 16,
+    "age": 23,
+    "gestational_stage": "8 weeks pregnant",
+    "vitals": {
+      "bp": "108/70 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild spotting (brownish discharge), no pain, no heavy bleeding",
+    "history": "Primigravida, previous period was regular, USG not done yet",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Threatened abortion — spotting in first trimester requires USG to rule out ectopic pregnancy and assess fetal viability. Refer for USG within 24 hours. Advise pelvic rest and watch for worsening bleeding."
+  },
+  {
+    "case_id": 17,
+    "age": 28,
+    "gestational_stage": "10 weeks pregnant",
+    "vitals": {
+      "bp": "100/60 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Sudden sharp lower right abdominal pain, dizziness, vaginal spotting, pain radiating to shoulder",
+    "history": "G1P0, history of pelvic inflammatory disease, no USG done",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Ectopic pregnancy until proven otherwise — unilateral pain, dizziness, referred shoulder pain (diaphragmatic irritation from hemoperitoneum), low BP. Life-threatening emergency; immediate surgical referral."
+  },
+  {
+    "case_id": 18,
+    "age": 31,
+    "gestational_stage": "30 weeks pregnant",
+    "vitals": {
+      "bp": "115/78 mmHg",
+      "temperature": "36.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Painless bright red vaginal bleeding, no contractions",
+    "history": "G3P2, USG at 20 weeks showed low-lying placenta",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Painless antepartum hemorrhage with known low-lying placenta = placenta previa. Risk of massive hemorrhage. Do not perform vaginal exam. Immediate referral to hospital with blood bank and OT facilities."
+  },
+  {
+    "case_id": 19,
+    "age": 25,
+    "gestational_stage": "34 weeks pregnant",
+    "vitals": {
+      "bp": "125/85 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Sudden onset painful bleeding, hard tender uterus, decreased fetal movement",
+    "history": "G2P1, alleged history of fall, hypertensive in this pregnancy",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Abruptio placentae — painful APH, board-like uterus, reduced fetal movements. Fetal and maternal life-threatening. Immediate emergency referral for emergency LSCS and resuscitation."
+  },
+  {
+    "case_id": 20,
+    "age": 22,
+    "gestational_stage": "24 weeks pregnant",
+    "vitals": {
+      "bp": "112/72 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Regular uterine contractions every 10 minutes, mild backache, no bleeding",
+    "history": "Primigravida, previous preterm delivery in family history",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Preterm labor at 24 weeks (previable to periviable threshold). Requires tocolysis, antenatal corticosteroids, and immediate referral to facility with NICU capability."
+  },
+  {
+    "case_id": 21,
+    "age": 29,
+    "gestational_stage": "36 weeks pregnant",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Reduced fetal movements since yesterday, no pain, no bleeding",
+    "history": "G2P1, uncomplicated pregnancy, regular ANC",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Decreased fetal movements warrants urgent fetal surveillance (NST/CTG, fetal kick count assessment). Refer for fetal monitoring within a few hours. May indicate fetal compromise."
+  },
+  {
+    "case_id": 22,
+    "age": 26,
+    "gestational_stage": "Postpartum day 1",
+    "vitals": {
+      "bp": "115/75 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Normal lochia, mild uterine cramping, breastfeeding initiated",
+    "history": "G1P1, normal vaginal delivery at PHC, newborn healthy",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal postpartum status. Afterpains are physiological. Routine postnatal care, breastfeeding support, and 7-day follow-up recommended."
+  },
+  {
+    "case_id": 23,
+    "age": 34,
+    "gestational_stage": "Postpartum day 10",
+    "vitals": {
+      "bp": "118/78 mmHg",
+      "temperature": "39.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "High fever, breast redness and swelling, painful hard lump in left breast, chills",
+    "history": "G2P2, exclusively breastfeeding, cracked nipples noted",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Mastitis with possible abscess formation. Temperature 39.1°C with localized breast signs. Requires antibiotics, analgesia, continued breastfeeding or pumping. Refer if abscess suspected (fluctuant mass) for surgical drainage."
+  },
+  {
+    "case_id": 24,
+    "age": 20,
+    "gestational_stage": "18 weeks pregnant",
+    "vitals": {
+      "bp": "105/68 mmHg",
+      "temperature": "36.8°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No complaints, routine visit, fetal movements started",
+    "history": "Primigravida, regular ANC, Hb 10.2 g/dL at 12 weeks, on IFA tablets",
+    "guideline_triage": "LOW RISK",
+    "justification": "Asymptomatic, vitals normal, mild anaemia being managed with IFA. Routine ANC visit. Reinforce IFA compliance and nutritional counseling."
+  },
+  {
+    "case_id": 25,
+    "age": 38,
+    "gestational_stage": "33 weeks pregnant",
+    "vitals": {
+      "bp": "155/100 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "145 mg/dL (fasting)"
+    },
+    "symptoms": "Headache, blurred vision, 2+ proteinuria, fetal movements reduced",
+    "history": "G4P3, known hypertensive on methyldopa, last delivery was LSCS",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Superimposed severe preeclampsia with worsening BP on antihypertensives, proteinuria, visual symptoms, and reduced fetal movements in a high-parity patient. Immediate referral with MgSO4 prophylaxis."
+  },
+  {
+    "case_id": 26,
+    "age": 27,
+    "gestational_stage": "40 weeks pregnant",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Labor pains, regular contractions every 5 minutes, membranes intact, cervix 4 cm dilated",
+    "history": "G2P1, previous normal delivery, no complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "Active phase of labour, normal vitals. Well within normal progression. Manage at PHC/CHC with partograph monitoring. Refer only if complications develop."
+  },
+  {
+    "case_id": 27,
+    "age": 24,
+    "gestational_stage": "41 weeks pregnant",
+    "vitals": {
+      "bp": "130/88 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No labor pains, cervix unfavorable (Bishop score <4), mild pedal edema",
+    "history": "Primigravida, regular ANC, no complications noted earlier",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Post-term pregnancy (41 weeks) with unfavorable cervix. Risk of placental insufficiency increases after 41 weeks. Refer for induction of labour to FRU/district hospital within 24 hours."
+  },
+  {
+    "case_id": 28,
+    "age": 22,
+    "gestational_stage": "Postpartum day 3",
+    "vitals": {
+      "bp": "114/74 mmHg",
+      "temperature": "37.3°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Newborn (3 days old): fever 38.2°C, poor feeding, excessive crying, yellowish skin",
+    "history": "Term delivery, birth weight 2.9 kg, no perinatal complications",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Neonatal fever (≥38°C in first week of life) combined with poor feeding suggests possible neonatal sepsis. Neonatal jaundice also needs assessment. Immediate referral to SNCU/NICU for evaluation and IV antibiotics."
+  },
+  {
+    "case_id": 29,
+    "age": 30,
+    "gestational_stage": "Postpartum day 4",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Newborn: birth weight 1.9 kg (preterm 34 weeks), unable to breastfeed, poor suck reflex",
+    "history": "Preterm delivery by LSCS, admitted in SNCU for 2 days, now discharged",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Low birth weight preterm infant with poor feeding is at risk for hypoglycemia and sepsis. Kangaroo Mother Care, expressed breast milk by spoon/cup, close monitoring of temperature and feeding every 2–4 hours. Follow-up in 24 hours."
+  },
+  {
+    "case_id": 30,
+    "age": 28,
+    "gestational_stage": "22 weeks pregnant",
+    "vitals": {
+      "bp": "110/70 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Watery vaginal discharge since 2 days, no pain, no bleeding, no fever",
+    "history": "G2P1, previous premature delivery at 30 weeks",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Prelabour rupture of membranes (PROM) suspected at 22 weeks in a patient with prior preterm birth. Risk of chorioamnionitis and cord prolapse. Immediate referral for speculum examination and obstetric care."
+  },
+  {
+    "case_id": 31,
+    "age": 26,
+    "gestational_stage": "32 weeks pregnant",
+    "vitals": {
+      "bp": "116/74 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Moderate lower back pain, urinary frequency, no dysuria, no fever",
+    "history": "G1P0, Urine dipstick: no nitrites, no protein",
+    "guideline_triage": "LOW RISK",
+    "justification": "Musculoskeletal backache in third trimester without signs of UTI or preterm labour. Reassure, advise posture correction and back exercises, follow-up at next scheduled ANC."
+  },
+  {
+    "case_id": 32,
+    "age": 35,
+    "gestational_stage": "28 weeks pregnant",
+    "vitals": {
+      "bp": "120/82 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "210 mg/dL (random)"
+    },
+    "symptoms": "Extreme thirst, polyuria, recurrent episodes of vaginal candidiasis, fatigue",
+    "history": "G3P2, family history of type 2 diabetes, two previous macrosomic babies",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Random blood sugar 210 mg/dL with symptoms in a high-risk patient with multiple GDM risk factors. Uncontrolled GDM. Urgent referral for OGTT confirmation, dietitian, and endocrinology consultation. Fetal monitoring required."
+  },
+  {
+    "case_id": 33,
+    "age": 23,
+    "gestational_stage": "14 weeks pregnant",
+    "vitals": {
+      "bp": "106/68 mmHg",
+      "temperature": "36.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Routine visit, mild fatigue, no complaints",
+    "history": "Primigravida, Hb 9.0 g/dL at booking, on IFA tablets",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Hb 9.0 g/dL indicates moderate anaemia. Requires intensified IFA therapy, dietary counseling, and follow-up Hb at 20 weeks. Refer for IV iron infusion if Hb does not improve as per MOHFW guidelines."
+  },
+  {
+    "case_id": 34,
+    "age": 29,
+    "gestational_stage": "Postpartum day 2",
+    "vitals": {
+      "bp": "112/74 mmHg",
+      "temperature": "38.8°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "High fever, perineal wound (episiotomy site) red, swollen, purulent discharge",
+    "history": "G1P1, vaginal delivery with episiotomy, delivery at home",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Perineal wound infection with systemic fever (38.8°C) in early postpartum. Risk of necrotizing fasciitis in perineal infections. Immediate referral for wound assessment, IV antibiotics, and possible surgical debridement."
+  },
+  {
+    "case_id": 35,
+    "age": 32,
+    "gestational_stage": "Postpartum day 14",
+    "vitals": {
+      "bp": "116/76 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Feeling sad, tearful, not interested in baby, poor sleep, no thoughts of self-harm",
+    "history": "G2P2, traumatic LSCS, husband working away, social isolation",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Probable postpartum depression (Edinburgh Postnatal Depression Scale should be administered). Scores needing attention; no immediate danger but requires counseling, social support, and follow-up within 72 hours. Refer to ASHA/counselor."
+  },
+  {
+    "case_id": 36,
+    "age": 19,
+    "gestational_stage": "36 weeks pregnant",
+    "vitals": {
+      "bp": "108/70 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Breathlessness at rest, unable to lie flat, palpitations, cough",
+    "history": "Primigravida, no cardiac history, but rheumatic fever in childhood",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Cardiac decompensation in pregnancy — breathlessness at rest and orthopnoea in a woman with childhood rheumatic fever (possible valvular disease). Immediate referral to tertiary care with cardiology and obstetrics."
+  },
+  {
+    "case_id": 37,
+    "age": 27,
+    "gestational_stage": "38 weeks pregnant",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild nausea, heartburn, Braxton Hicks contractions, active fetal movements",
+    "history": "G2P1, uncomplicated, last delivery normal",
+    "guideline_triage": "LOW RISK",
+    "justification": "Physiological complaints at term. Normal vitals and fetal movements. Reassure, antacids if needed, birth preparedness counseling, follow-up in 1 week."
+  },
+  {
+    "case_id": 38,
+    "age": 24,
+    "gestational_stage": "Postpartum day 6",
+    "vitals": {
+      "bp": "110/72 mmHg",
+      "temperature": "37.4°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Wound redness at LSCS site, mild pain, no discharge, low-grade temperature",
+    "history": "G1P1, emergency LSCS for fetal distress, PHC managed delivery",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Early wound infection signs at LSCS site. Temperature borderline. Monitor closely, wound dressing, oral antibiotics. Refer if fever increases, wound opens, or discharge appears."
+  },
+  {
+    "case_id": 39,
+    "age": 31,
+    "gestational_stage": "29 weeks pregnant",
+    "vitals": {
+      "bp": "128/86 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild edema feet, occasional headache, no visual complaints, no proteinuria on dipstick",
+    "history": "G2P1, normal first pregnancy, family history of hypertension",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Borderline elevated BP (128/86) with mild edema and family history of hypertension. Gestational hypertension possible. Close BP monitoring, low-salt diet, repeat in 1 week. Refer if BP ≥140/90."
+  },
+  {
+    "case_id": 40,
+    "age": 26,
+    "gestational_stage": "12 weeks pregnant",
+    "vitals": {
+      "bp": "104/66 mmHg",
+      "temperature": "36.8°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Giddiness, fainting episode this morning, pallor, no bleeding",
+    "history": "Primigravida, vegetarian, low income, Hb not checked yet",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Syncope in early pregnancy may indicate severe anaemia or hypotension. Requires urgent Hb testing and blood pressure assessment. If Hb <7, escalate to HIGH RISK for transfusion. Start IFA immediately."
+  },
+  {
+    "case_id": 41,
+    "age": 36,
+    "gestational_stage": "37 weeks pregnant",
+    "vitals": {
+      "bp": "134/90 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "178 mg/dL (fasting)"
+    },
+    "symptoms": "Reduced fetal movements past 24 hours, no headache, mild edema",
+    "history": "G3P2, GDM diagnosed at 28 weeks, on dietary management only",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Uncontrolled GDM (fasting 178 mg/dL) combined with reduced fetal movements at 37 weeks strongly suggests fetal compromise. Immediate referral for NST/BPP and obstetric assessment. Risk of stillbirth."
+  },
+  {
+    "case_id": 42,
+    "age": 23,
+    "gestational_stage": "Postpartum day 1",
+    "vitals": {
+      "bp": "116/74 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Newborn (day 1): not breastfeeding, weak cry, temperature 36.2°C (hypothermic), birth weight 2.1 kg",
+    "history": "Term delivery but SGA baby, no perinatal asphyxia",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Neonatal hypothermia (temperature <36.5°C) in a low birth weight SGA newborn with poor feeding is a neonatal danger sign. Immediate warming (Kangaroo Mother Care), check blood glucose, refer to SNCU."
+  },
+  {
+    "case_id": 43,
+    "age": 30,
+    "gestational_stage": "33 weeks pregnant",
+    "vitals": {
+      "bp": "116/78 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No complaints, routine visit, large for dates uterus on palpation",
+    "history": "G2P1, previous macrosomic baby 4.2 kg, no GDM screening done",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Uterus large for dates with history of macrosomic baby. GDM screening urgently required. Refer for OGTT, growth scan, and specialist review within 48 hours."
+  },
+  {
+    "case_id": 44,
+    "age": 25,
+    "gestational_stage": "30 weeks pregnant",
+    "vitals": {
+      "bp": "110/72 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Itching all over body, worse at night, palms and soles affected, no rash",
+    "history": "Primigravida, no drug use, LFTs not done",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Intrahepatic cholestasis of pregnancy (ICP) suspected — generalized pruritus without rash worsening at night, involving palms and soles. Risk of fetal distress/stillbirth. Refer for LFTs and bile acids within 24–48 hours."
+  },
+  {
+    "case_id": 45,
+    "age": 21,
+    "gestational_stage": "Postpartum day 30",
+    "vitals": {
+      "bp": "112/74 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Heavy vaginal bleeding restarted (was normal till day 25), passing clots, mild cramps",
+    "history": "G1P1, normal delivery, no retained placental issues noted",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Secondary PPH (bleeding after 24 hrs and up to 6 weeks postpartum). Could be due to retained products or endometritis. Refer for pelvic USG and gynecological evaluation within 24 hours. Monitor closely."
+  },
+  {
+    "case_id": 46,
+    "age": 28,
+    "gestational_stage": "16 weeks pregnant",
+    "vitals": {
+      "bp": "112/72 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Routine ANC, no complaints, fetal heart heard on Doppler",
+    "history": "G1P0, Hb 11.5 g/dL, urine normal, on IFA and calcium",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal second trimester ANC visit. All parameters within acceptable range. Continue routine ANC, reinforce nutrition and IFA supplementation."
+  },
+  {
+    "case_id": 47,
+    "age": 34,
+    "gestational_stage": "Postpartum day 8",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Calf pain and swelling right leg, local warmth, difficulty walking",
+    "history": "G2P2, elective LSCS, obese (BMI 32), immobilized for 3 days post-op",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Deep vein thrombosis (DVT) suspected — calf pain, swelling, warmth in post-LSCS obese patient. Risk of pulmonary embolism (PE). Immediate referral for duplex USG and anticoagulation management."
+  },
+  {
+    "case_id": 48,
+    "age": 22,
+    "gestational_stage": "20 weeks pregnant",
+    "vitals": {
+      "bp": "105/65 mmHg",
+      "temperature": "36.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Extreme pallor of conjunctivae and palms, breathlessness even at rest, Hb 5.8 g/dL",
+    "history": "Primigravida, tribal community, no IFA ever taken, poor diet",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Severe anaemia (Hb <7 g/dL) with breathlessness at rest is a maternal danger sign. Immediate referral for blood transfusion and IV iron therapy. Risk of high-output cardiac failure."
+  },
+  {
+    "case_id": 49,
+    "age": 29,
+    "gestational_stage": "38 weeks pregnant",
+    "vitals": {
+      "bp": "122/80 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Feeling anxious about labour, mild contractions, cervix 2 cm dilated, membranes intact",
+    "history": "Primigravida, well-prepared for birth, no complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "Latent phase of labour in a low-risk primigravida. Normal vitals. Manage expectantly at PHC with partograph monitoring. Encourage walking, hydration, support. Refer if active labour or complications develop."
+  },
+  {
+    "case_id": 50,
+    "age": 17,
+    "gestational_stage": "34 weeks pregnant",
+    "vitals": {
+      "bp": "142/92 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Swelling of face, headache, 1+ proteinuria, no visual symptoms",
+    "history": "Primigravida adolescent, married recently, no prior ANC",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Early preeclampsia in adolescent primigravida (BP 142/92 with proteinuria). High-risk age group. Needs close monitoring, antihypertensives if BP worsens, and referral to FRU. Daily BP monitoring, rest, low-salt diet."
+  },
+  {
+    "case_id": 51,
+    "age": 28,
+    "gestational_stage": "Postpartum day 2",
+    "vitals": {
+      "bp": "108/70 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No complaints, passing normal lochia, breastfeeding well, baby alert and active",
+    "history": "G2P2, normal vaginal delivery, no perinatal complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal postpartum recovery. Breastfeeding established. Routine postnatal care, family planning counseling, iron-folate continuation, 7-day follow-up."
+  },
+  {
+    "case_id": 52,
+    "age": 33,
+    "gestational_stage": "26 weeks pregnant",
+    "vitals": {
+      "bp": "118/80 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "155 mg/dL (post-meal)"
+    },
+    "symptoms": "Mild fatigue, no other complaints, GDM screening done today",
+    "history": "G3P2, BMI 29, previous GDM in last pregnancy",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Post-prandial blood sugar 155 mg/dL with history of prior GDM. GDM management needed — dietary modification, glucose monitoring, and specialist follow-up within 1 week for treatment plan."
+  },
+  {
+    "case_id": 53,
+    "age": 25,
+    "gestational_stage": "37 weeks pregnant",
+    "vitals": {
+      "bp": "116/76 mmHg",
+      "temperature": "38.5°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Fever, uterine contractions, foul-smelling vaginal discharge, fetal tachycardia on auscultation (FHR 175/min)",
+    "history": "G1P0, membranes ruptured 18 hours ago at home",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Chorioamnionitis — fever, foul amniotic fluid, and fetal tachycardia after prolonged PROM. Life-threatening to mother and fetus. Immediate referral for IV antibiotics and expedited delivery."
+  },
+  {
+    "case_id": 54,
+    "age": 30,
+    "gestational_stage": "Postpartum day 3",
+    "vitals": {
+      "bp": "115/75 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mother: recovering well. Newborn: deep jaundice (scleral icterus, jaundice extending to palms and soles), not feeding well",
+    "history": "Term baby, birth weight 3.1 kg, blood group O+ mother, baby A+",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Pathological neonatal jaundice with feeding difficulty, extending to palms and soles by day 3, suggests significant hyperbilirubinemia possibly due to ABO incompatibility. Risk of kernicterus. Immediate referral for serum bilirubin and phototherapy/exchange transfusion."
+  },
+  {
+    "case_id": 55,
+    "age": 27,
+    "gestational_stage": "40 weeks pregnant",
+    "vitals": {
+      "bp": "118/78 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Cord felt outside vagina after membranes ruptured spontaneously, baby not yet delivered",
+    "history": "G1P0, fetal presentation was transverse on last visit",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Cord prolapse — obstetric emergency with immediate risk of fetal death from cord compression. Immediate referral, knee-chest position, elevate presenting part, IV access, emergency LSCS needed."
+  },
+  {
+    "case_id": 56,
+    "age": 26,
+    "gestational_stage": "32 weeks pregnant",
+    "vitals": {
+      "bp": "116/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild leg cramps at night, some ankle swelling, sleeping poorly",
+    "history": "G1P0, no prior complaints, calcium supplements prescribed",
+    "guideline_triage": "LOW RISK",
+    "justification": "Night leg cramps and mild ankle edema are common physiological complaints in third trimester. Normal vitals. Reassure, ensure calcium supplementation, advise stretching exercises."
+  },
+  {
+    "case_id": 57,
+    "age": 31,
+    "gestational_stage": "Postpartum day 15",
+    "vitals": {
+      "bp": "112/74 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No vaginal bleeding, lochia subsiding, breastfeeding well, recovering from LSCS",
+    "history": "G2P2, elective LSCS for breech, uneventful recovery",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal postpartum recovery at 2 weeks post-LSCS. Wound healing, lochia settling, breastfeeding established. Routine postnatal follow-up at 6 weeks."
+  },
+  {
+    "case_id": 58,
+    "age": 22,
+    "gestational_stage": "38 weeks pregnant",
+    "vitals": {
+      "bp": "132/86 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Regular contractions, membranes ruptured 4 hours ago, meconium-stained amniotic fluid (thick green), FHR 160/min",
+    "history": "G1P0, gestational hypertension diagnosed at 36 weeks",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Meconium-stained amniotic fluid with possible fetal tachycardia indicates fetal distress. High-risk delivery requiring skilled birth attendant, paediatrician at delivery, and NICU standby. Immediate transfer to FRU."
+  },
+  {
+    "case_id": 59,
+    "age": 24,
+    "gestational_stage": "28 weeks pregnant",
+    "vitals": {
+      "bp": "112/72 mmHg",
+      "temperature": "36.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Routine visit, no complaints, uterine size appropriate, fetal movements good",
+    "history": "G1P0, Hb 11.8 g/dL, urine normal",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal third trimester ANC. All parameters satisfactory. Schedule next visit at 32 weeks, continue IFA and calcium supplementation, TT booster if not given."
+  },
+  {
+    "case_id": 60,
+    "age": 29,
+    "gestational_stage": "Postpartum day 1",
+    "vitals": {
+      "bp": "90/60 mmHg",
+      "temperature": "37.5°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Uterus not contracted (atonic), continued heavy bleeding after delivery of placenta, pallor, weak pulse",
+    "history": "G4P4, prolonged labour, delivered at home",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Primary PPH due to uterine atony — high parity, atonic uterus, haemodynamic compromise. Immediate life-saving measures: bimanual uterine compression, oxytocin/misoprostol, IV fluids, immediate transfer."
+  },
+  {
+    "case_id": 61,
+    "age": 35,
+    "gestational_stage": "36 weeks pregnant",
+    "vitals": {
+      "bp": "148/96 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "New-onset headache, mild swelling of face, trace proteinuria on dipstick, no visual symptoms",
+    "history": "G2P1, previous preeclampsia, on aspirin 75 mg from 16 weeks",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Recurrent preeclampsia suspected in a known high-risk patient. BP 148/96 not yet in severe range. Requires close BP monitoring, BP diary, urine protein repeat, and daily review. Refer to FRU for decision on timing of delivery."
+  },
+  {
+    "case_id": 62,
+    "age": 20,
+    "gestational_stage": "24 weeks pregnant",
+    "vitals": {
+      "bp": "100/66 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "No symptoms, referred by ASHA for ANC registration",
+    "history": "Primigravida, first visit to PHC, Hb 12.2 g/dL, no risk factors",
+    "guideline_triage": "LOW RISK",
+    "justification": "Late but normal ANC registration. No high-risk features. Register in JSY scheme, initiate IFA and calcium, schedule next visit in 4 weeks, educate on danger signs."
+  },
+  {
+    "case_id": 63,
+    "age": 27,
+    "gestational_stage": "39 weeks pregnant",
+    "vitals": {
+      "bp": "120/78 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Regular contractions since 6 hours, 8 cm cervical dilation, membranes bulging, FHR normal",
+    "history": "G2P1, previous normal delivery, no complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "Advanced active labour in a multiparous woman with uncomplicated history. Normal FHR and vitals. Manage delivery at PHC with skilled birth attendant, partograph monitoring, prepare for imminent delivery."
+  },
+  {
+    "case_id": 64,
+    "age": 33,
+    "gestational_stage": "Postpartum day 42",
+    "vitals": {
+      "bp": "118/78 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Routine 6-week postpartum visit, breastfeeding well, mild fatigue, some hair loss",
+    "history": "G2P2, normal recovery post-LSCS, no complications",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal 6-week postnatal visit. Hair loss and fatigue are common postpartum. Check Hb, counsel on family planning, continue iron supplementation if Hb low."
+  },
+  {
+    "case_id": 65,
+    "age": 28,
+    "gestational_stage": "Postpartum day 12",
+    "vitals": {
+      "bp": "100/65 mmHg",
+      "temperature": "39.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "High fever, severe headache, neck stiffness, photophobia, confusion",
+    "history": "G1P1, home delivery, no complications noted at delivery",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Meningitis suspected — fever, neck stiffness, photophobia, and altered consciousness in postpartum period. May also indicate postpartum sepsis extending to CNS. Immediate referral to tertiary care with IV antibiotics."
+  },
+  {
+    "case_id": 66,
+    "age": 24,
+    "gestational_stage": "31 weeks pregnant",
+    "vitals": {
+      "bp": "116/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Decreased fetal movement today, abdominal tightening, no bleeding",
+    "history": "G1P0, normal ANC, recent history of diarrhea and dehydration 3 days ago",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Reduced fetal movements following recent dehydration episode. Risk of fetal compromise. Requires fetal kick count monitoring, hydration, and CTG/NST if available. Refer if movements do not improve within 2–4 hours."
+  },
+  {
+    "case_id": 67,
+    "age": 26,
+    "gestational_stage": "35 weeks pregnant",
+    "vitals": {
+      "bp": "114/74 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild constipation, haemorrhoids, rectal bleeding (small amount), no abdominal pain",
+    "history": "G2P1, history of haemorrhoids in last pregnancy",
+    "guideline_triage": "LOW RISK",
+    "justification": "Haemorrhoidal bleed in pregnancy without anaemia or other complications. Reassure, high-fiber diet, increase fluids, safe topical agents, and routine follow-up."
+  },
+  {
+    "case_id": 68,
+    "age": 30,
+    "gestational_stage": "Postpartum day 4",
+    "vitals": {
+      "bp": "120/80 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Newborn: umbilical cord red, swollen with pus discharge, baby irritable, temperature 37.9°C",
+    "history": "Home delivery, cord cut with unsterile blade, no cord care done",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Omphalitis with pus and periumbilical redness after unsterile cord cutting. Risk of neonatal sepsis and tetanus. Immediate referral for IV antibiotics, neonatal assessment, and tetanus immunoglobulin evaluation."
+  },
+  {
+    "case_id": 69,
+    "age": 32,
+    "gestational_stage": "37 weeks pregnant",
+    "vitals": {
+      "bp": "125/84 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "130 mg/dL (fasting)"
+    },
+    "symptoms": "Large uterus for dates, twin pregnancy confirmed on earlier USG, no contractions",
+    "history": "G2P1, twin pregnancy diagnosed at 20 weeks, no other complications",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Twin pregnancy at 37 weeks requires delivery planning at a facility with NICU capability. Borderline fasting sugar needs GDM management. Refer to FRU for delivery planning and monitoring."
+  },
+  {
+    "case_id": 70,
+    "age": 25,
+    "gestational_stage": "Postpartum day 20",
+    "vitals": {
+      "bp": "114/74 mmHg",
+      "temperature": "38.9°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "High fever, productive cough with yellow sputum, breathlessness, Sp02 not measurable at this facility",
+    "history": "G1P1, had home delivery, was in contact with TB patient",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Postpartum pneumonia or possible TB reactivation. Fever, productive cough, and breathlessness in postpartum period. Immediate referral for CXR, sputum AFB, blood cultures, O2 support."
+  },
+  {
+    "case_id": 71,
+    "age": 23,
+    "gestational_stage": "Postpartum day 3",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.3°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild perineal discomfort (episiotomy), normal lochia, breastfeeding 6–8 times per day, urinating normally",
+    "history": "G1P1, vaginal delivery at CHC with episiotomy, no perineal infection signs",
+    "guideline_triage": "LOW RISK",
+    "justification": "Normal postpartum recovery with expected perineal discomfort. Episiotomy healing normally. Provide analgesia, sitz baths, hygiene education, and scheduled 7-day postnatal visit."
+  },
+  {
+    "case_id": 72,
+    "age": 35,
+    "gestational_stage": "40 weeks pregnant",
+    "vitals": {
+      "bp": "145/94 mmHg",
+      "temperature": "37.1°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Moderate headache, blurred vision starting 2 hours ago, 2+ proteinuria, contracting mildly",
+    "history": "G4P3, on no antihypertensives, no ANC for 6 weeks",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Preeclampsia with severe features approaching eclampsia threshold — visual symptoms, 2+ proteinuria, in a high-parity patient in labour without care. Immediate referral with MgSO4 and antihypertensive therapy."
+  },
+  {
+    "case_id": 73,
+    "age": 28,
+    "gestational_stage": "34 weeks pregnant",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.0°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Mild breathlessness on exertion, Hb 8.2 g/dL (done today), pallor, no pedal edema",
+    "history": "G2P1, moderate anemia, poor compliance with IFA",
+    "guideline_triage": "MODERATE RISK",
+    "justification": "Moderate anaemia (Hb 8–10.9 g/dL) at 34 weeks. No breathlessness at rest. Intensify IFA therapy, consider IV iron infusion, dietitian referral. Follow-up Hb in 4 weeks; refer if Hb <8 or deteriorates."
+  },
+  {
+    "case_id": 74,
+    "age": 29,
+    "gestational_stage": "Postpartum day 2",
+    "vitals": {
+      "bp": "118/76 mmHg",
+      "temperature": "37.2°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "Newborn (day 2): mild yellowish tinge of skin (face only), feeding well, active, temperature 37.0°C, birth weight 3.0 kg",
+    "history": "Term delivery, no perinatal complications, mother O+, baby B+",
+    "guideline_triage": "LOW RISK",
+    "justification": "Physiological neonatal jaundice — mild, limited to face, day 2, term baby, feeding well. Encourage breastfeeding frequently (8–12 times/day), monitor for extension to chest/abdomen. Review in 24 hours."
+  },
+  {
+    "case_id": 75,
+    "age": 31,
+    "gestational_stage": "Postpartum day 9",
+    "vitals": {
+      "bp": "116/78 mmHg",
+      "temperature": "39.5°C",
+      "blood_sugar": "Not available"
+    },
+    "symptoms": "High fever, rigors, uterine tenderness, offensive lochia, tachycardia (pulse 118/min), appears toxic",
+    "history": "G3P3, home delivery by TBA, retained membrane suspected, no antibiotics given",
+    "guideline_triage": "HIGH RISK",
+    "justification": "Postpartum sepsis with systemic inflammatory response — high fever, tachycardia, uterine tenderness, offensive lochia after suspected retained products. MOHFW maternal danger sign. Immediate referral for IV antibiotics, uterine evaluation, and ICU-level care if needed."
+  }
+]

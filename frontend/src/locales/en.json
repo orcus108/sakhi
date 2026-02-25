@@ -17,6 +17,7 @@
     "schedule": "Schedule"
   },
   "onboarding": {
+    "appName": "Sakhi",
     "tagline": "Caring for mothers and children, together",
     "nameLabel": "What is your name?",
     "nameHelper": "Enter your name so Sakhi knows who you are.",

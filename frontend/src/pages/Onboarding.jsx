@@ -49,7 +49,7 @@ export default function Onboarding() {
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </div>
-        <h1 className="text-4xl font-bold text-blue-600 tracking-tight">Sakhi</h1>
+        <h1 className="text-4xl font-bold text-blue-600 tracking-tight">{t('onboarding.appName')}</h1>
         <p className="mt-2 text-gray-500 text-base text-center">{t('onboarding.tagline')}</p>
       </div>
 
@@ -80,7 +80,6 @@ export default function Onboarding() {
         <label className="block text-lg font-semibold text-gray-800 mb-2">
           {t('onboarding.nameLabel')}
         </label>
-        <p className="text-gray-500 mb-4 text-base">{t('onboarding.nameHelper')}</p>
         <input
           type="text"
           value={name}
@@ -101,9 +100,6 @@ export default function Onboarding() {
         {t('onboarding.startButton')}
       </button>
 
-      <p className="text-center text-xs text-gray-400 mt-4">
-        {t('onboarding.footer')}
-      </p>
     </div>
   )
 }
