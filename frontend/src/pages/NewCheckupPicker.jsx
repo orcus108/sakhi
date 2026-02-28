@@ -26,6 +26,18 @@ import { localName, localMotherName } from '../utils/nameUtils.js'
 const RECENTS_KEY = 'sakhi_recent_patients'
 const MAX_RECENTS = 5
 
+function CategoryCard({ label, icon, bgClass, iconColorClass, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full ${bgClass} rounded-2xl p-5 flex flex-col items-center gap-3 shadow-sm active:scale-[0.97] transition-all hover:shadow-md`}
+    >
+      <div className={iconColorClass}>{icon}</div>
+      <p className="text-sm font-semibold text-gray-700">{label}</p>
+    </button>
+  )
+}
+
 const riskAccent = {
   red: 'bg-red-500',
   yellow: 'bg-yellow-400',
@@ -80,11 +92,12 @@ export default function NewCheckupPicker() {
   const [search, setSearch] = useState('')
   const [focused, setFocused] = useState(false)
   const [recentIds, setRecentIds] = useState(loadRecents)
+  const [categoryFilter, setCategoryFilter] = useState(null) // null | 'anc' | 'newborn'
   const inputRef = useRef(null)
   const debouncedSearch = useDebounce(search, 300)
 
-  // Active = user has tapped the search bar OR is mid-query
-  const isActive = focused || search.length > 0
+  // Active = user has tapped the search bar, is mid-query, or tapped a category card
+  const isActive = focused || search.length > 0 || categoryFilter !== null
 
   const allPatients = useMemo(() => {
     const allAnc = patients.map(p => ({
@@ -115,7 +128,8 @@ export default function NewCheckupPicker() {
   const searchResults = useMemo(() => {
     const q = debouncedSearch.toLowerCase()
     if (!q) return []
-    return allPatients.filter(p => {
+    const source = categoryFilter ? allPatients.filter(p => p.patientType === categoryFilter) : allPatients
+    return source.filter(p => {
       // Search across all name fields so the user can type in any language
       const nameMatch = Object.keys(p).some(
         k => (k === 'name' || k.startsWith('name_')) && p[k]?.toLowerCase().includes(q)
@@ -125,19 +139,24 @@ export default function NewCheckupPicker() {
       )
       return nameMatch || motherMatch
     })
-  }, [allPatients, debouncedSearch])
+  }, [allPatients, categoryFilter, debouncedSearch])
+
+  const categoryPatients = useMemo(() =>
+    allPatients.filter(p => p.patientType === categoryFilter),
+  [allPatients, categoryFilter])
 
   const recentPatients = useMemo(() =>
     recentIds.map(r => allPatients.find(p => p.id === r.id)).filter(Boolean),
   [recentIds, allPatients])
 
   const showSearch = debouncedSearch.length > 0
-  const showRecents = !showSearch && recentPatients.length > 0
+  const showCategory = !showSearch && categoryFilter !== null
+  const showRecents = !showSearch && !showCategory && recentPatients.length > 0
 
   function handleBlur() {
     // Small delay so click events on results fire before we collapse
     setTimeout(() => {
-      if (!inputRef.current?.value) setFocused(false)
+      if (!inputRef.current?.value && !categoryFilter) setFocused(false)
     }, 100)
   }
 
@@ -155,18 +174,18 @@ export default function NewCheckupPicker() {
         </svg>
       </header>
 
-      {/* Spacer — padding-top collapses on active, making the search bar "fly up" */}
-      <div className={`transition-all duration-300 ease-out ${isActive ? 'pt-0' : 'pt-[22vh]'}`} />
+      {/* Resting block — vertically centred in available space; shrinks to content height when active */}
+      <div className={`flex flex-col ${isActive ? '' : 'flex-1 justify-center'}`}>
 
-      {/* Resting-state subtitle — collapses as spacer shrinks */}
-      <div className={`overflow-hidden transition-all duration-300 ease-out ${isActive ? 'max-h-0' : 'max-h-16'}`}>
-        <div className="px-4 text-center pb-5">
-          <p className="text-sm text-gray-500">{t('newCheckupPicker.resting')}</p>
+        {/* Motivational quote — visible in resting state only */}
+        <div className={`overflow-hidden transition-all duration-300 ease-out ${isActive ? 'max-h-0 opacity-0' : 'max-h-24 opacity-100'}`}>
+          <p className="px-4 pb-5 text-center text-sm text-gray-400">
+            You're the reason they're safe.
+          </p>
         </div>
-      </div>
 
-      {/* Search bar — always in the DOM, container styling changes on active */}
-      <div className={`px-4 transition-all duration-200 ${isActive ? 'bg-white border-b border-gray-100 py-3 shadow-sm' : 'py-0'}`}>
+        {/* Search bar — always in the DOM, container styling changes on active */}
+        <div className={`px-4 transition-all duration-200 ${isActive ? 'bg-white border-b border-gray-100 py-3 shadow-sm' : 'py-0'}`}>
         <div className="relative">
           <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
@@ -184,20 +203,53 @@ export default function NewCheckupPicker() {
         </div>
       </div>
 
-      {/* View schedule — only visible in resting state, fades out when active */}
-      <div className={`overflow-hidden transition-all duration-200 ${isActive ? 'max-h-0' : 'max-h-20'}`}>
-        <div className="flex justify-center pt-4 px-4">
-          <button
-            onClick={() => navigate('/schedule')}
-            className="text-sm text-blue-600 font-medium py-2.5 px-6 rounded-xl border border-blue-100 bg-blue-50 hover:bg-blue-100 transition-colors"
-          >
-            {t('newCheckupPicker.viewSchedule')}
-          </button>
+      {/* Browse by category — resting state only, below search */}
+      <div className={`overflow-hidden transition-all duration-300 ease-out ${isActive ? 'max-h-0 opacity-0' : 'max-h-72 opacity-100'}`}>
+        <div className="px-4 pt-6 pb-2">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide pb-3">Browse by category</p>
+          <div className="grid grid-cols-2 gap-3">
+            <CategoryCard
+              label="Pregnant"
+              bgClass="bg-blue-50"
+              iconColorClass="text-blue-400"
+              onClick={() => setCategoryFilter('anc')}
+              icon={
+                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0zM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695z" />
+                </svg>
+              }
+            />
+            <CategoryCard
+              label="Newborns"
+              bgClass="bg-purple-50"
+              iconColorClass="text-purple-400"
+              onClick={() => setCategoryFilter('newborn')}
+              icon={
+                <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 00-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 01-.189-.866c0-.298.059-.605.189-.866zm2.023 6.828a.75.75 0 10-1.06-1.06 3.75 3.75 0 01-5.304 0 .75.75 0 00-1.06 1.06 5.25 5.25 0 007.424 0z" clipRule="evenodd" />
+                </svg>
+              }
+            />
+          </div>
         </div>
       </div>
 
+        {/* View schedule — only visible in resting state, below category cards */}
+        <div className={`overflow-hidden transition-all duration-200 ${isActive ? 'max-h-0' : 'max-h-20'}`}>
+          <div className="flex justify-center pt-5 px-4">
+            <button
+              onClick={() => navigate('/schedule')}
+              className="text-sm text-blue-600 font-medium py-2.5 px-6 rounded-xl border border-blue-100 bg-blue-50 hover:bg-blue-100 transition-colors"
+            >
+              {t('newCheckupPicker.viewSchedule')}
+            </button>
+          </div>
+        </div>
+
+      </div>
+
       {/* Results — rendered once active, fades in */}
-      <div className={`flex-1 px-4 pt-4 pb-6 transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`px-4 pt-4 pb-6 transition-opacity duration-200 ${isActive ? 'flex-1 opacity-100' : 'h-0 overflow-hidden opacity-0 pointer-events-none'}`}>
 
         {showSearch && (
           searchResults.length > 0 ? (
@@ -212,6 +264,27 @@ export default function NewCheckupPicker() {
               <p className="text-sm mt-1">{t('newCheckupPicker.tryDifferent')}</p>
             </div>
           )
+        )}
+
+        {showCategory && (
+          <>
+            <div className="flex items-center justify-between pb-3">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                {categoryFilter === 'anc' ? 'Pregnant' : 'Newborns'}
+              </p>
+              <button
+                onClick={() => setCategoryFilter(null)}
+                className="text-xs text-blue-600 font-medium"
+              >
+                All patients
+              </button>
+            </div>
+            <div className="space-y-2.5">
+              {categoryPatients.map(p => (
+                <PatientCard key={p.id} patient={p} onClick={() => startCheckup(p)} language={language} />
+              ))}
+            </div>
+          </>
         )}
 
         {showRecents && (

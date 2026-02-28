@@ -2,6 +2,21 @@
 
 ---
 
+## 2026-02-28 — New Checkup screen redesign
+
+### `frontend/src/pages/NewCheckupPicker.jsx`
+
+- **Category cards** — added two side-by-side tap targets in the resting state: "Pregnant" (bg-blue-50, person icon) and "Newborns" (bg-purple-50, face icon). Tapping a card filters the patient list to that type and activates the results view. An "All patients" link in the result header clears the filter and returns to resting.
+- **Layout reorder** — resting state now flows: motivational line → search bar → "Browse by category" label → category cards. Previously the search bar was buried below the cards.
+- **Motivational line** — "You're the reason they're safe." added above the search bar in resting state; collapses to `max-h-0` when search activates so it never obscures results.
+- **Compact header** — reduced vertical padding (`pt-10 → pt-8`) and title size (`text-3xl → text-2xl`); heart icon scaled down to `w-6 h-6`.
+- **Removed View Schedule buttons** — both the resting-state button and the recents "view full schedule" link have been removed. Schedule is accessible from the bottom navigation bar.
+- **Search bar** — strengthened border (`border-gray-300`), taller touch target (`py-3`), white background; cleaner active sticky-bar transition.
+- **Spacing** — strict 8pt system throughout (pt-6, pb-3, gap-3, px-4).
+- **Category-scoped search** — when a category card is active, typing in the search bar scopes results to that category only.
+
+---
+
 ## 2026-02-28
 
 ### RAG on WHO / MOHFW Clinical Guidelines
