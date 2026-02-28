@@ -7,6 +7,7 @@
     "name_hi": "मीना देवी",
     "age": 24,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-09-10",
     "gestational_weeks": 23,
     "gravida": 2,
@@ -48,6 +49,7 @@
     "name_hi": "सुनीता कुमारी",
     "age": 22,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-10-05",
     "gestational_weeks": 20,
     "gravida": 1,
@@ -91,6 +93,7 @@
     "name_hi": "प्रिया शर्मा",
     "age": 26,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-11-01",
     "gestational_weeks": 16,
     "gravida": 1,
@@ -120,6 +123,7 @@
     "name_hi": "रेखा शर्मा",
     "age": 28,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-08-20",
     "gestational_weeks": 26,
     "gravida": 3,
@@ -142,7 +146,7 @@
         "hemoglobin": 9.8
       },
       {
-        "date": "2026-02-05",
+        "date": "2026-02-14",
         "weight_kg": 70,
         "fundal_height_cm": 25,
         "symptoms": [
@@ -166,6 +170,7 @@
     "name_hi": "गीता पटेल",
     "age": 25,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-09-28",
     "gestational_weeks": 21,
     "gravida": 2,
@@ -212,6 +217,7 @@
     "name_hi": "सरोज कुमारी",
     "age": 29,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-07-20",
     "gestational_weeks": 31,
     "gravida": 3,
@@ -257,6 +263,7 @@
     "name_hi": "वंदना देवी",
     "age": 23,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-10-12",
     "gestational_weeks": 19,
     "gravida": 1,
@@ -289,6 +296,7 @@
     "name_hi": "कमला वर्मा",
     "age": 32,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-07-15",
     "gestational_weeks": 31,
     "gravida": 4,
@@ -354,6 +362,7 @@
     "name_hi": "सावित्री सिंह",
     "age": 19,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-08-01",
     "gestational_weeks": 29,
     "gravida": 1,
@@ -403,6 +412,7 @@
     "name_hi": "दामिनी शर्मा",
     "age": 30,
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "lmp": "2025-06-25",
     "gestational_weeks": 35,
     "gravida": 2,
@@ -451,8 +461,9 @@
     "name": "Baby Arjun",
     "name_hi": "बेबी अर्जुन",
     "gender": "male",
-    "date_of_birth": "2026-02-09",
+    "date_of_birth": "2026-02-14",
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "mother_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
     "mother_name": "Meena Devi",
     "mother_name_hi": "मीना देवी",
@@ -461,7 +472,7 @@
     "risk_level": "green",
     "visit_history": [
       {
-        "date": "2026-02-09",
+        "date": "2026-02-14",
         "visit_day": "day_1",
         "weight_kg": 3.2,
         "observations": [
@@ -475,7 +486,7 @@
         "notes": "Normal day 1 visit. Breastfeeding established well. Birth weight 3.2 kg."
       },
       {
-        "date": "2026-02-12",
+        "date": "2026-02-17",
         "visit_day": "day_3",
         "weight_kg": 3.1,
         "observations": [
@@ -489,7 +500,7 @@
         "notes": "Weight dipped to 3.1 kg (3% loss — normal). No jaundice visible. Cord clean."
       },
       {
-        "date": "2026-02-19",
+        "date": "2026-02-21",
         "visit_day": "day_7",
         "weight_kg": 3.45,
         "observations": [
@@ -511,8 +522,9 @@
     "name": "Baby Ritu",
     "name_hi": "बेबी रितु",
     "gender": "female",
-    "date_of_birth": "2026-02-19",
+    "date_of_birth": "2026-02-23",
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "mother_id": "7d8e9f0a-1b2c-4d3e-8f45-6789012345bc",
     "mother_name": "Ritu Meena",
     "mother_name_hi": "रितु मीना",
@@ -521,7 +533,7 @@
     "risk_level": "green",
     "visit_history": [
       {
-        "date": "2026-02-19",
+        "date": "2026-02-23",
         "visit_day": "day_1",
         "weight_kg": 2.9,
         "observations": [
@@ -535,7 +547,7 @@
         "notes": "Normal term delivery. Good birth weight. Breastfeeding initiated."
       },
       {
-        "date": "2026-02-22",
+        "date": "2026-02-26",
         "visit_day": "day_3",
         "weight_kg": 2.82,
         "observations": [
@@ -557,8 +569,9 @@
     "name": "Baby Priya",
     "name_hi": "बेबी प्रिया",
     "gender": "female",
-    "date_of_birth": "2026-02-16",
+    "date_of_birth": "2026-02-21",
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "mother_id": "e3d4c5b6-7a89-4012-b345-67890abcdef1",
     "mother_name": "Sunita Kumari",
     "mother_name_hi": "सुनीता कुमारी",
@@ -567,7 +580,7 @@
     "risk_level": "yellow",
     "visit_history": [
       {
-        "date": "2026-02-16",
+        "date": "2026-02-21",
         "visit_day": "day_1",
         "weight_kg": 2.8,
         "observations": [
@@ -581,7 +594,7 @@
         "notes": "Birth weight 2.8 kg — on the lower side but acceptable. Normal day 1."
       },
       {
-        "date": "2026-02-19",
+        "date": "2026-02-24",
         "visit_day": "day_3",
         "weight_kg": 2.65,
         "observations": [
@@ -604,8 +617,9 @@
     "name": "Baby Kavita",
     "name_hi": "बेबी कविता",
     "gender": "female",
-    "date_of_birth": "2026-02-13",
+    "date_of_birth": "2026-02-20",
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "mother_id": "8e9f0a1b-2c3d-4e5f-9a67-890123456bcd",
     "mother_name": "Kavita Yadav",
     "mother_name_hi": "कविता यादव",
@@ -614,7 +628,7 @@
     "risk_level": "yellow",
     "visit_history": [
       {
-        "date": "2026-02-13",
+        "date": "2026-02-20",
         "visit_day": "day_1",
         "weight_kg": 2.4,
         "observations": [
@@ -628,7 +642,7 @@
         "notes": "Low birth weight (2.4 kg). Breastfeeding initiated. Close monitoring advised."
       },
       {
-        "date": "2026-02-16",
+        "date": "2026-02-23",
         "visit_day": "day_3",
         "weight_kg": 2.35,
         "observations": [
@@ -642,7 +656,7 @@
         "notes": "Weight dip to 2.35 kg (2% loss). No jaundice. Feeding improving. Continue monitoring."
       },
       {
-        "date": "2026-02-20",
+        "date": "2026-02-27",
         "visit_day": "day_7",
         "weight_kg": 2.5,
         "observations": [
@@ -664,8 +678,9 @@
     "name": "Baby of Rekha Sharma",
     "name_hi": "रेखा शर्मा का बच्चा",
     "gender": "female",
-    "date_of_birth": "2026-02-18",
+    "date_of_birth": "2026-02-23",
     "village": "Rampur Village, Rajasthan",
+    "village_hi": "रामपुर गाँव, राजस्थान",
     "mother_id": "c1b2a3d4-e5f6-4789-8012-3456789abcde",
     "mother_name": "Rekha Sharma",
     "mother_name_hi": "रेखा शर्मा",
@@ -674,7 +689,7 @@
     "risk_level": "red",
     "visit_history": [
       {
-        "date": "2026-02-18",
+        "date": "2026-02-23",
         "visit_day": "day_1",
         "weight_kg": 2.1,
         "observations": [
@@ -687,7 +702,7 @@
         "notes": "Low birth weight (2.1 kg). Breastfeeding not yet fully established. PHC notified."
       },
       {
-        "date": "2026-02-21",
+        "date": "2026-02-26",
         "visit_day": "day_3",
         "weight_kg": 2.0,
         "observations": [
