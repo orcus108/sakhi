@@ -6,6 +6,7 @@ import TopBar from '../components/TopBar.jsx'
 import Disclaimer from '../components/Disclaimer.jsx'
 import { fetchChat } from '../api/api.js'
 import { localName } from '../utils/nameUtils.js'
+import ReactMarkdown from 'react-markdown'
 
 /**
  * AskSakhi.jsx — Free-form AI chat screen (Screen 6)
@@ -49,7 +50,24 @@ function Message({ msg, isSpeaking, onSpeak, t }) {
             : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm shadow-sm'
         }`}
       >
-        <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+        {isUser ? (
+          <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+        ) : (
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => <p className="leading-relaxed mb-2 last:mb-0">{children}</p>,
+              strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
+              ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-1">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal list-outside ml-4 mb-2 space-y-1">{children}</ol>,
+              li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+              h1: ({ children }) => <h1 className="text-base font-bold text-gray-900 mb-1">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-base font-bold text-gray-900 mb-1">{children}</h2>,
+              h3: ({ children }) => <h3 className="text-sm font-semibold text-gray-900 mb-1">{children}</h3>,
+            }}
+          >
+            {msg.content}
+          </ReactMarkdown>
+        )}
         {!isUser && (
           <div className="flex justify-end mt-2">
             <button
