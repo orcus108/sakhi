@@ -2,7 +2,9 @@
 
 > **Google MedGemma Impact Challenge** · Kaggle · February 2026
 
-Sakhi is a mobile-first clinical decision-support tool for ASHA (Accredited Social Health Activist) workers in rural India — **offline-capable, voice-first, bilingual (Hindi + English), and safe by design**. It uses a **MedGemma-backed AI cascade** to assess antenatal and newborn patient visits in real time, flagging high-risk cases and guiding referral decisions — in the field, on a phone, with no specialist nearby. For ~1 million community health workers making referral calls alone, it's the difference between a warning caught and a life lost.
+Sakhi is a mobile-first clinical decision-support tool built for ASHA (Accredited Social Health Activist) workers in rural India. It is offline-capable, voice-first, bilingual (Hindi and English), and designed with patient safety as a core constraint. The system is powered by MedGemma to support real-time assessment during antenatal and newborn visits, identifying high-risk cases and assisting with referral decisions directly in the field, on a mobile phone, without access to a specialist.
+
+For nearly one million community health workers who make referral decisions independently, Sakhi serves as a structured clinical support layer—helping reduce missed warning signs and improve timely escalation of care.
 
 **[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)**
 
