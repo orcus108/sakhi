@@ -25,6 +25,7 @@ from typing import Any, Optional
 from prompts import get_chat_prompt
 from model import generate_chat
 from limiter import limiter
+from rag import retrieve
 
 router = APIRouter()
 
@@ -133,6 +134,15 @@ async def chat(request: Request, req: ChatRequest):
     """
     system_prompt = _build_system_prompt(req.patient_context, req.language)
     messages = [m.model_dump() for m in req.messages]
+
+    # Augment system prompt with relevant guideline excerpts (no-op if index unavailable)
+    query = req.messages[-1].content if req.messages else ""
+    guideline_context = await retrieve(query)
+    if guideline_context:
+        system_prompt += (
+            "\n\nRelevant guidelines (use only if directly applicable):\n"
+            + guideline_context
+        )
 
     try:
         reply = await generate_chat(system_prompt, messages)

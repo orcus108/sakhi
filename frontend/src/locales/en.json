@@ -87,7 +87,8 @@
     "daysOld_other": "{{count}} days old",
     "born": "Born",
     "mother": "Mother:",
-    "dob": "DOB:"
+    "dob": "DOB:",
+    "weightTrend": "Weight Trend"
   },
   "checkupForm": {
     "title": "Checkup",

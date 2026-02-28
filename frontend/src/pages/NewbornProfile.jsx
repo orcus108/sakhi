@@ -118,6 +118,16 @@ export default function NewbornProfile() {
   const wt        = weightDelta(baby)
   const lastVisit = baby.visit_history.at(-1)
 
+  // Weight trend chart data — sorted chronologically
+  const sortedVisits = [...baby.visit_history].sort((a, b) => new Date(a.date) - new Date(b.date))
+  const visitWeights = sortedVisits.map(v => v.weight_kg)
+  const latestWeight = baby.current_weight_kg
+  const weightTrendColor = latestWeight >= baby.birth_weight_kg ? '#16a34a'
+    : latestWeight >= 2.5 ? '#ca8a04'
+    : '#ef4444'
+  const weightDeltaFromBirth = Math.round((latestWeight - baby.birth_weight_kg) * 100) / 100
+  const showWeightTrend = baby.visit_history.length >= 2
+
   const heroBg = baby.risk_level === 'red'
     ? 'bg-red-50'
     : baby.risk_level === 'yellow'
@@ -193,6 +203,33 @@ export default function NewbornProfile() {
             />
           </div>
         </div>
+
+        {/* Weight trend chart */}
+        {showWeightTrend && (
+          <div className="px-4 mt-5">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+              {t('newborn.weightTrend')}
+            </h3>
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className="flex items-baseline justify-between mb-3">
+                <div>
+                  <span className="text-xl font-bold" style={{ color: weightTrendColor }}>{latestWeight}</span>
+                  <span className="text-xs text-gray-400 ml-1">kg now</span>
+                </div>
+                <span className="text-xs text-gray-400">
+                  {weightDeltaFromBirth >= 0 ? '+' : ''}{weightDeltaFromBirth} kg since birth · {visitWeights.length} visits
+                </span>
+              </div>
+              <WeightChart weights={visitWeights} birthWeight={baby.birth_weight_kg} color={weightTrendColor} />
+              <div className="flex items-center gap-1.5 mt-2">
+                <svg width="16" height="8" className="shrink-0">
+                  <line x1="0" y1="4" x2="16" y2="4" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="3,2" />
+                </svg>
+                <p className="text-xs text-gray-400">birth weight {baby.birth_weight_kg} kg</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Next scheduled visit */}
         {nextVisit ? (

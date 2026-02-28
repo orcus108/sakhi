@@ -2,17 +2,16 @@
 Model abstraction layer — the ONLY file that talks to the AI model.
 
 Provider priority (automatic cascade — first available wins):
-  1. OpenRouter — google/gemma-3n-e4b-it:free (set OPEN_ROUTER_API_KEY)
-  2. Gemini     — gemini-2.5-flash-lite via Google AI (set GOOGLE_API_KEY)
-  3. Groq       — llama-3.1-8b-instant (set GROQ_API_KEY)
-  4. MedGemma   — Ollama on HF Space (set MEDGEMMA_API_URL, last resort for now)
+  1. MedGemma   — fine-tuned + Q4_K_M quantized, Ollama on HF Space (set MEDGEMMA_API_URL)
+  2. OpenRouter  — google/gemma-3n-e4b-it:free (set OPEN_ROUTER_API_KEY)
+  3. Gemini      — gemini-2.5-flash-lite via Google AI (set GOOGLE_API_KEY)
+  4. Groq        — llama-3.1-8b-instant, last resort (set GROQ_API_KEY)
 
 Each provider is skipped automatically if its key/URL is not configured.
 
-MedGemma setup (GGUF via Ollama on HF Space docvm/sakhi):
-  MEDGEMMA_API_URL=https://docvm-sakhi.hf.space
-  MEDGEMMA_MODEL_NAME=hf.co/docvm/medgemma-1.5-4b-it-GGUF:Q4_K_M
-  (promote to first once demo is stable)
+MedGemma setup (fine-tuned LoRA merged + GGUF quantized, served via Ollama):
+  MEDGEMMA_API_URL=https://docvm-sakhi-medgemma.hf.space
+  MEDGEMMA_MODEL_NAME=hf.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M
 """
 
 import logging
@@ -28,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 MEDGEMMA_API_URL = os.getenv("MEDGEMMA_API_URL", "")
 MEDGEMMA_API_KEY = os.getenv("MEDGEMMA_API_KEY", "")
-MEDGEMMA_MODEL_NAME = os.getenv("MEDGEMMA_MODEL_NAME", "medgemma")
+MEDGEMMA_MODEL_NAME = os.getenv("MEDGEMMA_MODEL_NAME", "hf.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M")
 
 OPEN_ROUTER_API_KEY = os.getenv("OPEN_ROUTER_API_KEY", "")
 OPEN_ROUTER_MODEL = os.getenv("OPEN_ROUTER_MODEL", "google/gemma-3n-e4b-it:free")
@@ -64,6 +63,13 @@ async def _cascade(system_prompt: str, messages: list[dict]) -> str:
     """Try providers in priority order, skipping any whose credentials are missing."""
     errors = []
 
+    if MEDGEMMA_API_URL:
+        try:
+            return await _call_medgemma(system_prompt, messages)
+        except Exception as e:
+            logger.warning("MedGemma failed (%s) — trying OpenRouter", e)
+            errors.append(f"medgemma: {e}")
+
     if OPEN_ROUTER_API_KEY:
         try:
             return await _call_openrouter(system_prompt, messages)
@@ -82,14 +88,7 @@ async def _cascade(system_prompt: str, messages: list[dict]) -> str:
         try:
             return await _call_groq(system_prompt, messages)
         except Exception as e:
-            logger.warning("Groq failed (%s) — trying MedGemma", e)
             errors.append(f"groq: {e}")
-
-    if MEDGEMMA_API_URL:
-        try:
-            return await _call_medgemma(system_prompt, messages)
-        except Exception as e:
-            errors.append(f"medgemma: {e}")
 
     raise RuntimeError(f"All providers failed — {'; '.join(errors)}")
 

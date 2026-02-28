@@ -87,7 +87,8 @@
     "daysOld_other": "{{count}} दिन का",
     "born": "जन्मतिथि:",
     "mother": "माँ:",
-    "dob": "जन्म:"
+    "dob": "जन्म:",
+    "weightTrend": "वजन की प्रवृत्ति"
   },
   "checkupForm": {
     "title": "जाँच",

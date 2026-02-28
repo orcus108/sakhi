@@ -13,6 +13,8 @@ Registered routes (all under /api prefix):
   POST /api/transcribe          — Voice-to-text via Whisper   (routes/transcribe.py)
 """
 
+import asyncio
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
@@ -23,7 +25,18 @@ from routes.checkup import router as checkup_router
 from routes.chat import router as chat_router
 from routes.transcribe import router as transcribe_router
 
-app = FastAPI(title="Sakhi API", version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Preload the RAG embedding model in a thread so it's warm before the
+    # first request arrives. If the index doesn't exist yet (pre-ingest),
+    # rag.preload() logs a warning and continues — no crash.
+    from rag import preload
+    await asyncio.to_thread(preload)
+    yield
+
+
+app = FastAPI(title="Sakhi API", version="1.0.0", lifespan=lifespan)
 
 # Attach the SlowAPI limiter to app state so the @limiter.limit decorators
 # on individual routes can find it at request time.

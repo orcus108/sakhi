@@ -8,6 +8,7 @@ This directory contains the complete fine-tuning and evaluation pipeline for Sak
 model/
 ├── finetuning-medgemma.ipynb   # QLoRA fine-tuning pipeline (run on Kaggle)
 ├── testing-ft-model.ipynb      # Triage evaluation harness (run on Kaggle)
+├── merge-and-quantize.ipynb    # Merges LoRA adapter → base model, converts to GGUF Q4_K_M, pushes to HF Hub (run on Kaggle)
 └── data/
     └── maternal_triage_cases.json  # 75 labelled maternal triage cases for evaluation
 ```
@@ -18,8 +19,8 @@ model/
 
 | Repo | Type | Purpose |
 |---|---|---|
-| [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal) | LoRA adapter | Fine-tuned on maternal/neonatal data — output of this pipeline |
-| [`docvm/medgemma-1.5-4b-it-GGUF`](https://huggingface.co/docvm/medgemma-1.5-4b-it-GGUF) | GGUF (Q4_K_M, ~2.5 GB) | Quantized base model for self-hosted serving via `medgemma-space/` |
+| [`docvm/sakhi-medgemma-1.5-4b-maternal`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal) | LoRA adapter | Fine-tuned on maternal/neonatal data — output of `finetuning-medgemma.ipynb` |
+| [`docvm/sakhi-medgemma-1.5-4b-maternal-GGUF`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF) | GGUF (Q4_K_M, ~2.5 GB) | Adapter merged into base model and quantized — **active production model** served via `medgemma-space/` |
 
 Base model: `google/medgemma-1.5-4b-it`
 
@@ -133,6 +134,6 @@ Reason: <one short sentence>
 
 ## How This Adapter Is Used in the App
 
-The adapter is **not** used directly in Sakhi's current backend. The production app uses the model cascade in `backend/model.py` (`MedGemma → Gemma 3n → Gemini → Groq`) with a more detailed JSON output schema for the full assessment response.
+The adapter **is** the active production model. `merge-and-quantize.ipynb` merged it into the base `google/medgemma-1.5-4b-it` weights (in bfloat16), converted the merged model to GGUF via llama.cpp, quantized to Q4_K_M, and pushed the result to `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF` on HuggingFace Hub.
 
-The fine-tuned adapter demonstrates that MedGemma can be reliably steered toward India-specific clinical reasoning. When self-hosted Ollama deployment becomes feasible, this adapter can be merged into the base model and served via `medgemma-space/`.
+`medgemma-space/start.sh` pulls `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M` on startup and exposes it via an OpenAI-compatible endpoint. `backend/model.py` lists MedGemma **first** in the provider cascade — when `MEDGEMMA_API_URL` is set, every request goes through the fine-tuned model before any fallback is attempted.

@@ -126,8 +126,8 @@ export default function PatientProfile() {
   const hbValues = sortedHistory.map(c => c.hemoglobin).filter(Boolean)
   const latestBp = bpValues.at(-1)
   const latestHb = hbValues.at(-1) ?? null
-  const bpTrendColor = latestBp >= 140 ? '#ef4444' : latestBp >= 120 ? '#ca8a04' : '#2563eb'
-  const hbTrendColor = latestHb != null ? (latestHb < 10 ? '#ef4444' : latestHb < 11 ? '#ca8a04' : '#2563eb') : '#2563eb'
+  const bpTrendColor = latestBp >= 140 ? '#ef4444' : latestBp >= 120 ? '#ca8a04' : '#16a34a'
+  const hbTrendColor = latestHb != null ? (latestHb < 10 ? '#ef4444' : latestHb < 11 ? '#ca8a04' : '#16a34a') : '#16a34a'
   const showTrend = patient.checkup_history.length >= 2
   const showHbTrend = hbValues.length >= 2
 
@@ -224,7 +224,7 @@ export default function PatientProfile() {
                 label={t('assessment.weight')}
                 unit="kg"
                 values={weightValues}
-                color="#2563eb"
+                color="#16a34a"
               />
               {showHbTrend && (
                 <TrendCard

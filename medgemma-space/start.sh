@@ -12,8 +12,8 @@ until curl -sf http://localhost:7860/api/tags > /dev/null 2>&1; do
 done
 echo "Ollama started."
 
-echo "Pulling MedGemma GGUF from HuggingFace..."
-OLLAMA_HOST=localhost:7860 ollama pull hf.co/docvm/medgemma-1.5-4b-it-GGUF:Q4_K_M
+echo "Pulling fine-tuned MedGemma GGUF from HuggingFace..."
+OLLAMA_HOST=localhost:7860 ollama pull hf.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M
 echo "Model ready."
 
 wait $SERVER_PID

@@ -200,6 +200,10 @@ export default function Home() {
     return [...new Set(all)].sort()
   }, [patients, newborns])
 
+  // Primary village for this ASHA worker (assumes single-village assignment)
+  const primaryVillage = (patients[0] ?? newborns[0])?.village?.split(',')[0].trim()
+  const totalPatients = patients.length + newborns.length
+
   const { urgent, overdue, dueToday, byRisk } = useMemo(() => {
     const q = debouncedSearch.toLowerCase()
 
@@ -275,6 +279,18 @@ export default function Home() {
           ))}
         </div>
       </header>
+
+      {/* Village strip */}
+      {primaryVillage && (
+        <div className="flex items-center gap-1.5 px-4 py-2 bg-blue-50 border-b border-blue-100">
+          <svg className="w-3.5 h-3.5 text-blue-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4-4-7-7.5-7-11a7 7 0 0 1 14 0c0 3.5-3 7-7 11z" />
+            <circle cx="12" cy="10" r="2" fill="currentColor" stroke="none" />
+          </svg>
+          <span className="text-xs text-blue-600 font-medium">{primaryVillage}</span>
+          <span className="text-xs text-blue-400">·  {totalPatients} patients</span>
+        </div>
+      )}
 
       {/* Search */}
       <div className="px-4 pt-3 pb-2 bg-white border-b border-gray-100">

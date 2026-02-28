@@ -25,6 +25,7 @@ from typing import Any, Optional
 from prompts import get_checkup_prompt
 from model import generate
 from limiter import limiter
+from rag import retrieve
 
 router = APIRouter()
 
@@ -135,6 +136,16 @@ async def checkup_assessment(request: Request, req: CheckupRequest):
         user_message = _build_newborn_message(req.patient, req.checkup)
     else:
         user_message = _build_anc_message(req.patient, req.checkup)
+
+    # Augment system prompt with relevant guideline excerpts (no-op if index unavailable)
+    symptoms = req.checkup.get("symptoms") or req.checkup.get("observations") or []
+    rag_query = f"{req.patient_type} {' '.join(symptoms)}"
+    guideline_context = await retrieve(rag_query)
+    if guideline_context:
+        system_prompt += (
+            "\n\nRelevant guidelines (use only if directly applicable):\n"
+            + guideline_context
+        )
 
     try:
         raw = await generate(system_prompt, user_message)
