@@ -17,23 +17,91 @@ import i18n from '../i18n.js'
  *
  * There is no real database — all persistence is via localStorage.
  * Mock data is the initial seed; after first load the stored version takes over.
+ *
+ * Date-shifting: mockPatients.json was designed for a reference date of 2026-02-28.
+ * On each new calendar day, dates are re-seeded from the JSON with all checkup/visit
+ * dates shifted forward so the next-due distribution always looks the same
+ * (a couple overdue, a few due today, most upcoming). Within a single day, any
+ * checkups the ASHA adds are preserved via localStorage.
  */
 const AppContext = createContext(null)
 
 const PATIENTS_KEY  = 'sakhi_patients'
 const NEWBORNS_KEY  = 'sakhi_newborns'
+const DATA_DATE_KEY = 'sakhi_data_date'
 const LANGUAGE_KEY  = 'sakhi_language'
 const ASHA_NAME_KEY = 'sakhi_asha_name'
 
-/** Safely reads and JSON-parses a localStorage value, returning fallback on any error. */
-function loadOrDefault(key, fallback) {
-  try {
-    const stored = localStorage.getItem(key)
-    if (stored) return JSON.parse(stored)
-  } catch {
-    // ignore parse errors
+// The calendar date the mock JSON was authored for. All dates in the JSON are
+// meaningful relative to this anchor — shifting them keeps the same clinical picture.
+const REFERENCE_DATE = '2026-02-28'
+
+/** Returns today's date as YYYY-MM-DD in local time (not UTC). */
+function todayStr() {
+  const d = new Date()
+  const yyyy = d.getFullYear()
+  const mm   = String(d.getMonth() + 1).padStart(2, '0')
+  const dd   = String(d.getDate()).padStart(2, '0')
+  return `${yyyy}-${mm}-${dd}`
+}
+
+/** Shifts a YYYY-MM-DD string forward by deltaDays. */
+function shiftDate(dateStr, deltaDays) {
+  const d = new Date(dateStr)
+  d.setDate(d.getDate() + deltaDays)
+  const yyyy = d.getFullYear()
+  const mm   = String(d.getMonth() + 1).padStart(2, '0')
+  const dd   = String(d.getDate()).padStart(2, '0')
+  return `${yyyy}-${mm}-${dd}`
+}
+
+/** Shifts all date fields in a patient/newborn record by deltaDays. */
+function shiftPatient(patient, deltaDays) {
+  const p = { ...patient }
+  if (p.lmp)            p.lmp            = shiftDate(p.lmp, deltaDays)
+  if (p.date_of_birth)  p.date_of_birth  = shiftDate(p.date_of_birth, deltaDays)
+  if (p.checkup_history) {
+    p.checkup_history = p.checkup_history.map(c => ({ ...c, date: shiftDate(c.date, deltaDays) }))
   }
-  return fallback
+  if (p.visit_history) {
+    p.visit_history = p.visit_history.map(v => ({ ...v, date: shiftDate(v.date, deltaDays) }))
+  }
+  return p
+}
+
+/**
+ * Returns { patients, newborns } from localStorage if the data was seeded today,
+ * otherwise re-seeds from mockPatients with dates shifted to today's date.
+ * This ensures the next-due distribution always looks fresh regardless of when the
+ * app is opened — critical for hackathon demos.
+ */
+function seedData() {
+  const today = todayStr()
+  const storedDate = localStorage.getItem(DATA_DATE_KEY)
+
+  if (storedDate === today) {
+    try {
+      const patients = JSON.parse(localStorage.getItem(PATIENTS_KEY))
+      const newborns = JSON.parse(localStorage.getItem(NEWBORNS_KEY))
+      if (patients && newborns) return { patients, newborns }
+    } catch {
+      // fall through to re-seed
+    }
+  }
+
+  // Re-seed: shift all mock dates by (today − referenceDate)
+  const deltaDays = Math.round(
+    (new Date(today) - new Date(REFERENCE_DATE)) / 86400000
+  )
+  const all      = mockPatients.map(p => shiftPatient(p, deltaDays))
+  const patients = all.filter(p => p.patient_type === 'anc')
+  const newborns = all.filter(p => p.patient_type === 'newborn')
+
+  localStorage.setItem(PATIENTS_KEY,  JSON.stringify(patients))
+  localStorage.setItem(NEWBORNS_KEY,  JSON.stringify(newborns))
+  localStorage.setItem(DATA_DATE_KEY, today)
+
+  return { patients, newborns }
 }
 
 export function AppProvider({ children }) {
@@ -43,12 +111,9 @@ export function AppProvider({ children }) {
   const [ashaName, setAshaNameState] = useState(() =>
     localStorage.getItem(ASHA_NAME_KEY) || null
   )
-  const [patients, setPatients] = useState(() =>
-    loadOrDefault(PATIENTS_KEY, mockPatients.filter(p => p.patient_type === 'anc'))
-  )
-  const [newborns, setNewborns] = useState(() =>
-    loadOrDefault(NEWBORNS_KEY, mockPatients.filter(p => p.patient_type === 'newborn'))
-  )
+  const [{ patients: initPatients, newborns: initNewborns }] = useState(() => seedData())
+  const [patients, setPatients] = useState(initPatients)
+  const [newborns, setNewborns] = useState(initNewborns)
   const [selectedPatient, setSelectedPatient] = useState(null)
   const [lastAssessment, setLastAssessment] = useState(null)
   const [checkupDraft, setCheckupDraft] = useState(null)
