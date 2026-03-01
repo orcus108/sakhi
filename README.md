@@ -6,7 +6,7 @@ Sakhi is a mobile-first clinical decision-support tool built for ASHA (Accredite
 
 For nearly one million community health workers who make referral decisions independently, Sakhi serves as a structured clinical support layer—helping reduce missed warning signs and improve timely escalation of care.
 
-**[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)**
+**[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)** &nbsp;|&nbsp; **[Fine-tuned Model →](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF)**
 
 ---
 
@@ -27,7 +27,8 @@ Sakhi gives every ASHA worker an expert clinical colleague — always available,
 | **Ask Sakhi** | Free-form Q&A with optional patient context injection |
 | **Hindi Mode** | Full UI and AI responses in Devanagari Hindi |
 | **Schedule View** | Follow-up calendar for all patients |
-| **Model Cascade** | Auto-fallback across 4 providers — MedGemma → Gemma 3n → Gemini → Groq |
+| **Fine-tuned MedGemma** | Custom QLoRA-fine-tuned, merged, and Q4_K_M-quantized model — [`docvm/sakhi-medgemma-1.5-4b-maternal-GGUF`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF) — trained on Indian maternal/neonatal clinical data |
+| **Model Cascade** | Auto-fallback across 4 providers — Fine-tuned MedGemma → Gemma 3n → Gemini → Groq |
 | **Guideline-Grounded Answers** | Every assessment and chat response is augmented with top-3 relevant chunks retrieved from 10 WHO / MOHFW clinical guideline PDFs (RAG via ChromaDB + `paraphrase-multilingual-MiniLM-L12-v2`) |
 
 ---
@@ -57,7 +58,8 @@ Sakhi gives every ASHA worker an expert clinical colleague — always available,
 │   ┌─────────────────────────────────────────────┐   │
 │   │           model.py  (cascade)               │   │
 │   │                                             │   │
-│   │  1. MedGemma 1.5 4B IT  (Ollama / GGUF)    │   │
+│   │  1. sakhi-medgemma-1.5-4b-maternal-GGUF     │
+│   │     (fine-tuned, Q4_K_M, self-hosted)       │   │
 │   │     ↓ (if unavailable)                      │   │
 │   │  2. Gemma 3n E4B IT  (OpenRouter, free)     │   │
 │   │     ↓ (if unavailable)                      │   │
