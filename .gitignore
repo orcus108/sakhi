@@ -22,6 +22,9 @@ frontend/dist/
 .vscode/
 .idea/
 
+# ChromaDB (large binary, rebuilt at runtime)
+backend/chroma_db/
+
 # Claude Code local settings
 .claude/
 CLAUDE.md
