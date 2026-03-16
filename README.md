@@ -1,3 +1,5 @@
+![Sakhi](sakhi-repo-banner.png)
+
 # Sakhi — AI Clinical Companion for ASHA Workers
 
 > **Google MedGemma Impact Challenge** · Kaggle · February 2026
