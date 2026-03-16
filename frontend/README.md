@@ -12,6 +12,7 @@ React + Vite + Tailwind mobile-first UI for ASHA workers, deployed on [Vercel](h
 | react-router-dom | 6 | Client-side routing |
 | react-i18next | 16 | English / Hindi (Devanagari) i18n |
 | react-markdown | 10 | Render markdown in chat responses |
+| vite-plugin-pwa | 1 | Service worker + app shell caching (offline support) |
 
 ## Project structure
 
@@ -29,7 +30,8 @@ src/
 ├── data/
 │   └── mockPatients.json     # 6 ANC + 6 newborn demo patients, all risk levels
 ├── hooks/
-│   └── useDebounce.js        # Debounce hook for patient search input
+│   ├── useDebounce.js        # Debounce hook for patient search input
+│   └── useOnlineStatus.js    # Reactive navigator.onLine hook
 ├── locales/
 │   ├── en.json               # English UI strings
 │   └── hi.json               # Hindi UI strings (Devanagari)
@@ -70,7 +72,8 @@ The app reads `VITE_API_URL` at build time. If the variable is absent (local dev
 ## Architecture notes
 
 - **Single API module** — every network call goes through `src/api/api.js`. No `fetch` calls in pages or components.
-- **Global state** — `AppContext.jsx` holds the patient list, current session, and active language. All pages read from and write to this context.
+- **Global state** — `AppContext.jsx` holds the patient list, current session, active language, and offline sync state. All pages read from and write to this context.
+- **Offline-first** — `api.js` catches network errors and falls back to `src/utils/localAssessment.js` (MOHFW rule-based triage). Pending submissions are queued in `src/utils/offlineQueue.js` and replayed automatically when `window online` fires. A `vite-plugin-pwa` service worker caches the app shell so the web version loads with no signal.
 - **i18n** — language toggles between `en` and `hi` at runtime. All user-visible strings live in `src/locales/`. AI responses follow the same language setting via the `language` field sent in API requests.
 - **Mock data** — `mockPatients.json` seeds the app with 12 demo patients on first load so the UI is immediately demonstrable without running any checkups.
 

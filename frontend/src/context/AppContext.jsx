@@ -1,6 +1,8 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import mockPatients from '../data/mockPatients.json'
 import i18n from '../i18n.js'
+import { fetchCheckupAssessmentDirect } from '../api/api.js'
+import { getQueue, removeFromQueue } from '../utils/offlineQueue.js'
 
 /**
  * AppContext.jsx — Global application state
@@ -117,6 +119,10 @@ export function AppProvider({ children }) {
   const [selectedPatient, setSelectedPatient] = useState(null)
   const [lastAssessment, setLastAssessment] = useState(null)
   const [checkupDraft, setCheckupDraft] = useState(null)
+  const [pendingCount, setPendingCount] = useState(() => getQueue().length)
+
+  // Ref so the online event handler always sees the latest sync function
+  const syncRef = useRef(null)
 
   /** Persists the ASHA worker name to localStorage so the session survives page refresh. */
   function setAshaName(name) {
@@ -134,7 +140,9 @@ export function AppProvider({ children }) {
   // Appends a new checkup record and updates risk_level on the patient/newborn.
   // Persists both changes to localStorage so they survive refresh.
   // Also refreshes selectedPatient so the profile screen shows the new data immediately.
+  // When the assessment was produced offline (_offline: true), increments pendingCount.
   function saveCheckup(patientId, patientType, checkup, assessment) {
+    if (assessment._offline) setPendingCount(n => n + 1)
     const newRecord = { ...checkup, risk_level: assessment.risk_level, notes: assessment.risk_reason }
 
     if (patientType === 'anc') {
@@ -171,6 +179,83 @@ export function AppProvider({ children }) {
     }
   }
 
+  /**
+   * Replays all queued offline submissions against the real API.
+   * Called automatically when the browser comes back online.
+   * Updates stored checkup records and lastAssessment in-place so the ASHA
+   * sees the AI result without navigating away.
+   */
+  async function syncPendingQueue() {
+    const queue = getQueue()
+    if (queue.length === 0) return
+
+    for (const item of queue) {
+      try {
+        const result = await fetchCheckupAssessmentDirect(
+          item.patient, item.checkup, item.patientType, item.language
+        )
+
+        // Update the stored checkup_history / visit_history record
+        if (item.patientType === 'anc') {
+          setPatients(prev => {
+            const updated = prev.map(p => {
+              if (p.id !== item.patientId) return p
+              const history = (p.checkup_history ?? []).map(c =>
+                c.date === item.checkupDate
+                  ? { ...c, risk_level: result.risk_level, notes: result.risk_reason }
+                  : c
+              )
+              return { ...p, risk_level: result.risk_level, checkup_history: history }
+            })
+            localStorage.setItem(PATIENTS_KEY, JSON.stringify(updated))
+            return updated
+          })
+        } else {
+          setNewborns(prev => {
+            const updated = prev.map(n => {
+              if (n.id !== item.patientId) return n
+              const history = (n.visit_history ?? []).map(v =>
+                v.date === item.checkupDate
+                  ? { ...v, risk_level: result.risk_level, notes: result.risk_reason }
+                  : v
+              )
+              return { ...n, risk_level: result.risk_level, visit_history: history }
+            })
+            localStorage.setItem(NEWBORNS_KEY, JSON.stringify(updated))
+            return updated
+          })
+        }
+
+        // If the assessment screen is still showing this offline result, upgrade it
+        setLastAssessment(prev => {
+          if (
+            prev?.patientId === item.patientId &&
+            prev?.assessment?._offline &&
+            prev?.checkup?.date === item.checkupDate
+          ) {
+            return { ...prev, assessment: result }
+          }
+          return prev
+        })
+
+        removeFromQueue(item.queueId)
+        setPendingCount(n => Math.max(0, n - 1))
+      } catch {
+        // Network still unavailable — leave in queue and try again next time
+      }
+    }
+  }
+
+  // Keep ref current so the event listener always calls the latest version
+  syncRef.current = syncPendingQueue
+
+  // Auto-sync when connectivity is restored
+  useEffect(() => {
+    const handleOnline = () => syncRef.current?.()
+    window.addEventListener('online', handleOnline)
+    return () => window.removeEventListener('online', handleOnline)
+  }, [])
+
   function logout() {
     localStorage.removeItem(ASHA_NAME_KEY)
     setAshaNameState(null)
@@ -191,6 +276,8 @@ export function AppProvider({ children }) {
         checkupDraft,
         setCheckupDraft,
         saveCheckup,
+        pendingCount,
+        syncPendingQueue,
         language,
         setLanguage,
       }}

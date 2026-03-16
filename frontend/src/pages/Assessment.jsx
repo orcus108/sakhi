@@ -115,6 +115,21 @@ export default function Assessment() {
           <p className="text-sm text-green-700 font-medium">{t('assessment.checkupRecorded')}</p>
         </div>
 
+        {/* Offline assessment notice */}
+        {assessment._offline && (
+          <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+            <svg className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+            </svg>
+            <div>
+              <p className="text-sm text-amber-700 font-semibold">Local assessment — AI review pending</p>
+              <p className="text-xs text-amber-600 mt-0.5 leading-snug">
+                Device was offline. This assessment used local clinical rules. Sakhi AI will review and update it automatically when connected.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Risk banner */}
         <div className={`rounded-2xl border-l-4 p-5 ${riskBanner[level]}`}>
           <div className="flex justify-center mb-2">

@@ -27,6 +27,7 @@ Sakhi gives every ASHA worker an expert clinical colleague — always available,
 | **Ask Sakhi** | Free-form Q&A with optional patient context injection |
 | **Hindi Mode** | Full UI and AI responses in Devanagari Hindi |
 | **Schedule View** | Follow-up calendar for all patients |
+| **Offline-First Mode** | App loads and checkups work with zero connectivity — local MOHFW rule-based triage runs instantly, queues for AI sync when signal returns |
 | **Fine-tuned MedGemma** | Custom QLoRA-fine-tuned, merged, and Q4_K_M-quantized model — [`docvm/sakhi-medgemma-1.5-4b-maternal-GGUF`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF) — trained on Indian maternal/neonatal clinical data |
 | **Model Cascade** | Auto-fallback across 4 providers — Fine-tuned MedGemma → Gemma 3n → Gemini → Groq |
 | **Guideline-Grounded Answers** | Every assessment and chat response is augmented with top-3 relevant chunks retrieved from 10 WHO / MOHFW clinical guideline PDFs (RAG via ChromaDB + `paraphrase-multilingual-MiniLM-L12-v2`) |
@@ -89,14 +90,20 @@ sakhi/
 │   │   ├── components/
 │   │   │   ├── BottomNav.jsx        # Tab navigation
 │   │   │   ├── Disclaimer.jsx       # "Sakhi supports your judgment…" footer
+│   │   │   ├── OfflineBanner.jsx    # Offline / syncing status strip
 │   │   │   ├── RiskBadge.jsx        # Color-coded risk level badge
 │   │   │   └── TopBar.jsx           # Header with back button + title
 │   │   ├── context/
-│   │   │   └── AppContext.jsx       # Global state — patients, session, language
+│   │   │   └── AppContext.jsx       # Global state — patients, session, language, offline sync
 │   │   ├── data/
 │   │   │   └── mockPatients.json    # 6 ANC + 6 newborn patients, all risk levels
+│   │   ├── utils/
+│   │   │   ├── localAssessment.js   # MOHFW rule-based triage (offline fallback)
+│   │   │   ├── nameUtils.js         # Localised name/village helpers
+│   │   │   └── offlineQueue.js      # localStorage queue for pending AI submissions
 │   │   ├── hooks/
-│   │   │   └── useDebounce.js       # Debounce hook for patient search
+│   │   │   ├── useDebounce.js       # Debounce hook for patient search
+│   │   │   └── useOnlineStatus.js   # Reactive navigator.onLine hook
 │   │   ├── locales/
 │   │   │   ├── en.json              # English UI strings
 │   │   │   └── hi.json              # Hindi UI strings (Devanagari)
@@ -148,6 +155,31 @@ sakhi/
 ├── render.yaml                      # Render deployment config (alternative to HF)
 └── CLAUDE.md                        # Architecture decisions + dev guidelines
 ```
+
+---
+
+## Offline-First Mode
+
+ASHA workers operate in areas with unreliable or absent mobile signal. Sakhi is designed to be fully functional with no connectivity.
+
+### How it works
+
+| Layer | What happens offline |
+|---|---|
+| **App shell** | Service worker (Workbox via `vite-plugin-pwa`) caches all JS/CSS/HTML on first load — the web app opens normally with no signal |
+| **Patient data** | Always available — stored in localStorage since first load |
+| **Checkup submission** | Falls back to local MOHFW rule-based triage instantly; result is marked "AI review pending" |
+| **Sync** | Pending submissions are queued in localStorage and replayed automatically the moment connectivity returns — no action needed from the ASHA |
+
+### Local triage rules (`src/utils/localAssessment.js`)
+
+The offline fallback implements a subset of MOHFW ANC and HBNC guidelines:
+
+**ANC:** BP ≥ 140/90 → red · BP 130–139/80–89 → yellow · Hb < 7 g/dL → red · Hb < 11 g/dL → yellow · danger symptoms (fits, bleeding, severe headache) → red
+
+**Newborn:** weight < 1.5 kg → red · weight < 2.5 kg → yellow · weight loss > 10% from birth → red · weight loss > 7% → yellow · HBNC danger signs → red
+
+Results carry `_offline: true`. When the AI result arrives after sync, it replaces the local one in storage and on screen in-place — the ASHA doesn't need to navigate anywhere.
 
 ---
 

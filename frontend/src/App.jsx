@@ -13,6 +13,7 @@ import NewbornCheckupForm from './pages/NewbornCheckupForm.jsx'
 import Schedule from './pages/Schedule.jsx'
 import NewCheckupPicker from './pages/NewCheckupPicker.jsx'
 import BottomNav, { BOTTOM_NAV_PATHS } from './components/BottomNav.jsx'
+import OfflineBanner from './components/OfflineBanner.jsx'
 
 /**
  * Route guard: redirects unauthenticated users (no ashaName) to the
@@ -46,6 +47,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center">
       <div className="w-full max-w-[430px] min-h-screen bg-white shadow-sm flex flex-col">
+        <OfflineBanner />
         <Routes>
           {/* Onboarding */}
           <Route path="/" element={<Onboarding />} />
