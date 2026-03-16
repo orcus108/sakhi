@@ -9,7 +9,9 @@
  * `detail` field (FastAPI standard) or a fallback HTTP status string.
  * Callers are responsible for catching and displaying these errors.
  */
-const BASE_URL = import.meta.env.VITE_API_URL || '/api'
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? 'https://docvm-sakhi-api.hf.space/api' : '/api')
 
 /**
  * Submits vitals + symptoms to the AI assessment endpoint.

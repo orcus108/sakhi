@@ -111,6 +111,8 @@ sakhi/
 │   │       ├── Assessment.jsx       # AI output screen (shared ANC + newborn)
 │   │       ├── AskSakhi.jsx         # Free-form chat with patient context
 │   │       └── Schedule.jsx         # Follow-up appointment calendar
+│   ├── android/                     # Generated Android Studio project (Capacitor)
+│   ├── capacitor.config.ts          # Capacitor config — app ID, status bar, webDir
 │   ├── package.json
 │   ├── tailwind.config.js
 │   └── vite.config.js
@@ -237,13 +239,37 @@ npm run dev
 
 The Vite dev server proxies `/api/*` to `http://localhost:8000` automatically. No environment variable is needed for local development.
 
+### Android (Capacitor)
+
+The frontend is wrapped with [Capacitor](https://capacitorjs.com) to produce a native Android APK for the Google Play Store. The React source is unchanged — Capacitor runs it inside a WebView.
+
+**Prerequisites (one-time):** Install [Android Studio](https://developer.android.com/studio) and set `ANDROID_HOME` in your shell.
+
+```bash
+cd frontend
+
+# After any React source change, sync to the Android project:
+npm run build:android
+
+# Open the Android project in Android Studio (run emulator / build APK from here):
+npm run open:android
+```
+
+To build a release AAB for the Play Store:
+```bash
+cd frontend/android
+./gradlew bundleRelease
+# Output: app/build/outputs/bundle/release/app-release.aab
+```
+
 ---
 
 ## Deployment
 
 | Layer | Platform | Config file |
 |---|---|---|
-| Frontend | Vercel | Root dir: `frontend`, framework: Vite |
+| Frontend (web) | Vercel | Root dir: `frontend`, framework: Vite |
+| Android app | Google Play Store | [frontend/capacitor.config.ts](frontend/capacitor.config.ts) |
 | Backend API | Hugging Face Spaces | [backend/Dockerfile](backend/Dockerfile) |
 | MedGemma server | Hugging Face Spaces | [medgemma-space/Dockerfile](medgemma-space/Dockerfile) |
 | Uptime monitoring | UptimeRobot | Pings `/health` (HEAD) every 5 minutes |

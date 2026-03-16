@@ -59,7 +59,7 @@ export default function BottomNav() {
   ]
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-20 bg-white border-t border-gray-100 shadow-[0_-4px_6px_rgba(0,0,0,0.05)]">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-20 bg-white border-t border-gray-100 shadow-[0_-4px_6px_rgba(0,0,0,0.05)]" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex">
         {TABS.map(({ key, label, path, Icon }) => {
           const active = pathname === path
