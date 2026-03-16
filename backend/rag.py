@@ -28,9 +28,9 @@ def preload():
     if _collection is not None:
         return
     try:
-        _model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
         client = chromadb.PersistentClient(path="chroma_db")
         _collection = client.get_collection("guidelines")
+        _model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
         logger.info("RAG: loaded guideline index (%d chunks)", _collection.count())
     except Exception as e:
         logger.warning("RAG index unavailable — %s. Continuing without it.", e)

@@ -63,7 +63,7 @@ async def root():
     return {"status": "ok", "service": "Sakhi API"}
 
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health():
     """Health check endpoint used by Render for uptime monitoring."""
     return {"status": "healthy"}

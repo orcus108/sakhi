@@ -195,9 +195,9 @@ Rate limit: 20 requests/minute per IP.
 { "reply": "..." }
 ```
 
-### `GET /health`
+### `GET /health` / `HEAD /health`
 
-Returns `{"status": "healthy"}`. Used by UptimeRobot to keep the HF Space warm.
+Returns `{"status": "healthy"}`. Used by UptimeRobot to keep the HF Space warm. Accepts both GET and HEAD (UptimeRobot free tier sends HEAD).
 
 ---
 
@@ -246,7 +246,7 @@ The Vite dev server proxies `/api/*` to `http://localhost:8000` automatically. N
 | Frontend | Vercel | Root dir: `frontend`, framework: Vite |
 | Backend API | Hugging Face Spaces | [backend/Dockerfile](backend/Dockerfile) |
 | MedGemma server | Hugging Face Spaces | [medgemma-space/Dockerfile](medgemma-space/Dockerfile) |
-| Uptime monitoring | UptimeRobot | Pings `GET /health` every 5 minutes |
+| Uptime monitoring | UptimeRobot | Pings `/health` (HEAD) every 5 minutes |
 
 **Vercel environment variable:**
 ```
@@ -259,6 +259,28 @@ GROQ_API_KEY, OPEN_ROUTER_API_KEY, GOOGLE_API_KEY, MEDGEMMA_API_URL
 ```
 
 To make MedGemma the active provider, point `MEDGEMMA_API_URL` at the MedGemma Ollama Space. It will automatically rank first in the cascade — no code changes needed.
+
+**Deploying the backend to HF Spaces:**
+
+Git push doesn't work due to large PDF files in `guidelines/`. Use `huggingface_hub` instead:
+
+```bash
+cd backend && source .venv/bin/activate
+python3 -c "
+from huggingface_hub import HfApi
+api = HfApi(token='hf_YOUR_TOKEN')
+api.upload_folder(
+    folder_path='.',
+    repo_id='YOUR_HF_USERNAME/sakhi-api',
+    repo_type='space',
+    ignore_patterns=['chroma_db/*', '__pycache__/*', '*.pyc', '.venv/*', '.env', '*.DS_Store']
+)
+"
+```
+
+UptimeRobot monitors needed (both every 5 min):
+- `https://YOUR_HF_USERNAME-sakhi-api.hf.space/health` — HTTP HEAD
+- `https://YOUR_HF_USERNAME-sakhi.hf.space/api/tags` — HTTP HEAD
 
 ---
 
