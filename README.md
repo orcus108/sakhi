@@ -4,19 +4,34 @@
 
 > **Google MedGemma Impact Challenge** · Kaggle · February 2026
 
-Sakhi is a mobile-first clinical decision-support tool built for ASHA (Accredited Social Health Activist) workers in rural India. It is offline-capable, voice-first, bilingual (Hindi and English), and designed with patient safety as a core constraint. The system is powered by MedGemma to support real-time assessment during antenatal and newborn visits, identifying high-risk cases and assisting with referral decisions directly in the field, on a mobile phone, without access to a specialist.
+Nearly one million ASHA workers in rural India make life-critical referral decisions alone, in the field, without a doctor nearby.
 
-For nearly one million community health workers who make referral decisions independently, Sakhi serves as a structured clinical support layer—helping reduce missed warning signs and improve timely escalation of care.
+Sakhi is their AI clinical colleague: a mobile-first, offline-capable tool that assesses antenatal and newborn visits in real time, flags high-risk cases, and guides referral decisions. All powered by a fine-tuned MedGemma model grounded in MOHFW and WHO guidelines.
 
 **[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)** &nbsp;|&nbsp; **[Fine-tuned Model →](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF)**
 
 ---
 
+## Table of Contents
+
+- [The Problem](#the-problem)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Offline-First Mode](#offline-first-mode)
+- [MedGemma Integration](#medgemma-integration)
+- [API Reference](#api-reference)
+- [Local Development](#local-development)
+- [Deployment](#deployment)
+- [Screens](#screens)
+- [Project Structure](#project-structure)
+
+---
+
 ## The Problem
 
-India's maternal mortality rate remains among the highest in the world. ASHA workers — ~1 million community health volunteers — are often the only clinical touchpoint for pregnant women and newborns in rural areas. They measure blood pressure, check fetal heart rates, and observe newborns during home visits, but they are not doctors. A missed reading, an unrecognised warning sign, or an uncertain referral decision can cost a life.
+India's maternal mortality ratio is 97 per 100,000 live births — one of the highest among middle-income countries, and disproportionately concentrated in rural areas where specialist care is inaccessible. ASHA workers are trained to measure BP, check fetal heart rates, and observe newborns, but they are not clinicians. They have no decision-support tool, no second opinion, and no way to know whether a reading they've just taken warrants an emergency referral or a routine follow-up.
 
-Sakhi gives every ASHA worker an expert clinical colleague — always available, warm, and field-appropriate.
+A missed sign at the right moment can cost a life. Sakhi is designed to close that gap.
 
 ---
 
@@ -73,91 +88,6 @@ Sakhi gives every ASHA worker an expert clinical colleague — always available,
 └─────────────────────────────────────────────────────┘
 ```
 
-### The Model Abstraction Rule
-
-`backend/model.py` is the **only file** that calls any AI model. All routes import `generate()` and `generate_chat()` from it — no model API calls anywhere else in the codebase.
-
-The cascade is priority-ordered and automatic: if a provider's API key is missing or the call fails, the next provider is tried silently. This means the app stays online during model outages, and MedGemma can be promoted to first position the moment credentials are available with zero code changes.
-
----
-
-## Project Structure
-
-```
-sakhi/
-├── frontend/
-│   ├── src/
-│   │   ├── api/
-│   │   │   └── api.js               # All fetch calls — single source of truth
-│   │   ├── components/
-│   │   │   ├── BottomNav.jsx        # Tab navigation
-│   │   │   ├── Disclaimer.jsx       # "Sakhi supports your judgment…" footer
-│   │   │   ├── OfflineBanner.jsx    # Offline / syncing status strip
-│   │   │   ├── RiskBadge.jsx        # Color-coded risk level badge
-│   │   │   └── TopBar.jsx           # Header with back button + title
-│   │   ├── context/
-│   │   │   └── AppContext.jsx       # Global state — patients, session, language, offline sync
-│   │   ├── data/
-│   │   │   └── mockPatients.json    # 6 ANC + 6 newborn patients, all risk levels
-│   │   ├── utils/
-│   │   │   ├── localAssessment.js   # MOHFW rule-based triage (offline fallback)
-│   │   │   ├── nameUtils.js         # Localised name/village helpers
-│   │   │   └── offlineQueue.js      # localStorage queue for pending AI submissions
-│   │   ├── hooks/
-│   │   │   ├── useDebounce.js       # Debounce hook for patient search
-│   │   │   └── useOnlineStatus.js   # Reactive navigator.onLine hook
-│   │   ├── locales/
-│   │   │   ├── en.json              # English UI strings
-│   │   │   └── hi.json              # Hindi UI strings (Devanagari)
-│   │   └── pages/
-│   │       ├── Onboarding.jsx       # ASHA worker name selection
-│   │       ├── Home.jsx             # Patient list with risk summary strip + search
-│   │       ├── PatientProfile.jsx   # ANC patient detail + checkup history
-│   │       ├── NewbornProfile.jsx   # Newborn detail + visit history
-│   │       ├── NewCheckupPicker.jsx # Choose ANC or newborn visit
-│   │       ├── CheckupForm.jsx      # 2-step ANC vitals + symptoms form
-│   │       ├── NewbornCheckupForm.jsx # Newborn visit observations
-│   │       ├── Assessment.jsx       # AI output screen (shared ANC + newborn)
-│   │       ├── AskSakhi.jsx         # Free-form chat with patient context
-│   │       └── Schedule.jsx         # Follow-up appointment calendar
-│   ├── android/                     # Generated Android Studio project (Capacitor)
-│   ├── capacitor.config.ts          # Capacitor config — app ID, status bar, webDir
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── vite.config.js
-│
-├── backend/
-│   ├── main.py                      # FastAPI app — CORS, rate limiting, routing; RAG preload at startup
-│   ├── model.py                     # AI provider cascade — the ONLY model caller
-│   ├── rag.py                       # Retrieval module — preload() + async retrieve(query) via ChromaDB
-│   ├── ingest.py                    # One-time PDF indexing script (run after adding new guidelines)
-│   ├── prompts.py                   # All system prompts in one place
-│   ├── limiter.py                   # SlowAPI rate limiter instance
-│   ├── requirements.txt
-│   ├── Dockerfile                   # HF Spaces deployment (port 7860)
-│   ├── guidelines/                  # 10 source PDFs: ASHA Modules 1–7, WHO ANC 2016, MOHFW HBNC, MOHFW ANC
-│   ├── chroma_db/                   # Persistent ChromaDB vector store (generated by ingest.py)
-│   └── routes/
-│       ├── checkup.py               # POST /api/checkup-assessment
-│       ├── chat.py                  # POST /api/chat
-│       └── transcribe.py            # POST /api/transcribe (voice fallback)
-│
-├── medgemma-space/
-│   ├── Dockerfile                   # Ollama + MedGemma GGUF server for HF Spaces
-│   └── start.sh                     # Pulls sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M on startup
-│
-├── model/                           # Fine-tuning + evaluation pipeline (Kaggle notebooks)
-│   ├── finetuning-medgemma.ipynb    # QLoRA fine-tuning on maternal/neonatal data
-│   ├── testing-ft-model.ipynb       # Triage evaluation harness (75 labelled cases)
-│   ├── merge-and-quantize.ipynb     # Merges LoRA adapter → base model, quantizes to GGUF Q4_K_M
-│   ├── data/
-│   │   └── maternal_triage_cases.json  # MOHFW-aligned triage dataset for evaluation
-│   └── README.md                    # Training config, eval metrics, dataset documentation
-│
-├── render.yaml                      # Render deployment config (alternative to HF)
-└── CLAUDE.md                        # Architecture decisions + dev guidelines
-```
-
 ---
 
 ## Offline-First Mode
@@ -182,6 +112,39 @@ The offline fallback implements a subset of MOHFW ANC and HBNC guidelines:
 **Newborn:** weight < 1.5 kg → red · weight < 2.5 kg → yellow · weight loss > 10% from birth → red · weight loss > 7% → yellow · HBNC danger signs → red
 
 Results carry `_offline: true`. When the AI result arrives after sync, it replaces the local one in storage and on screen in-place — the ASHA doesn't need to navigate anywhere.
+
+---
+
+## MedGemma Integration
+
+### Why MedGemma specifically
+
+- **Domain-trained:** Pre-trained on medical literature and clinical data — significantly better calibrated for clinical reasoning than general-purpose LLMs at the same parameter count
+- **Open-weight:** Can be self-hosted; patient data never leaves infrastructure you control, which matters for real-world PHC deployment
+- **Safety-aligned:** Built-in refusal of harmful medical advice; this matches Sakhi's "support, don't replace" design philosophy
+- **Edge-viable:** The 4B GGUF-quantised variant runs on CPU, making it practical for deployment in low-resource settings where GPU compute is unavailable
+
+### Self-hosted Ollama setup (`medgemma-space/`)
+
+The `medgemma-space/` directory is a complete, deployable Hugging Face Space that:
+1. Pulls the Ollama base image
+2. Downloads `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M` — the **fine-tuned, merged, and quantized** model — from HuggingFace Hub on startup
+3. Exposes an OpenAI-compatible `/v1/chat/completions` endpoint on port 7860
+
+`backend/model.py` calls this endpoint directly and lists it **first** in the cascade. Once `MEDGEMMA_API_URL` is set to the Space URL, all requests route through the fine-tuned model before any fallback is tried.
+
+### Fine-tuning → Merge → Quantize → Deploy
+
+The full pipeline across three Kaggle notebooks:
+
+1. [`model/finetuning-medgemma.ipynb`](model/finetuning-medgemma.ipynb) — QLoRA fine-tunes `google/medgemma-1.5-4b-it` on maternal/neonatal data, targeting two key gaps:
+   - **Indian clinical context:** Recognition of locally prevalent risk factors (severe anaemia, eclampsia, low birth weight patterns common in Rajasthan)
+   - **Output reliability:** Improving JSON schema compliance to reduce post-processing failures in production
+   - Output: `docvm/sakhi-medgemma-1.5-4b-maternal` LoRA adapter on HF Hub
+
+2. [`model/merge-and-quantize.ipynb`](model/merge-and-quantize.ipynb) — Merges the LoRA adapter into the base model (bfloat16), converts to GGUF via llama.cpp, quantizes to Q4_K_M, and pushes `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF` to HF Hub.
+
+3. `medgemma-space/start.sh` — Serves the resulting GGUF via Ollama on a HF Space.
 
 ---
 
@@ -344,49 +307,6 @@ UptimeRobot monitors needed (both every 5 min):
 
 ---
 
-## MedGemma Integration
-
-### Why MedGemma specifically
-
-- **Domain-trained:** Pre-trained on medical literature and clinical data — significantly better calibrated for clinical reasoning than general-purpose LLMs at the same parameter count
-- **Open-weight:** Can be self-hosted; patient data never leaves infrastructure you control, which matters for real-world PHC deployment
-- **Safety-aligned:** Built-in refusal of harmful medical advice; this matches Sakhi's "support, don't replace" design philosophy
-- **Edge-viable:** The 4B GGUF-quantised variant runs on CPU, making it practical for deployment in low-resource settings where GPU compute is unavailable
-
-### Self-hosted Ollama setup (`medgemma-space/`)
-
-The `medgemma-space/` directory is a complete, deployable Hugging Face Space that:
-1. Pulls the Ollama base image
-2. Downloads `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M` — the **fine-tuned, merged, and quantized** model — from HuggingFace Hub on startup
-3. Exposes an OpenAI-compatible `/v1/chat/completions` endpoint on port 7860
-
-`backend/model.py` calls this endpoint directly and lists it **first** in the cascade. Once `MEDGEMMA_API_URL` is set to the Space URL, all requests route through the fine-tuned model before any fallback is tried.
-
-### Fine-tuning → Merge → Quantize → Deploy
-
-The full pipeline across three Kaggle notebooks:
-
-1. [`model/finetuning-medgemma.ipynb`](model/finetuning-medgemma.ipynb) — QLoRA fine-tunes `google/medgemma-1.5-4b-it` on maternal/neonatal data, targeting two key gaps:
-   - **Indian clinical context:** Recognition of locally prevalent risk factors (severe anaemia, eclampsia, low birth weight patterns common in Rajasthan)
-   - **Output reliability:** Improving JSON schema compliance to reduce post-processing failures in production
-   - Output: `docvm/sakhi-medgemma-1.5-4b-maternal` LoRA adapter on HF Hub
-
-2. [`model/merge-and-quantize.ipynb`](model/merge-and-quantize.ipynb) — Merges the LoRA adapter into the base model (bfloat16), converts to GGUF via llama.cpp, quantizes to Q4_K_M, and pushes `docvm/sakhi-medgemma-1.5-4b-maternal-GGUF` to HF Hub.
-
-3. `medgemma-space/start.sh` — Serves the resulting GGUF via Ollama on a HF Space.
-
----
-
-## Design Principles
-
-- **Mobile-first:** Max content width 430px; all interactive elements ≥ 48px touch target
-- **Data-forward:** Vital numbers are always the largest element on screen (`text-3xl font-bold`) — BP, weight, and Hb are hero numbers, not label-value pairs
-- **Warm tone:** "Sakhi is thinking…" not "Loading…"; "Tell the patient…" not "Recommendation:"
-- **Actionable over informational:** Every assessment ends with one concrete next step
-- **Safe by design:** The disclaimer — *"Sakhi supports your judgment — always refer when unsure"* — is shown on every Assessment and Chat screen. The AI never diagnoses; it flags and supports.
-
----
-
 ## Screens
 
 | # | Screen | Description |
@@ -401,3 +321,85 @@ The full pipeline across three Kaggle notebooks:
 | 5 | Assessment | AI output — risk banner, clinical notices, patient script, next action |
 | 6 | Ask Sakhi | Free-form chat; patient context injected automatically if selected |
 | 7 | Schedule | Follow-up appointments across all patients |
+
+---
+
+## Project Structure
+
+```
+sakhi/
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── api.js               # All fetch calls — single source of truth
+│   │   ├── components/
+│   │   │   ├── BottomNav.jsx        # Tab navigation
+│   │   │   ├── Disclaimer.jsx       # "Sakhi supports your judgment…" footer
+│   │   │   ├── OfflineBanner.jsx    # Offline / syncing status strip
+│   │   │   ├── RiskBadge.jsx        # Color-coded risk level badge
+│   │   │   └── TopBar.jsx           # Header with back button + title
+│   │   ├── context/
+│   │   │   └── AppContext.jsx       # Global state — patients, session, language, offline sync
+│   │   ├── data/
+│   │   │   └── mockPatients.json    # 6 ANC + 6 newborn patients, all risk levels
+│   │   ├── utils/
+│   │   │   ├── localAssessment.js   # MOHFW rule-based triage (offline fallback)
+│   │   │   ├── nameUtils.js         # Localised name/village helpers
+│   │   │   └── offlineQueue.js      # localStorage queue for pending AI submissions
+│   │   ├── hooks/
+│   │   │   ├── useDebounce.js       # Debounce hook for patient search
+│   │   │   └── useOnlineStatus.js   # Reactive navigator.onLine hook
+│   │   ├── locales/
+│   │   │   ├── en.json              # English UI strings
+│   │   │   └── hi.json              # Hindi UI strings (Devanagari)
+│   │   └── pages/
+│   │       ├── Onboarding.jsx       # ASHA worker name selection
+│   │       ├── Home.jsx             # Patient list with risk summary strip + search
+│   │       ├── PatientProfile.jsx   # ANC patient detail + checkup history
+│   │       ├── NewbornProfile.jsx   # Newborn detail + visit history
+│   │       ├── NewCheckupPicker.jsx # Choose ANC or newborn visit
+│   │       ├── CheckupForm.jsx      # 2-step ANC vitals + symptoms form
+│   │       ├── NewbornCheckupForm.jsx # Newborn visit observations
+│   │       ├── Assessment.jsx       # AI output screen (shared ANC + newborn)
+│   │       ├── AskSakhi.jsx         # Free-form chat with patient context
+│   │       └── Schedule.jsx         # Follow-up appointment calendar
+│   ├── android/                     # Generated Android Studio project (Capacitor)
+│   ├── capacitor.config.ts          # Capacitor config — app ID, status bar, webDir
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+├── backend/
+│   ├── main.py                      # FastAPI app — CORS, rate limiting, routing; RAG preload at startup
+│   ├── model.py                     # AI provider cascade — the ONLY model caller
+│   ├── rag.py                       # Retrieval module — preload() + async retrieve(query) via ChromaDB
+│   ├── ingest.py                    # One-time PDF indexing script (run after adding new guidelines)
+│   ├── prompts.py                   # All system prompts in one place
+│   ├── limiter.py                   # SlowAPI rate limiter instance
+│   ├── requirements.txt
+│   ├── Dockerfile                   # HF Spaces deployment (port 7860)
+│   ├── guidelines/                  # 10 source PDFs: ASHA Modules 1–7, WHO ANC 2016, MOHFW HBNC, MOHFW ANC
+│   ├── chroma_db/                   # Persistent ChromaDB vector store (generated by ingest.py)
+│   └── routes/
+│       ├── checkup.py               # POST /api/checkup-assessment
+│       ├── chat.py                  # POST /api/chat
+│       └── transcribe.py            # POST /api/transcribe (voice fallback)
+│
+├── medgemma-space/
+│   ├── Dockerfile                   # Ollama + MedGemma GGUF server for HF Spaces
+│   └── start.sh                     # Pulls sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M on startup
+│
+├── model/                           # Fine-tuning + evaluation pipeline (Kaggle notebooks)
+│   ├── finetuning-medgemma.ipynb    # QLoRA fine-tuning on maternal/neonatal data
+│   ├── testing-ft-model.ipynb       # Triage evaluation harness (75 labelled cases)
+│   ├── merge-and-quantize.ipynb     # Merges LoRA adapter → base model, quantizes to GGUF Q4_K_M
+│   ├── data/
+│   │   └── maternal_triage_cases.json  # MOHFW-aligned triage dataset for evaluation
+│   └── README.md                    # Training config, eval metrics, dataset documentation
+│
+└── render.yaml                      # Render deployment config (alternative to HF)
+```
+
+---
+
+*Sakhi exists because no ASHA worker should have to make a life-or-death decision alone.*
