@@ -46,6 +46,7 @@ A missed sign at the right moment can cost a life. Sakhi is designed to close th
 | **Schedule View** | Follow-up calendar for all patients |
 | **Offline-First Mode** | App loads and checkups work with zero connectivity — local MOHFW rule-based triage runs instantly, queues for AI sync when signal returns |
 | **Fine-tuned MedGemma** | Custom QLoRA-fine-tuned, merged, and Q4_K_M-quantized model — [`docvm/sakhi-medgemma-1.5-4b-maternal-GGUF`](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF) — trained on Indian maternal/neonatal clinical data |
+| **ABHA Verification** | OTP-based Ayushman Bharat Health Account (ABHA) ID verification via ABDM proxy — credentials stay server-side; demo mode accepts any 6-digit OTP when sandbox creds are absent |
 | **Model Cascade** | Auto-fallback across 4 providers — Fine-tuned MedGemma → Gemma 3n → Gemini → Groq |
 | **Guideline-Grounded Answers** | Every assessment and chat response is augmented with top-3 relevant chunks retrieved from 10 WHO / MOHFW clinical guideline PDFs (RAG via ChromaDB + `paraphrase-multilingual-MiniLM-L12-v2`) |
 
@@ -175,6 +176,20 @@ Rate limit: 10 requests/minute per IP.
   "follow_up_date":       "YYYY-MM-DD | null"
 }
 ```
+
+### `POST /api/abha/request-otp`
+
+Initiates ABDM OTP verification for a patient's ABHA number. Proxies the ABDM call server-side so `clientId`/`clientSecret` never reach the frontend. In demo mode (no ABDM credentials), returns a mock `txnId` immediately.
+
+**Request:** `{ "abha_number": "12-3456-7890-1234" }`
+**Response:** `{ "txnId": "...", "message": "OTP sent" }`
+
+### `POST /api/abha/verify-otp`
+
+Verifies the OTP and returns the linked ABHA profile. In demo mode, any 6-digit OTP is accepted.
+
+**Request:** `{ "txnId": "...", "otp": "123456" }`
+**Response:** `{ "name": "...", "abhaNumber": "...", "gender": "...", "yearOfBirth": "..." }`
 
 ### `POST /api/chat`
 
@@ -311,7 +326,7 @@ UptimeRobot monitors needed (both every 5 min):
 
 | # | Screen | Description |
 |---|---|---|
-| 0 | Onboarding | Worker name selection — no password, no friction |
+| 0 | Onboarding | ASHA ID + name entry — typing a known ID (ASH1001, ASH2047, ASH3112) auto-fills the worker name; each ID gets its own patient list |
 | 1 | Home | Patient list with color-coded risk strip, search, and new checkup CTA |
 | 2 | Patient Profile | ANC patient detail, vitals history, past assessments |
 | 2b | Newborn Profile | Newborn detail, visit timeline, weight trend |
@@ -333,6 +348,7 @@ sakhi/
 │   │   ├── api/
 │   │   │   └── api.js               # All fetch calls — single source of truth
 │   │   ├── components/
+│   │   │   ├── AbhaVerifyModal.jsx  # 3-step ABHA OTP bottom sheet (number → OTP → confirmed)
 │   │   │   ├── BottomNav.jsx        # Tab navigation
 │   │   │   ├── Disclaimer.jsx       # "Sakhi supports your judgment…" footer
 │   │   │   ├── OfflineBanner.jsx    # Offline / syncing status strip
@@ -341,7 +357,7 @@ sakhi/
 │   │   ├── context/
 │   │   │   └── AppContext.jsx       # Global state — patients, session, language, offline sync
 │   │   ├── data/
-│   │   │   └── mockPatients.json    # 6 ANC + 6 newborn patients, all risk levels
+│   │   │   └── mockPatients.json    # 45 patients across 3 workers/villages (ASH1001 Rampur, ASH2047 Chandpur, ASH3112 Banswa)
 │   │   ├── utils/
 │   │   │   ├── localAssessment.js   # MOHFW rule-based triage (offline fallback)
 │   │   │   ├── nameUtils.js         # Localised name/village helpers
@@ -383,6 +399,7 @@ sakhi/
 │   └── routes/
 │       ├── checkup.py               # POST /api/checkup-assessment
 │       ├── chat.py                  # POST /api/chat
+│       ├── abha.py                  # POST /api/abha/request-otp + /api/abha/verify-otp (ABDM proxy)
 │       └── transcribe.py            # POST /api/transcribe (voice fallback)
 │
 ├── medgemma-space/
