@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../context/AppContext.jsx'
 import TopBar from '../components/TopBar.jsx'
 import RiskBadge from '../components/RiskBadge.jsx'
+import AbhaVerifyModal from '../components/AbhaVerifyModal.jsx'
 import { localName, localMotherName } from '../utils/nameUtils.js'
 
 /**
@@ -113,6 +114,8 @@ export default function NewbornProfile() {
     )
   }
 
+  const [abhaModalOpen, setAbhaModalOpen] = useState(false)
+
   const daysOld   = getDaysOld(baby.date_of_birth)
   const nextVisit = getNextVisit(baby)
   const wt        = weightDelta(baby)
@@ -160,21 +163,32 @@ export default function NewbornProfile() {
                 <p className="text-gray-500 text-sm">
                   {t('newborn.dob')} {baby.date_of_birth}
                 </p>
-                {baby.abdm_id ? (
+                <div className="flex items-center gap-2 mt-2 flex-wrap">
+                  {baby.abdm_id ? (
+                    <button
+                      onClick={() => navigator.clipboard?.writeText(baby.abdm_id)}
+                      className="flex items-center gap-1.5 active:opacity-70 transition-opacity"
+                      title="Tap to copy ABHA ID"
+                    >
+                      <svg className="w-3 h-3 text-blue-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                      <span className="text-xs font-medium text-blue-500 uppercase tracking-wide">ABHA</span>
+                      <span className="text-xs font-mono text-gray-500 bg-white/70 px-2 py-0.5 rounded-full">{baby.abdm_id}</span>
+                    </button>
+                  ) : (
+                    <span className="text-xs text-gray-400 italic">No ABHA ID</span>
+                  )}
                   <button
-                    onClick={() => navigator.clipboard?.writeText(baby.abdm_id)}
-                    className="flex items-center gap-1.5 mt-2 active:opacity-70 transition-opacity"
-                    title="Tap to copy ABHA ID"
+                    onClick={() => setAbhaModalOpen(true)}
+                    className="flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full active:bg-blue-700 transition-colors shadow-sm"
                   >
-                    <svg className="w-3 h-3 text-blue-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                     </svg>
-                    <span className="text-xs font-medium text-blue-500 uppercase tracking-wide">ABHA</span>
-                    <span className="text-xs font-mono text-gray-500 bg-white/70 px-2 py-0.5 rounded-full">{baby.abdm_id}</span>
+                    Verify ABHA
                   </button>
-                ) : (
-                  <p className="text-xs text-gray-400 mt-2 italic">No ABHA ID — not yet registered</p>
-                )}
+                </div>
               </div>
               <RiskBadge level={baby.risk_level} size="sm" />
             </div>
@@ -347,6 +361,14 @@ export default function NewbornProfile() {
           </button>
         </div>
       </div>
+
+      <AbhaVerifyModal
+        isOpen={abhaModalOpen}
+        onClose={() => setAbhaModalOpen(false)}
+        initialAbha={baby.abdm_id || ''}
+        patientName={baby.name || ''}
+        onVerified={() => {}}
+      />
     </div>
   )
 }

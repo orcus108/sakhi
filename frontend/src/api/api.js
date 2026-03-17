@@ -91,6 +91,46 @@ export async function fetchTranscribe(audioBlob, mimeType = 'audio/webm') {
 }
 
 /**
+ * Requests an OTP be sent to the patient's Aadhaar-linked phone number.
+ * The backend proxies to the ABDM sandbox, keeping credentials off the frontend.
+ *
+ * @param {string} abhaNumber - e.g. "91-0000-0000-0001"
+ * @returns {Promise<{ txn_id: string }>}
+ */
+export async function fetchAbhaRequestOtp(abhaNumber) {
+  const res = await fetch(`${BASE_URL}/abha/request-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ abha_number: abhaNumber }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || `HTTP ${res.status}`)
+  }
+  return res.json()
+}
+
+/**
+ * Verifies the OTP and returns the patient's ABHA profile.
+ *
+ * @param {string} txnId - Returned from fetchAbhaRequestOtp
+ * @param {string} otp   - 6-digit OTP entered by the patient
+ * @returns {Promise<{ name: string, dob: string, gender: string, photo: string|null, abha_number: string }>}
+ */
+export async function fetchAbhaVerifyOtp(txnId, otp) {
+  const res = await fetch(`${BASE_URL}/abha/verify-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ txn_id: txnId, otp }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || `HTTP ${res.status}`)
+  }
+  return res.json()
+}
+
+/**
  * Sends the conversation history and optional patient context to the chat endpoint.
  *
  * @param {Array<{role: string, content: string}>} messages - Full conversation so far (caller slices to last 10)
