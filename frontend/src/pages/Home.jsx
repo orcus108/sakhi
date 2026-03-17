@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../context/AppContext.jsx'
 import { useDebounce } from '../hooks/useDebounce.js'
 import RiskBadge from '../components/RiskBadge.jsx'
-import { localName, localMotherName } from '../utils/nameUtils.js'
+import { localName, localMotherName, localVillage } from '../utils/nameUtils.js'
 
 // ── Date helpers ──────────────────────────────────────────────────────────────
 function startOfToday() {
@@ -160,7 +160,7 @@ function ShowMoreButton({ shown, total, onShowMore, t }) {
  *  - Newborn: last visit date + interval based on the visit milestone (NEWBORN_NEXT)
  */
 export default function Home() {
-  const { ashaName, patients, newborns, setSelectedPatient, language, setLanguage } = useApp()
+  const { ashaName, ashaId, patients, newborns, setSelectedPatient, language, setLanguage } = useApp()
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
@@ -201,7 +201,10 @@ export default function Home() {
   }, [patients, newborns])
 
   // Primary village for this ASHA worker (assumes single-village assignment)
-  const primaryVillage = (patients[0] ?? newborns[0])?.village?.split(',')[0].trim()
+  const primaryRecord = patients[0] ?? newborns[0]
+  const primaryVillage = language === 'hi'
+    ? localVillage(primaryRecord, 'hi')?.split(',')[0].trim()
+    : primaryRecord?.village?.split(',')[0].trim()
   const totalPatients = patients.length + newborns.length
 
   const { urgent, overdue, dueToday, byRisk } = useMemo(() => {
@@ -264,6 +267,7 @@ export default function Home() {
         <div>
           <p className="text-blue-100 text-sm">{t('home.welcomeBack')}</p>
           <h1 className="text-white text-3xl font-bold">{ashaName}</h1>
+          {ashaId && <p className="text-blue-200 text-xs mt-0.5 font-mono">{ashaId}</p>}
         </div>
         <div className="flex rounded-full overflow-hidden border border-white/30">
           {[{ code: 'en', label: 'EN' }, { code: 'hi', label: 'हिं' }].map(opt => (

@@ -19,11 +19,15 @@
   "onboarding": {
     "appName": "सखी",
     "tagline": "माँ और बच्चे की देखभाल, साथ मिलकर",
-    "nameLabel": "आपका नाम क्या है?",
+    "idLabel": "ASHA कार्यकर्ता ID",
+    "idPlaceholder": "जैसे: ASH1001",
+    "idError": "जारी रखने के लिए ASHA ID दर्ज करें।",
+    "demoWorkerFound": "डेमो कार्यकर्ता मिला — नाम अपने आप भर गया।",
+    "nameLabel": "आपका नाम",
     "nameHelper": "अपना नाम दर्ज करें ताकि Sakhi आपको पहचान सके।",
     "namePlaceholder": "जैसे: अनिता देवी",
     "startButton": "शुरू करें",
-    "footer": "कोई पासवर्ड नहीं चाहिए। बस आपका नाम।",
+    "footer": "डेमो मोड — ASH1001, ASH2047 या ASH3112 आज़माएं।",
     "nameError": "जारी रखने के लिए नाम दर्ज करें।",
     "langLabel": "भाषा"
   },

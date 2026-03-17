@@ -6,32 +6,55 @@ import { useApp } from '../context/AppContext.jsx'
 /**
  * Onboarding.jsx — First-run screen (Screen 0)
  *
- * Collects the ASHA worker's name and preferred language before entering
- * the app. There is no password — any name is accepted.
- *
- * If an ashaName is already stored in localStorage (i.e. the user has
- * been here before), the component redirects straight to /home.
+ * Collects the ASHA worker's ID and name before entering the app.
+ * Three demo workers are pre-seeded with known IDs — entering a known ID
+ * auto-fills the name and loads that worker's patient list.
+ * Unknown IDs are also accepted and get a fresh (generic) patient set.
  *
  * Language selection here sets the i18next language AND persists it so
  * it is still active on next visit.
  */
+
+// Pre-seeded demo workers. Entering a known ID auto-fills the name.
+const DEMO_WORKERS = {
+  'ASH1001': 'Sunita Devi',
+  'ASH2047': 'Rekha Kumari',
+  'ASH3112': 'Meera Singh',
+}
+
 export default function Onboarding() {
-  const { ashaName, setAshaName, language, setLanguage } = useApp()
+  const { ashaName, login, language, setLanguage } = useApp()
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const [id, setId]     = useState('')
   const [name, setName] = useState('')
-  const [error, setError] = useState('')
+  const [errors, setErrors] = useState({})
 
   // Already logged in
   if (ashaName) return <Navigate to="/home" replace />
 
+  function handleIdChange(val) {
+    const upper = val.toUpperCase().replace(/[^A-Z0-9]/g, '')
+    setId(upper)
+    setErrors(e => ({ ...e, id: '' }))
+    // Auto-fill name if it's a known demo worker
+    if (DEMO_WORKERS[upper]) {
+      setName(DEMO_WORKERS[upper])
+      setErrors(e => ({ ...e, name: '' }))
+    }
+  }
+
   function handleStart() {
-    const trimmed = name.trim()
-    if (!trimmed) {
-      setError(t('onboarding.nameError'))
+    const trimmedId   = id.trim()
+    const trimmedName = name.trim()
+    const newErrors   = {}
+    if (!trimmedId)   newErrors.id   = t('onboarding.idError')
+    if (!trimmedName) newErrors.name = t('onboarding.nameError')
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors)
       return
     }
-    setAshaName(trimmed)
+    login(trimmedName, trimmedId)
     navigate('/home', { replace: true })
   }
 
@@ -39,10 +62,12 @@ export default function Onboarding() {
     if (e.key === 'Enter') handleStart()
   }
 
+  const isDemoWorker = !!DEMO_WORKERS[id]
+
   return (
     <div className="flex flex-col min-h-screen px-6 pt-16 pb-10">
       {/* Logo / branding */}
-      <div className="flex flex-col items-center mb-12">
+      <div className="flex flex-col items-center mb-10">
         <div className="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center mb-4 shadow-lg">
           <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round"
@@ -75,31 +100,57 @@ export default function Onboarding() {
         </div>
       </div>
 
+      {/* ASHA ID input */}
+      <div className="mb-4">
+        <label className="block text-base font-semibold text-gray-800 mb-1.5">
+          {t('onboarding.idLabel')}
+        </label>
+        <input
+          type="text"
+          value={id}
+          onChange={e => handleIdChange(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={t('onboarding.idPlaceholder')}
+          className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg font-mono tracking-wider focus:outline-none focus:border-blue-500 transition-colors uppercase"
+          autoFocus
+          autoCapitalize="characters"
+        />
+        {errors.id && <p className="mt-1.5 text-red-500 text-sm">{errors.id}</p>}
+        {isDemoWorker && (
+          <p className="mt-1.5 text-blue-600 text-sm flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {t('onboarding.demoWorkerFound')}
+          </p>
+        )}
+      </div>
+
       {/* Name input */}
       <div className="flex-1">
-        <label className="block text-lg font-semibold text-gray-800 mb-2">
+        <label className="block text-base font-semibold text-gray-800 mb-1.5">
           {t('onboarding.nameLabel')}
         </label>
         <input
           type="text"
           value={name}
-          onChange={e => { setName(e.target.value); setError('') }}
+          onChange={e => { setName(e.target.value); setErrors(err => ({ ...err, name: '' })) }}
           onKeyDown={handleKeyDown}
           placeholder={t('onboarding.namePlaceholder')}
           className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-blue-500 transition-colors"
-          autoFocus
         />
-        {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
+        {errors.name && <p className="mt-1.5 text-red-500 text-sm">{errors.name}</p>}
       </div>
 
       {/* CTA */}
       <button
         onClick={handleStart}
-        className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-lg rounded-xl py-4 transition-colors shadow-sm"
+        className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-lg rounded-xl py-4 transition-colors shadow-sm mt-6"
       >
         {t('onboarding.startButton')}
       </button>
 
+      <p className="text-center text-xs text-gray-400 mt-4">{t('onboarding.footer')}</p>
     </div>
   )
 }

@@ -9,8 +9,9 @@ import { getQueue, removeFromQueue } from '../utils/offlineQueue.js'
  *
  * Single source of truth for:
  *  - ashaName:         The logged-in ASHA worker's name (persisted to localStorage)
+ *  - ashaId:           The ASHA worker's ID (e.g. "ASH1001"), persisted to localStorage
  *  - language:         Active UI language ('en' | 'hi'), synced with i18next
- *  - patients:         ANC patient list (seeded from mockPatients.json, persisted)
+ *  - patients:         ANC patient list (filtered by ashaId, persisted per worker)
  *  - newborns:         Newborn patient list (same source, separate key)
  *  - selectedPatient:  The patient/newborn the user is currently viewing (in-memory only)
  *  - lastAssessment:   The most recent AI assessment result (in-memory only, cleared on logout)
@@ -19,6 +20,7 @@ import { getQueue, removeFromQueue } from '../utils/offlineQueue.js'
  *
  * There is no real database — all persistence is via localStorage.
  * Mock data is the initial seed; after first load the stored version takes over.
+ * localStorage keys are namespaced by ashaId so each worker has independent data.
  *
  * Date-shifting: mockPatients.json was designed for a reference date of 2026-02-28.
  * On each new calendar day, dates are re-seeded from the JSON with all checkup/visit
@@ -28,11 +30,14 @@ import { getQueue, removeFromQueue } from '../utils/offlineQueue.js'
  */
 const AppContext = createContext(null)
 
-const PATIENTS_KEY  = 'sakhi_patients'
-const NEWBORNS_KEY  = 'sakhi_newborns'
-const DATA_DATE_KEY = 'sakhi_data_date'
 const LANGUAGE_KEY  = 'sakhi_language'
 const ASHA_NAME_KEY = 'sakhi_asha_name'
+const ASHA_ID_KEY   = 'sakhi_asha_id'
+
+// Per-worker localStorage keys (namespaced by ASHA ID)
+const patientsKey  = id => `sakhi_patients_${id}`
+const newbornsKey  = id => `sakhi_newborns_${id}`
+const dataDateKey  = id => `sakhi_data_date_${id}`
 
 // The calendar date the mock JSON was authored for. All dates in the JSON are
 // meaningful relative to this anchor — shifting them keeps the same clinical picture.
@@ -72,36 +77,42 @@ function shiftPatient(patient, deltaDays) {
 }
 
 /**
- * Returns { patients, newborns } from localStorage if the data was seeded today,
- * otherwise re-seeds from mockPatients with dates shifted to today's date.
- * This ensures the next-due distribution always looks fresh regardless of when the
- * app is opened — critical for hackathon demos.
+ * Returns { patients, newborns } for the given workerId from localStorage if the
+ * data was seeded today, otherwise re-seeds from mockPatients filtered by workerId.
+ * Returns empty arrays if workerId is null.
  */
-function seedData() {
+function seedData(workerId) {
+  if (!workerId) return { patients: [], newborns: [] }
+
   const today = todayStr()
-  const storedDate = localStorage.getItem(DATA_DATE_KEY)
+  const storedDate = localStorage.getItem(dataDateKey(workerId))
 
   if (storedDate === today) {
     try {
-      const patients = JSON.parse(localStorage.getItem(PATIENTS_KEY))
-      const newborns = JSON.parse(localStorage.getItem(NEWBORNS_KEY))
+      const patients = JSON.parse(localStorage.getItem(patientsKey(workerId)))
+      const newborns = JSON.parse(localStorage.getItem(newbornsKey(workerId)))
       if (patients && newborns) return { patients, newborns }
     } catch {
       // fall through to re-seed
     }
   }
 
-  // Re-seed: shift all mock dates by (today − referenceDate)
+  // Re-seed: filter by worker, shift all mock dates by (today − referenceDate)
   const deltaDays = Math.round(
     (new Date(today) - new Date(REFERENCE_DATE)) / 86400000
   )
-  const all      = mockPatients.map(p => shiftPatient(p, deltaDays))
+  // Unknown worker ID → fall back to ASH1001's patient set as a generic demo list
+  const matched = mockPatients.filter(p => p.asha_worker_id === workerId)
+  const workerRecords = matched.length > 0
+    ? matched
+    : mockPatients.filter(p => p.asha_worker_id === 'ASH1001')
+  const all      = workerRecords.map(p => shiftPatient(p, deltaDays))
   const patients = all.filter(p => p.patient_type === 'anc')
   const newborns = all.filter(p => p.patient_type === 'newborn')
 
-  localStorage.setItem(PATIENTS_KEY,  JSON.stringify(patients))
-  localStorage.setItem(NEWBORNS_KEY,  JSON.stringify(newborns))
-  localStorage.setItem(DATA_DATE_KEY, today)
+  localStorage.setItem(patientsKey(workerId),  JSON.stringify(patients))
+  localStorage.setItem(newbornsKey(workerId),  JSON.stringify(newborns))
+  localStorage.setItem(dataDateKey(workerId), today)
 
   return { patients, newborns }
 }
@@ -113,7 +124,12 @@ export function AppProvider({ children }) {
   const [ashaName, setAshaNameState] = useState(() =>
     localStorage.getItem(ASHA_NAME_KEY) || null
   )
-  const [{ patients: initPatients, newborns: initNewborns }] = useState(() => seedData())
+  const [ashaId, setAshaIdState] = useState(() =>
+    localStorage.getItem(ASHA_ID_KEY) || null
+  )
+  const [{ patients: initPatients, newborns: initNewborns }] = useState(() =>
+    seedData(localStorage.getItem(ASHA_ID_KEY))
+  )
   const [patients, setPatients] = useState(initPatients)
   const [newborns, setNewborns] = useState(initNewborns)
   const [selectedPatient, setSelectedPatient] = useState(null)
@@ -124,10 +140,18 @@ export function AppProvider({ children }) {
   // Ref so the online event handler always sees the latest sync function
   const syncRef = useRef(null)
 
-  /** Persists the ASHA worker name to localStorage so the session survives page refresh. */
-  function setAshaName(name) {
-    setAshaNameState(name)
+  /**
+   * Log in as an ASHA worker. Sets both name and ID, loads their patient list.
+   * Called from Onboarding on first run or after logout.
+   */
+  function login(name, id) {
     localStorage.setItem(ASHA_NAME_KEY, name)
+    localStorage.setItem(ASHA_ID_KEY, id)
+    setAshaNameState(name)
+    setAshaIdState(id)
+    const { patients: p, newborns: n } = seedData(id)
+    setPatients(p)
+    setNewborns(n)
   }
 
   /** Switches the active language, persists it, and tells i18next to re-render translated strings. */
@@ -154,7 +178,7 @@ export function AppProvider({ children }) {
           checkup_history: [...(p.checkup_history ?? []), newRecord],
         }
       })
-      localStorage.setItem(PATIENTS_KEY, JSON.stringify(updated))
+      localStorage.setItem(patientsKey(ashaId), JSON.stringify(updated))
       setPatients(updated)
       const updatedPatient = updated.find(p => p.id === patientId)
       if (updatedPatient && selectedPatient?.id === patientId) {
@@ -170,7 +194,7 @@ export function AppProvider({ children }) {
           visit_history: [...(n.visit_history ?? []), newRecord],
         }
       })
-      localStorage.setItem(NEWBORNS_KEY, JSON.stringify(updated))
+      localStorage.setItem(newbornsKey(ashaId), JSON.stringify(updated))
       setNewborns(updated)
       const updatedNewborn = updated.find(n => n.id === patientId)
       if (updatedNewborn && selectedPatient?.id === patientId) {
@@ -207,7 +231,7 @@ export function AppProvider({ children }) {
               )
               return { ...p, risk_level: result.risk_level, checkup_history: history }
             })
-            localStorage.setItem(PATIENTS_KEY, JSON.stringify(updated))
+            localStorage.setItem(patientsKey(ashaId), JSON.stringify(updated))
             return updated
           })
         } else {
@@ -221,7 +245,7 @@ export function AppProvider({ children }) {
               )
               return { ...n, risk_level: result.risk_level, visit_history: history }
             })
-            localStorage.setItem(NEWBORNS_KEY, JSON.stringify(updated))
+            localStorage.setItem(newbornsKey(ashaId), JSON.stringify(updated))
             return updated
           })
         }
@@ -258,14 +282,20 @@ export function AppProvider({ children }) {
 
   function logout() {
     localStorage.removeItem(ASHA_NAME_KEY)
+    localStorage.removeItem(ASHA_ID_KEY)
     setAshaNameState(null)
+    setAshaIdState(null)
+    setPatients([])
+    setNewborns([])
+    setLastAssessment(null)
   }
 
   return (
     <AppContext.Provider
       value={{
         ashaName,
-        setAshaName,
+        ashaId,
+        login,
         logout,
         patients,
         newborns,

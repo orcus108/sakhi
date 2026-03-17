@@ -19,11 +19,15 @@
   "onboarding": {
     "appName": "Sakhi",
     "tagline": "Caring for mothers and children, together",
-    "nameLabel": "What is your name?",
+    "idLabel": "ASHA Worker ID",
+    "idPlaceholder": "e.g. ASH1001",
+    "idError": "Please enter your ASHA ID to continue.",
+    "demoWorkerFound": "Demo worker recognised — name filled automatically.",
+    "nameLabel": "Your name",
     "nameHelper": "Enter your name so Sakhi knows who you are.",
     "namePlaceholder": "e.g. Anita Devi",
     "startButton": "Start",
-    "footer": "No password needed. Just your name.",
+    "footer": "Demo mode — try ASH1001, ASH2047, or ASH3112.",
     "nameError": "Please enter your name to continue.",
     "langLabel": "Language"
   },
