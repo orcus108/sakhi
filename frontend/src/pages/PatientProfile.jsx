@@ -158,6 +158,21 @@ export default function PatientProfile() {
                 <p className="text-gray-500 text-sm mt-1">
                   G{patient.gravida}P{patient.para} · LMP: {patient.lmp}
                 </p>
+                {patient.abdm_id ? (
+                  <button
+                    onClick={() => navigator.clipboard?.writeText(patient.abdm_id)}
+                    className="flex items-center gap-1.5 mt-2 active:opacity-70 transition-opacity"
+                    title="Tap to copy ABHA ID"
+                  >
+                    <svg className="w-3 h-3 text-blue-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                    <span className="text-xs font-medium text-blue-500 uppercase tracking-wide">ABHA</span>
+                    <span className="text-xs font-mono text-gray-500 bg-white/70 px-2 py-0.5 rounded-full">{patient.abdm_id}</span>
+                  </button>
+                ) : (
+                  <p className="text-xs text-gray-400 mt-2 italic">No ABHA ID — not yet registered</p>
+                )}
               </div>
               <RiskBadge level={patient.risk_level} size="sm" />
             </div>
