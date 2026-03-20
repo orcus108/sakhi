@@ -249,7 +249,8 @@
     "micError": "Microphone access denied. Please allow mic permissions and try again.",
     "transcribeError": "Transcription failed:",
     "listen": "Listen",
-    "stop": "Stop"
+    "stop": "Stop",
+    "checkupInProgress": "Checkup in progress · Tap to return"
   },
   "newCheckupPicker": {
     "title": "New Checkup",

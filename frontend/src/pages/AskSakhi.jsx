@@ -332,6 +332,22 @@ export default function AskSakhi() {
         }
       />
 
+      {/* Checkup-in-progress banner */}
+      {from === 'checkup' && (
+        <button
+          onClick={() => navigate(backTo)}
+          className="w-full flex items-center justify-center gap-2 bg-amber-50 border-b border-amber-200 px-4 py-2.5 text-sm font-medium text-amber-800 active:bg-amber-100 transition-colors"
+        >
+          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          {t('askSakhi.checkupInProgress')}
+          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
+
       {/* Messages area */}
       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-4 space-y-3">
         {messages.length === 0 && (
@@ -352,19 +368,21 @@ export default function AskSakhi() {
               </p>
             </div>
 
-            {/* Quick questions */}
-            <div className="space-y-2">
-              <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">{t('askSakhi.commonQuestions')}</p>
-              {QUICK_QUESTIONS.map(q => (
-                <button
-                  key={q}
-                  onClick={() => send(q)}
-                  className="w-full text-left bg-white border border-gray-100 rounded-xl px-4 py-3 text-base text-gray-700 hover:border-blue-300 hover:bg-blue-50 transition-colors"
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
+            {/* Quick questions — only shown without patient context */}
+            {!patientContext && (
+              <div className="space-y-2">
+                <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">{t('askSakhi.commonQuestions')}</p>
+                {QUICK_QUESTIONS.map(q => (
+                  <button
+                    key={q}
+                    onClick={() => send(q)}
+                    className="w-full text-left bg-white border border-gray-100 rounded-xl px-4 py-3 text-base text-gray-700 hover:border-blue-300 hover:bg-blue-50 transition-colors"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
