@@ -6,7 +6,7 @@
 
 Nearly one million ASHA workers in rural India make life-critical referral decisions alone, in the field, without a doctor nearby.
 
-Sakhi is their AI clinical colleague: a mobile-first, offline-capable tool that assesses antenatal and newborn visits in real time, flags high-risk cases, and guides referral decisions. All powered by a fine-tuned MedGemma model grounded in MOHFW and WHO guidelines.
+Sakhi (सखी, "female friend") is their AI clinical colleague: a mobile-first, offline-capable tool that assesses antenatal and newborn visits in real time, flags high-risk cases, and guides referral decisions. All powered by a fine-tuned MedGemma model grounded in MOHFW and WHO guidelines.
 
 **[Live Demo →](https://sakhi-asha.vercel.app)** &nbsp;|&nbsp; **[Backend API →](https://docvm-sakhi-api.hf.space/health)** &nbsp;|&nbsp; **[Fine-tuned Model →](https://huggingface.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF)**
 
@@ -336,6 +336,16 @@ UptimeRobot monitors needed (both every 5 min):
 | 5 | Assessment | AI output — risk banner, clinical notices, patient script, next action |
 | 6 | Ask Sakhi | Free-form chat; patient context injected automatically if selected |
 | 7 | Schedule | Follow-up appointments across all patients |
+
+---
+
+## Demo Data
+
+The live demo is pre-loaded with 45 patients spread across three ASHA workers (ASH1001 · Rampur, ASH2047 · Chandpur, ASH3112 · Banswa). All patient data is synthetic and MOHFW-aligned.
+
+**Follow-up dates are intentionally dynamic.** Rather than storing fixed calendar dates, each patient's next checkup is computed relative to `today` when the app loads — so the schedule always shows a realistic mix of upcoming and recently-due visits instead of an ever-growing backlog of overdue ones. This is a demo convenience, not a production behaviour; a real deployment would persist absolute dates.
+
+ABHA verification is in demo mode: any 6-digit OTP is accepted when ABDM sandbox credentials are absent.
 
 ---
 

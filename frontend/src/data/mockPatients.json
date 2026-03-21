@@ -396,7 +396,7 @@
         "hemoglobin": 8.2
       },
       {
-        "date": "2026-02-19",
+        "date": "2026-02-22",
         "weight_kg": 49.5,
         "fundal_height_cm": 27,
         "symptoms": [
@@ -883,7 +883,7 @@
         "hemoglobin": 9.4
       },
       {
-        "date": "2026-02-12",
+        "date": "2026-02-20",
         "weight_kg": 59,
         "fundal_height_cm": 20,
         "symptoms": [
@@ -931,7 +931,7 @@
         "hemoglobin": 10.6
       },
       {
-        "date": "2026-02-07",
+        "date": "2026-02-18",
         "weight_kg": 70.5,
         "fundal_height_cm": 30,
         "symptoms": [
@@ -1029,7 +1029,7 @@
         "hemoglobin": 9.0
       },
       {
-        "date": "2026-02-10",
+        "date": "2026-02-19",
         "weight_kg": 78,
         "fundal_height_cm": 33,
         "symptoms": [
@@ -1080,7 +1080,7 @@
         "hemoglobin": 8.5
       },
       {
-        "date": "2026-02-15",
+        "date": "2026-02-23",
         "weight_kg": 47.5,
         "fundal_height_cm": 27,
         "symptoms": [
@@ -1158,7 +1158,7 @@
     "mother_name": "Leela Kumari",
     "mother_name_hi": "लीला कुमारी",
     "birth_weight_kg": 3.3,
-    "current_weight_kg": 3.4,
+    "current_weight_kg": 3.35,
     "risk_level": "green",
     "visit_history": [
       {
@@ -1188,6 +1188,20 @@
         "other_observations": "",
         "risk_level": "green",
         "notes": "Weight dip 3% — normal. Cord clean. No jaundice."
+      },
+      {
+        "date": "2026-02-24",
+        "visit_day": "day_7",
+        "weight_kg": 3.35,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Weight well above birth weight. Cord fell off. Excellent recovery."
       }
     ]
   },
@@ -1206,7 +1220,7 @@
     "mother_name": "Sarita Meena",
     "mother_name_hi": "सरिता मीणा",
     "birth_weight_kg": 2.95,
-    "current_weight_kg": 2.9,
+    "current_weight_kg": 2.85,
     "risk_level": "green",
     "visit_history": [
       {
@@ -1222,6 +1236,20 @@
         "other_observations": "",
         "risk_level": "green",
         "notes": "Good birth weight. Breastfeeding initiated. Normal day 1."
+      },
+      {
+        "date": "2026-02-26",
+        "visit_day": "day_3",
+        "weight_kg": 2.85,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "2.7% weight dip — normal. No jaundice. Cord clean."
       }
     ]
   },
@@ -1240,7 +1268,7 @@
     "mother_name": "Sunaina Devi",
     "mother_name_hi": "सुनैना देवी",
     "birth_weight_kg": 2.5,
-    "current_weight_kg": 2.45,
+    "current_weight_kg": 2.5,
     "risk_level": "yellow",
     "visit_history": [
       {
@@ -1270,6 +1298,20 @@
         "other_observations": "Weight still slightly below birth weight but feeding improving.",
         "risk_level": "yellow",
         "notes": "Weight dip 4% from birth — acceptable range. No jaundice. Continue monitoring."
+      },
+      {
+        "date": "2026-02-27",
+        "visit_day": "day_7",
+        "weight_kg": 2.5,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Weight recovering slowly.",
+        "risk_level": "yellow",
+        "notes": "Weight recovering towards birth weight. Feeding improving. Continue close monitoring for LBW baby."
       }
     ]
   },
@@ -1364,7 +1406,7 @@
     "mother_name": "Sona Devi",
     "mother_name_hi": "सोना देवी",
     "birth_weight_kg": 1.85,
-    "current_weight_kg": 1.8,
+    "current_weight_kg": 1.85,
     "risk_level": "red",
     "visit_history": [
       {
@@ -1392,6 +1434,19 @@
         "other_observations": "Jaundice spreading to chest. Not waking for feeds. Breathing rate 68/min.",
         "risk_level": "red",
         "notes": "HIGH RISK — Lethargy, labored breathing, and worsening jaundice. Weight still falling. Immediate PHC referral. Preterm LBW baby with multiple danger signs."
+      },
+      {
+        "date": "2026-02-27",
+        "visit_day": "day_7",
+        "weight_kg": 1.85,
+        "observations": [
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Post-PHC follow-up. Baby treated for jaundice and respiratory distress.",
+        "risk_level": "red",
+        "notes": "Returned from PHC. Jaundice resolving with treatment. Breathing improved. Weight marginally up. Continue home monitoring. PHC review weekly."
       }
     ]
   },
@@ -1596,7 +1651,7 @@
         "hemoglobin": 10.8
       },
       {
-        "date": "2026-02-12",
+        "date": "2026-02-19",
         "weight_kg": 72,
         "fundal_height_cm": 28,
         "symptoms": [
@@ -1692,7 +1747,7 @@
         "hemoglobin": 10.0
       },
       {
-        "date": "2026-02-09",
+        "date": "2026-02-18",
         "weight_kg": 71,
         "fundal_height_cm": 27,
         "symptoms": [
@@ -1756,7 +1811,7 @@
         "hemoglobin": 9.2
       },
       {
-        "date": "2026-02-14",
+        "date": "2026-02-20",
         "weight_kg": 76,
         "fundal_height_cm": 32,
         "symptoms": [
@@ -1807,7 +1862,7 @@
         "hemoglobin": 7.8
       },
       {
-        "date": "2026-02-12",
+        "date": "2026-02-23",
         "weight_kg": 45.5,
         "fundal_height_cm": 31,
         "symptoms": [
@@ -1932,7 +1987,7 @@
     "mother_name": "Chanda Devi",
     "mother_name_hi": "चंदा देवी",
     "birth_weight_kg": 2.6,
-    "current_weight_kg": 2.55,
+    "current_weight_kg": 2.62,
     "risk_level": "yellow",
     "visit_history": [
       {
@@ -1962,6 +2017,20 @@
         "other_observations": "Weight slightly low but feeding improving.",
         "risk_level": "yellow",
         "notes": "3.1% weight loss — acceptable. No jaundice. Feeding improving. Follow-up at day 7."
+      },
+      {
+        "date": "2026-02-26",
+        "visit_day": "day_7",
+        "weight_kg": 2.62,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "yellow",
+        "notes": "Weight recovering slowly. No jaundice. Cord fell off. LBW baby doing well. Continue monitoring."
       }
     ]
   },
@@ -1980,7 +2049,7 @@
     "mother_name": "Vimla Kumari",
     "mother_name_hi": "विमला कुमारी",
     "birth_weight_kg": 3.2,
-    "current_weight_kg": 3.45,
+    "current_weight_kg": 3.55,
     "risk_level": "green",
     "visit_history": [
       {
@@ -2024,6 +2093,20 @@
         "other_observations": "",
         "risk_level": "green",
         "notes": "Weight above birth weight. Good recovery."
+      },
+      {
+        "date": "2026-02-27",
+        "visit_day": "day_14",
+        "weight_kg": 3.55,
+        "observations": [
+          "feeding well (breastfeeding established)",
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "",
+        "risk_level": "green",
+        "notes": "Good weight gain. All milestones on track. Feeding well established."
       }
     ]
   },
@@ -2138,7 +2221,7 @@
     "mother_name": "Rani Devi",
     "mother_name_hi": "रानी देवी",
     "birth_weight_kg": 1.95,
-    "current_weight_kg": 1.9,
+    "current_weight_kg": 1.93,
     "risk_level": "red",
     "visit_history": [
       {
@@ -2166,6 +2249,19 @@
         "other_observations": "Not waking for feeds. Weight still falling.",
         "risk_level": "red",
         "notes": "HIGH RISK — Lethargy, feeding failure, continued weight loss in VLBW baby. Immediate PHC referral. Mother counseled on hand expression and cup feeding."
+      },
+      {
+        "date": "2026-02-25",
+        "visit_day": "day_7",
+        "weight_kg": 1.93,
+        "observations": [
+          "umbilical cord — clean and dry",
+          "breathing normal",
+          "baby alert and active"
+        ],
+        "other_observations": "Post-PHC discharge. Cup feeding started at PHC. Mother counseled on hand expression.",
+        "risk_level": "red",
+        "notes": "Returned from PHC. Feeding improving with cup method. Weight marginally up. VLBW baby needs close follow-up. PHC review in 1 week."
       }
     ]
   }
