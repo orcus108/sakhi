@@ -129,6 +129,15 @@
     "symptomsHint": "जो भी लागू हो, चुनें",
     "otherSymptom": "कोई और लक्षण?",
     "otherPlaceholder": "यहाँ लिखें...",
+    "mic": {
+      "tapToSpeak": "लक्षण बताने के लिए माइक दबाएं",
+      "listening": "सुन रही हूँ… रोकने के लिए फिर दबाएं",
+      "transcribing": "लिख रही हूँ…",
+      "permissionDenied": "माइक्रोफोन की अनुमति नहीं मिली। कृपया अनुमति दें और फिर प्रयास करें।",
+      "notSupported": "इस ब्राउज़र में आवाज़ इनपुट समर्थित नहीं है।",
+      "transcribeError": "ऑडियो नहीं लिखा जा सका। कृपया टाइप करें।",
+      "noMic": "इस डिवाइस पर माइक्रोफोन नहीं मिला।"
+    },
     "symptoms": {
       "headache": "सिरदर्द",
       "blurred_vision": "धुंधली दृष्टि",
@@ -250,7 +259,9 @@
     "transcribeError": "लिखाई विफल रही:",
     "listen": "सुनें",
     "stop": "रोकें",
-    "checkupInProgress": "जाँच जारी है · वापस जाने के लिए टैप करें"
+    "checkupInProgress": "जाँच जारी है · वापस जाने के लिए टैप करें",
+    "referBannerTitle": "PHC रेफरल की सलाह",
+    "referBannerBody": "इस स्थिति के आधार पर, आज PHC भेजें।"
   },
   "newCheckupPicker": {
     "title": "नई जाँच",

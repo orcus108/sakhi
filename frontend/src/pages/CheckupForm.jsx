@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../context/AppContext.jsx'
 import TopBar from '../components/TopBar.jsx'
-import { fetchCheckupAssessment } from '../api/api.js'
+import { fetchCheckupAssessment, fetchTranscribe } from '../api/api.js'
 
 /**
  * CheckupForm.jsx — ANC vitals + symptoms data-entry form (Screen 4)
@@ -81,6 +81,13 @@ export default function CheckupForm() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([])
   const [otherSymptom, setOtherSymptom] = useState('')
 
+  // Voice input
+  const [micState, setMicState] = useState('idle') // 'idle' | 'recording' | 'transcribing'
+  const [micError, setMicError] = useState('')
+  const mediaRecorderRef = useRef(null)
+  const audioChunksRef = useRef([])
+  const recognitionRef = useRef(null)
+
   // Restore form state if returning from Ask Sakhi mid-checkup
   useEffect(() => {
     if (checkupDraft?.patientId === id && checkupDraft?.patientType === 'anc') {
@@ -96,6 +103,96 @@ export default function CheckupForm() {
       if (checkupDraft.step != null) setStep(checkupDraft.step)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Release mic if user navigates away mid-recording
+  useEffect(() => {
+    return () => {
+      recognitionRef.current?.abort()
+      mediaRecorderRef.current?.stream?.getTracks().forEach(t => t.stop())
+    }
+  }, [])
+
+  async function toggleMic() {
+    setMicError('')
+
+    if (micState === 'recording') {
+      // Stop whichever path is active
+      recognitionRef.current?.stop()
+      if (mediaRecorderRef.current?.state === 'recording') {
+        mediaRecorderRef.current.stop()
+      }
+      return
+    }
+
+    // --- Path A: Web Speech API (on-device, zero-latency) ---
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition()
+      recognitionRef.current = recognition
+      recognition.lang = language === 'hi' ? 'hi-IN' : 'en-IN'
+      recognition.interimResults = false
+      recognition.maxAlternatives = 1
+
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript.trim()
+        if (text) setOtherSymptom(prev => prev ? `${prev} ${text}` : text)
+      }
+      recognition.onerror = (e) => {
+        if (e.error === 'not-allowed') setMicError(t('checkupForm.mic.permissionDenied'))
+        else setMicError(t('checkupForm.mic.transcribeError'))
+        setMicState('idle')
+      }
+      recognition.onend = () => setMicState('idle')
+
+      recognition.start()
+      setMicState('recording')
+      return
+    }
+
+    // --- Path B: MediaRecorder → /api/transcribe fallback ---
+    if (typeof MediaRecorder === 'undefined') {
+      setMicError(t('checkupForm.mic.notSupported'))
+      return
+    }
+    if (!navigator.mediaDevices) {
+      setMicError(t('checkupForm.mic.notSupported'))
+      return
+    }
+
+    let stream
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    } catch (err) {
+      if (err.name === 'NotFoundError') setMicError(t('checkupForm.mic.noMic'))
+      else setMicError(t('checkupForm.mic.permissionDenied'))
+      return
+    }
+
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4'
+    const recorder = new MediaRecorder(stream, { mimeType })
+    mediaRecorderRef.current = recorder
+    audioChunksRef.current = []
+
+    recorder.ondataavailable = (e) => audioChunksRef.current.push(e.data)
+    recorder.onstop = async () => {
+      stream.getTracks().forEach(t => t.stop())
+      setMicState('transcribing')
+      try {
+        const blob = new Blob(audioChunksRef.current, { type: mimeType })
+        const result = await fetchTranscribe(blob, mimeType)
+        const text = result.text?.trim()
+        if (text) setOtherSymptom(prev => prev ? `${prev} ${text}` : text)
+      } catch {
+        setMicError(t('checkupForm.mic.transcribeError'))
+      } finally {
+        audioChunksRef.current = []
+        setMicState('idle')
+      }
+    }
+
+    recorder.start()
+    setMicState('recording')
+  }
 
   if (!patient) {
     return (
@@ -307,13 +404,59 @@ export default function CheckupForm() {
               <label className="block text-sm font-medium text-gray-600 mb-1">
                 {t('checkupForm.otherSymptom')}
               </label>
-              <input
-                type="text"
-                value={otherSymptom}
-                onChange={e => setOtherSymptom(e.target.value)}
-                placeholder={t('checkupForm.otherPlaceholder')}
-                className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-blue-500"
-              />
+              <div className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value={otherSymptom}
+                  onChange={e => setOtherSymptom(e.target.value)}
+                  placeholder={
+                    micState === 'recording'
+                      ? t('checkupForm.mic.listening')
+                      : t('checkupForm.otherPlaceholder')
+                  }
+                  disabled={micState === 'recording' || micState === 'transcribing'}
+                  className="flex-1 border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-400"
+                />
+                <button
+                  type="button"
+                  onClick={toggleMic}
+                  disabled={micState === 'transcribing' || loading}
+                  aria-label={micState === 'recording' ? t('checkupForm.mic.listening') : t('checkupForm.mic.tapToSpeak')}
+                  className={`h-12 w-12 rounded-xl flex items-center justify-center shrink-0 transition-all disabled:opacity-40 ${
+                    micState === 'recording'
+                      ? 'bg-red-500 text-white shadow-lg scale-110'
+                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200 active:scale-95'
+                  }`}
+                >
+                  {micState === 'recording' ? (
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <rect x="6" y="6" width="12" height="12" rx="2" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+              {micState === 'recording' && (
+                <div className="flex items-center gap-2 mt-2 px-1">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-sm text-red-500 font-medium">{t('checkupForm.mic.listening')}</span>
+                </div>
+              )}
+              {micState === 'transcribing' && (
+                <div className="flex items-center gap-2 mt-2 px-1">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="text-sm text-blue-500 font-medium ml-1">{t('checkupForm.mic.transcribing')}</span>
+                </div>
+              )}
+              {micError && (
+                <p className="text-red-500 text-sm mt-2 px-1">{micError}</p>
+              )}
             </div>
           </div>
         )}

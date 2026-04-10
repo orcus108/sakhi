@@ -32,73 +32,87 @@ import ReactMarkdown from 'react-markdown'
  *  - from=profile  → return to the assessment screen
  *  - standalone    → return to /home
  */
-function Message({ msg, isSpeaking, onSpeak, t }) {
+function Message({ msg, isSpeaking, onSpeak, t, refer }) {
   const isUser = msg.role === 'user'
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-      {!isUser && (
-        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center mr-2 shrink-0 mt-1">
-          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        </div>
-      )}
-      <div
-        className={`max-w-[78%] px-4 py-3 rounded-2xl text-base ${
-          isUser
-            ? 'bg-blue-600 text-white rounded-tr-sm'
-            : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm shadow-sm'
-        }`}
-      >
-        {isUser ? (
-          <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
-        ) : (
-          <ReactMarkdown
-            components={{
-              p: ({ children }) => <p className="leading-relaxed mb-2 last:mb-0">{children}</p>,
-              strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
-              ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-1">{children}</ul>,
-              ol: ({ children }) => <ol className="list-decimal list-outside ml-4 mb-2 space-y-1">{children}</ol>,
-              li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-              h1: ({ children }) => <h1 className="text-base font-bold text-gray-900 mb-1">{children}</h1>,
-              h2: ({ children }) => <h2 className="text-base font-bold text-gray-900 mb-1">{children}</h2>,
-              h3: ({ children }) => <h3 className="text-sm font-semibold text-gray-900 mb-1">{children}</h3>,
-            }}
-          >
-            {msg.content}
-          </ReactMarkdown>
-        )}
+    <div className={`flex flex-col gap-2 ${isUser ? 'items-end' : 'items-start'}`}>
+      <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
         {!isUser && (
-          <div className="flex justify-end mt-2">
-            <button
-              onClick={onSpeak}
-              className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full transition-colors ${
-                isSpeaking
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'text-gray-400 hover:text-blue-500 hover:bg-gray-100'
-              }`}
-              aria-label={isSpeaking ? t('askSakhi.stop') : t('askSakhi.listen')}
-            >
-              {isSpeaking ? (
-                <>
-                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                    <rect x="6" y="6" width="4" height="12" rx="1" />
-                    <rect x="14" y="6" width="4" height="12" rx="1" />
-                  </svg>
-                  {t('askSakhi.stop')}
-                </>
-              ) : (
-                <>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m0 0l-3-3m3 3l3-3M9 9H5a1 1 0 00-1 1v4a1 1 0 001 1h4l5 5V4L9 9z" />
-                  </svg>
-                  {t('askSakhi.listen')}
-                </>
-              )}
-            </button>
+          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center mr-2 shrink-0 mt-1">
+            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
           </div>
         )}
+        <div
+          className={`max-w-[78%] px-4 py-3 rounded-2xl text-base ${
+            isUser
+              ? 'bg-blue-600 text-white rounded-tr-sm'
+              : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm shadow-sm'
+          }`}
+        >
+          {isUser ? (
+            <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+          ) : (
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => <p className="leading-relaxed mb-2 last:mb-0">{children}</p>,
+                strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
+                ul: ({ children }) => <ul className="list-disc list-outside ml-4 mb-2 space-y-1">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal list-outside ml-4 mb-2 space-y-1">{children}</ol>,
+                li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                h1: ({ children }) => <h1 className="text-base font-bold text-gray-900 mb-1">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-base font-bold text-gray-900 mb-1">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-sm font-semibold text-gray-900 mb-1">{children}</h3>,
+              }}
+            >
+              {msg.content}
+            </ReactMarkdown>
+          )}
+          {!isUser && (
+            <div className="flex justify-end mt-2">
+              <button
+                onClick={onSpeak}
+                className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full transition-colors ${
+                  isSpeaking
+                    ? 'bg-blue-100 text-blue-600'
+                    : 'text-gray-400 hover:text-blue-500 hover:bg-gray-100'
+                }`}
+                aria-label={isSpeaking ? t('askSakhi.stop') : t('askSakhi.listen')}
+              >
+                {isSpeaking ? (
+                  <>
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                      <rect x="6" y="6" width="4" height="12" rx="1" />
+                      <rect x="14" y="6" width="4" height="12" rx="1" />
+                    </svg>
+                    {t('askSakhi.stop')}
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m0 0l-3-3m3 3l3-3M9 9H5a1 1 0 00-1 1v4a1 1 0 001 1h4l5 5V4L9 9z" />
+                    </svg>
+                    {t('askSakhi.listen')}
+                  </>
+                )}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
+
+      {!isUser && refer && (
+        <div className="ml-10 w-[calc(100%-2.5rem)] bg-red-50 border border-red-200 border-l-4 border-l-red-500 rounded-xl px-4 py-3 flex items-start gap-3">
+          <svg className="w-5 h-5 text-red-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+          <div>
+            <p className="text-sm font-semibold text-red-700">{t('askSakhi.referBannerTitle')}</p>
+            <p className="text-sm text-red-600 mt-0.5">{t('askSakhi.referBannerBody')}</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -199,8 +213,8 @@ export default function AskSakhi() {
 
     try {
       // Send only the last 10 messages to keep token count bounded.
-      const { reply } = await fetchChat(newMessages.slice(-10), enrichedContext, language)
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }])
+      const { reply, refer } = await fetchChat(newMessages.slice(-10), enrichedContext, language)
+      setMessages(prev => [...prev, { role: 'assistant', content: reply, refer: !!refer }])
     } catch (e) {
       setError(`${t('askSakhi.couldNotReach')} ${e.message}`)
     } finally {
@@ -393,6 +407,7 @@ export default function AskSakhi() {
             isSpeaking={speakingIndex === i}
             onSpeak={() => speak(msg.content, i)}
             t={t}
+            refer={msg.refer}
           />
         ))}
 

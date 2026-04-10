@@ -129,6 +129,15 @@
     "symptomsHint": "Select all that apply",
     "otherSymptom": "Any other symptom?",
     "otherPlaceholder": "Type here...",
+    "mic": {
+      "tapToSpeak": "Tap mic to describe symptoms",
+      "listening": "Listening… tap again to stop",
+      "transcribing": "Transcribing…",
+      "permissionDenied": "Microphone access denied. Please allow mic permissions and try again.",
+      "notSupported": "Voice input is not supported in this browser.",
+      "transcribeError": "Could not transcribe audio. Please type instead.",
+      "noMic": "No microphone found on this device."
+    },
     "symptoms": {
       "headache": "Headache",
       "blurred_vision": "Blurred vision",
@@ -250,7 +259,9 @@
     "transcribeError": "Transcription failed:",
     "listen": "Listen",
     "stop": "Stop",
-    "checkupInProgress": "Checkup in progress · Tap to return"
+    "checkupInProgress": "Checkup in progress · Tap to return",
+    "referBannerTitle": "PHC Referral Recommended",
+    "referBannerBody": "Based on this situation, refer to PHC today."
   },
   "newCheckupPicker": {
     "title": "New Checkup",

@@ -18,6 +18,7 @@ Rate limit: 10 requests/minute per IP (enforced by SlowAPI).
 
 import json
 import re
+from datetime import date
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import Any, Optional
@@ -130,7 +131,7 @@ async def checkup_assessment(request: Request, req: CheckupRequest):
     then calls the model cascade in model.py. Raises 502 on model failure or
     if the model returns malformed JSON instead of a valid assessment object.
     """
-    system_prompt = get_checkup_prompt(req.patient_type, req.language)
+    system_prompt = get_checkup_prompt(req.patient_type, req.language, today=date.today().isoformat())
 
     if req.patient_type == "newborn":
         user_message = _build_newborn_message(req.patient, req.checkup)

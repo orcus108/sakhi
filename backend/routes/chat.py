@@ -18,6 +18,8 @@ something the ASHA worker said.
 Rate limit: 20 requests/minute per IP (enforced by SlowAPI).
 """
 
+import json
+import re
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import Any, Optional
@@ -55,6 +57,7 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     """Response returned to the frontend."""
     reply: str
+    refer: bool = False
 
 
 # ── System prompt builder ─────────────────────────────────────────────────────
@@ -145,8 +148,15 @@ async def chat(request: Request, req: ChatRequest):
         )
 
     try:
-        reply = await generate_chat(system_prompt, messages)
+        raw = await generate_chat(system_prompt, messages)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Model error: {str(e)}")
 
-    return ChatResponse(reply=reply.strip())
+    raw = re.sub(r"```(?:json)?\s*", "", raw).strip().rstrip("```").strip()
+
+    try:
+        data = json.loads(raw)
+        return ChatResponse(reply=data["response"].strip(), refer=bool(data.get("refer", False)))
+    except (json.JSONDecodeError, KeyError):
+        # Graceful fallback: treat the raw output as a plain-text reply
+        return ChatResponse(reply=raw.strip(), refer=False)

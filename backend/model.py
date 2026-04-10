@@ -2,12 +2,18 @@
 Model abstraction layer — the ONLY file that talks to the AI model.
 
 Provider priority (automatic cascade — first available wins):
-  1. MedGemma   — fine-tuned + Q4_K_M quantized, Ollama on HF Space (set MEDGEMMA_API_URL)
-  2. OpenRouter  — google/gemma-3n-e4b-it:free (set OPEN_ROUTER_API_KEY)
-  3. Gemini      — gemini-2.5-flash-lite via Google AI (set GOOGLE_API_KEY)
-  4. Groq        — llama-3.1-8b-instant, last resort (set GROQ_API_KEY)
+  1. Gemma 4 E2B — via Ollama locally (set GEMMA4_API_URL)
+  2. MedGemma   — fine-tuned + Q4_K_M quantized, Ollama on HF Space (set MEDGEMMA_API_URL)
+  3. OpenRouter  — google/gemma-4-e2b-it:free (set OPEN_ROUTER_API_KEY)
+  4. Gemini      — gemini-2.5-flash-lite via Google AI (set GOOGLE_API_KEY)
+  5. Groq        — llama-3.1-8b-instant, last resort (set GROQ_API_KEY)
 
 Each provider is skipped automatically if its key/URL is not configured.
+
+Gemma 4 E2B setup (Ollama):
+  ollama pull gemma4:e2b
+  GEMMA4_API_URL=http://localhost:11434
+  GEMMA4_MODEL_NAME=gemma4:e2b  (optional, this is the default)
 
 MedGemma setup (fine-tuned LoRA merged + GGUF quantized, served via Ollama):
   MEDGEMMA_API_URL=https://docvm-sakhi-medgemma.hf.space
@@ -25,12 +31,16 @@ logger = logging.getLogger(__name__)
 
 # ── Credentials ───────────────────────────────────────────────────────────────
 
+GEMMA4_API_URL = os.getenv("GEMMA4_API_URL", "")
+GEMMA4_API_KEY = os.getenv("GEMMA4_API_KEY", "")
+GEMMA4_MODEL_NAME = os.getenv("GEMMA4_MODEL_NAME", "gemma4:e2b")
+
 MEDGEMMA_API_URL = os.getenv("MEDGEMMA_API_URL", "")
 MEDGEMMA_API_KEY = os.getenv("MEDGEMMA_API_KEY", "")
 MEDGEMMA_MODEL_NAME = os.getenv("MEDGEMMA_MODEL_NAME", "hf.co/docvm/sakhi-medgemma-1.5-4b-maternal-GGUF:Q4_K_M")
 
 OPEN_ROUTER_API_KEY = os.getenv("OPEN_ROUTER_API_KEY", "")
-OPEN_ROUTER_MODEL = os.getenv("OPEN_ROUTER_MODEL", "google/gemma-3n-e4b-it:free")
+OPEN_ROUTER_MODEL = os.getenv("OPEN_ROUTER_MODEL", "google/gemma-4-e2b-it:free")
 OPEN_ROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
@@ -62,6 +72,13 @@ async def generate_chat(system_prompt: str, messages: list[dict]) -> str:
 async def _cascade(system_prompt: str, messages: list[dict]) -> str:
     """Try providers in priority order, skipping any whose credentials are missing."""
     errors = []
+
+    if GEMMA4_API_URL:
+        try:
+            return await _call_gemma4(system_prompt, messages)
+        except Exception as e:
+            logger.warning("Gemma 4 E2B failed (%s) — trying MedGemma", e)
+            errors.append(f"gemma4: {e}")
 
     if MEDGEMMA_API_URL:
         try:
@@ -95,6 +112,28 @@ async def _cascade(system_prompt: str, messages: list[dict]) -> str:
 
 # ── Provider implementations ──────────────────────────────────────────────────
 
+async def _call_gemma4(system_prompt: str, messages: list[dict]) -> str:
+    """Gemma 4 E2B via Ollama (OpenAI-compatible endpoint).
+    Start with: ollama pull gemma4:e2b
+    Set GEMMA4_API_URL=http://localhost:11434
+    """
+    url = f"{GEMMA4_API_URL.rstrip('/')}/v1/chat/completions"
+    headers = {"Content-Type": "application/json"}
+    if GEMMA4_API_KEY:
+        headers["Authorization"] = f"Bearer {GEMMA4_API_KEY}"
+    payload = {
+        "model": GEMMA4_MODEL_NAME,
+        "messages": [{"role": "system", "content": system_prompt}] + messages,
+        "temperature": 0.2,
+        "max_tokens": 1024,
+    }
+    async with httpx.AsyncClient(timeout=120.0) as client:
+        resp = await client.post(url, headers=headers, json=payload)
+        resp.raise_for_status()
+        data = resp.json()
+    return data["choices"][0]["message"]["content"]
+
+
 async def _call_medgemma(system_prompt: str, messages: list[dict]) -> str:
     """llama.cpp OpenAI-compatible server running the GGUF-quantized MedGemma model.
     Start with: llama-server -m medgemma-1.5-4b-it-Q4_K_M.gguf --port 8080
@@ -117,7 +156,7 @@ async def _call_medgemma(system_prompt: str, messages: list[dict]) -> str:
 
 
 async def _call_openrouter(system_prompt: str, messages: list[dict]) -> str:
-    """OpenRouter API — routes to google/gemma-3n-e4b-it:free by default.
+    """OpenRouter API — routes to google/gemma-4-e2b-it:free by default.
     Uses the OpenAI-compatible /chat/completions endpoint.
     Sends Referer + X-Title headers as required by OpenRouter's usage policy.
     """
