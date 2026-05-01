@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Onboarding -->
+    <string name="onboarding_app_name">Sakhi</string>
+    <string name="onboarding_tagline">Caring for mothers and children, together</string>
+    <string name="onboarding_language_label">LANGUAGE</string>
+    <string name="onboarding_language_en">English</string>
+    <string name="onboarding_language_hi">हिंदी</string>
+    <string name="onboarding_asha_id_label">ASHA Worker ID</string>
+    <string name="onboarding_asha_id_hint">E.G. ASH1001</string>
+    <string name="onboarding_name_label">Your name</string>
+    <string name="onboarding_name_hint">e.g. Anita Devi</string>
+    <string name="onboarding_consent_text">I agree to use this app only to support my clinical judgment and will always refer patients to a PHC when unsure.</string>
+    <string name="onboarding_start">Start</string>
+    <string name="onboarding_demo_hint">Demo mode — try ASH1001, ASH2047, or ASH3112.</string>
+    <!-- Keep for back-compat with any existing references -->
+    <string name="onboarding_welcome">Welcome to Sakhi</string>
+    <string name="onboarding_subtitle">Your AI health companion for ASHA workers</string>
+    <string name="onboarding_continue">Continue</string>
+
+    <!-- Phone OTP -->
+    <string name="auth_phone_label">Mobile number</string>
+    <string name="auth_phone_hint">10-digit number</string>
+    <string name="auth_otp_sent">OTP sent to +91%s</string>
+    <string name="auth_otp_label">Enter OTP</string>
+    <string name="auth_send_otp">Send OTP</string>
+    <string name="auth_verify">Verify</string>
+    <string name="auth_resend">Resend OTP</string>
+    <string name="auth_resend_in">Resend in %ds</string>
+</resources>

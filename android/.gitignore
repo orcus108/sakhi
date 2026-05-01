@@ -1,0 +1,27 @@
+# Build outputs
+build/
+*/build/
+
+# Gradle
+.gradle/
+gradle-app.setting
+
+# Local configuration (SDK path + secrets)
+local.properties
+
+# Compiled class output
+*/bin/
+bin/
+
+# Kotlin compiler errors log
+.kotlin/
+
+# Android Studio profiling
+captures/
+*.hprof
+
+# APK / AAB
+*.apk
+*.aab
+output.json
+release/

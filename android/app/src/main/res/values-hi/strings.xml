@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">साखी</string>
+    <string name="app_disclaimer">साखी आपके निर्णय में सहयोग करती है — संदेह होने पर हमेशा रेफर करें।</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome">साखी में आपका स्वागत है</string>
+    <string name="onboarding_subtitle">ASHA कार्यकर्ताओं के लिए क्लिनिकल सहयोग</string>
+    <string name="onboarding_name_label">आपका नाम</string>
+    <string name="onboarding_name_hint">अपना नाम लिखें</string>
+    <string name="onboarding_language_label">भाषा चुनें</string>
+    <string name="onboarding_consent_text">मैं समझती हूँ कि साखी मेरे क्लिनिकल निर्णय में सहयोग करती है और यह चिकित्सीय निदान का विकल्प नहीं है। मैं इस डिवाइस पर रोगी डेटा सुरक्षित रूप से संग्रहीत करने के लिए सहमति देती हूँ।</string>
+    <string name="onboarding_continue">आगे बढ़ें</string>
+
+    <!-- Auth -->
+    <string name="auth_phone_label">मोबाइल नंबर</string>
+    <string name="auth_phone_hint">10 अंकों का नंबर</string>
+    <string name="auth_send_otp">OTP भेजें</string>
+    <string name="auth_otp_label">OTP डालें</string>
+    <string name="auth_otp_sent">+91%s पर OTP भेजा गया</string>
+    <string name="auth_verify">सत्यापित करें</string>
+    <string name="auth_resend">OTP दोबारा भेजें</string>
+    <string name="auth_resend_in">%d सेकंड में भेजें</string>
+    <string name="auth_error_invalid_phone">सही 10 अंकों का नंबर डालें</string>
+    <string name="auth_error_invalid_otp">OTP गलत है — दोबारा कोशिश करें</string>
+
+    <!-- Home -->
+    <string name="home_title">मेरे मरीज़</string>
+    <string name="home_all">सभी</string>
+    <string name="home_high_risk">उच्च जोखिम</string>
+    <string name="home_monitor">निगरानी</string>
+    <string name="home_normal">सामान्य</string>
+    <string name="home_empty">अभी कोई मरीज़ नहीं\n+ दबाएँ और पहला मरीज़ जोड़ें</string>
+    <string name="home_follow_up_today">आज फॉलो-अप</string>
+    <string name="home_follow_up_overdue">देर हो गई</string>
+    <string name="home_add_patient">मरीज़ जोड़ें</string>
+    <string name="home_search_hint">मरीज़ खोजें…</string>
+
+    <!-- Risk levels -->
+    <string name="risk_high">उच्च जोखिम</string>
+    <string name="risk_monitor">निगरानी ज़रूरी</string>
+    <string name="risk_normal">सामान्य</string>
+    <string name="risk_refer">आज ही PHC भेजें</string>
+
+    <!-- Checkup -->
+    <string name="checkup_vitals">जाँच के आँकड़े</string>
+    <string name="checkup_symptoms">लक्षण</string>
+    <string name="checkup_observations">अवलोकन</string>
+    <string name="checkup_bp_systolic">सिस्टोलिक (mmHg)</string>
+    <string name="checkup_bp_diastolic">डायस्टोलिक (mmHg)</string>
+    <string name="checkup_weight">वज़न (kg)</string>
+    <string name="checkup_fundal_height">गर्भाशय ऊँचाई (cm)</string>
+    <string name="checkup_fhr_optional">भ्रूण हृदय गति (bpm) — वैकल्पिक</string>
+    <string name="checkup_hemoglobin">हीमोग्लोबिन (g/dL) — वैकल्पिक</string>
+    <string name="checkup_next">आगे</string>
+    <string name="checkup_submit">आकलन करें</string>
+    <string name="checkup_other_symptoms">अन्य लक्षण (विवरण दें)</string>
+    <string name="checkup_other_observations">अन्य अवलोकन</string>
+
+    <!-- Newborn visit days -->
+    <string name="visit_day_1">दिन 1</string>
+    <string name="visit_day_3">दिन 3</string>
+    <string name="visit_day_7">दिन 7</string>
+    <string name="visit_day_14">दिन 14</string>
+    <string name="visit_day_28">दिन 28</string>
+    <string name="visit_week_6">सप्ताह 6</string>
+
+    <!-- Assessment -->
+    <string name="assessment_title">आकलन</string>
+    <string name="assessment_noticed">साखी ने क्या नोट किया</string>
+    <string name="assessment_tell_patient">मरीज़ को बताएँ</string>
+    <string name="assessment_next_action">अगला कदम</string>
+    <string name="assessment_follow_up">अगली मुलाकात</string>
+    <string name="assessment_offline_badge">ऑफलाइन आकलन</string>
+    <string name="assessment_ai_pending">AI समीक्षा लंबित — इंटरनेट आने पर sync होगा</string>
+    <string name="assessment_phc_referral">आज ही PHC भेजें</string>
+
+    <!-- Ask Sakhi -->
+    <string name="chat_title">साखी से पूछें</string>
+    <string name="chat_thinking">साखी सोच रही है…</string>
+    <string name="chat_input_hint">क्लिनिकल सवाल पूछें…</string>
+    <string name="chat_send">भेजें</string>
+    <string name="chat_model_unavailable">AI मॉडल डाउनलोड नहीं हुआ। डाउनलोड करने के लिए टैप करें।</string>
+    <string name="chat_refer_banner">PHC भेजें — इस मामले पर ध्यान ज़रूरी है</string>
+
+    <!-- Model download -->
+    <string name="download_title">साखी AI डाउनलोड करें</string>
+    <string name="download_subtitle">~2.6 GB — Wi-Fi अनुशंसित</string>
+    <string name="download_start">डाउनलोड करें</string>
+    <string name="download_cancel">रद्द करें</string>
+    <string name="download_retry">फिर कोशिश करें</string>
+    <string name="download_skip">अभी नहीं</string>
+    <string name="download_progress">%d%% डाउनलोड हुआ</string>
+    <string name="download_verifying">जाँच हो रही है…</string>
+    <string name="download_complete">डाउनलोड पूरा हुआ</string>
+    <string name="download_failed">डाउनलोड विफल — फिर कोशिश करें</string>
+
+    <!-- General -->
+    <string name="loading">लोड हो रहा है…</string>
+    <string name="error_generic">कुछ गलत हुआ — दोबारा कोशिश करें</string>
+    <string name="offline_banner">आप ऑफलाइन हैं — स्थानीय आकलन हो रहा है</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="language">भाषा</string>
+    <string name="delete_data">मेरा सारा डेटा हटाएँ</string>
+    <string name="delete_data_confirm">इससे इस डिवाइस और साखी के सर्वर से सभी मरीज़ों के रिकॉर्ड हमेशा के लिए हट जाएँगे। यह वापस नहीं होगा।</string>
+    <string name="delete_data_confirm_button">सब कुछ हटाएँ</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="weeks_pregnant">%d सप्ताह गर्भवती</string>
+    <string name="age_years">%d वर्ष</string>
+    <string name="born_days_ago">%d दिन पहले जन्म</string>
+</resources>

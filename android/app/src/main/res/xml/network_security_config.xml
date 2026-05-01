@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    DISHA compliance: enforce TLS 1.2+, pin Supabase certificate.
+    No cleartext traffic allowed — except 10.0.2.2 (Android emulator localhost)
+    which is used in debug builds to reach Ollama on the host machine.
+-->
+<network-security-config>
+    <!-- Ollama on host machine, reachable from emulator via 10.0.2.2 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">10.0.2.2</domain>
+    </domain-config>
+
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Certificate pinning for Supabase -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">supabase.co</domain>
+        <!-- Pin the Amazon Root CA (Supabase uses AWS Certificate Manager) -->
+        <!-- Update pins when Supabase rotates certificates -->
+        <pin-set expiration="2026-12-31">
+            <pin digest="SHA-256">++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=</pin>
+            <!-- Backup pin: Amazon Root CA 1 -->
+            <pin digest="SHA-256">f/zhNnQ4BYojmkflBYmqKpTxeM1+GNBSwHaabSzj5YA=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>

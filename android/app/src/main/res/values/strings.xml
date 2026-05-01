@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sakhi</string>
+    <string name="app_disclaimer">Sakhi supports your judgment — always refer when unsure.</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome">Welcome to Sakhi</string>
+    <string name="onboarding_subtitle">Clinical support for ASHA workers</string>
+    <string name="onboarding_name_label">Your name</string>
+    <string name="onboarding_name_hint">Enter your name</string>
+    <string name="onboarding_language_label">Choose language</string>
+    <string name="onboarding_language_en">English</string>
+    <string name="onboarding_language_hi">हिंदी</string>
+    <string name="onboarding_consent_text">I understand that Sakhi supports my clinical judgment and is not a substitute for medical diagnosis. I consent to storing patient data securely on this device.</string>
+    <string name="onboarding_continue">Continue</string>
+
+    <!-- Auth -->
+    <string name="auth_phone_label">Phone number</string>
+    <string name="auth_phone_hint">10-digit mobile number</string>
+    <string name="auth_phone_prefix">+91</string>
+    <string name="auth_send_otp">Send OTP</string>
+    <string name="auth_otp_label">Enter OTP</string>
+    <string name="auth_otp_sent">OTP sent to +91%s</string>
+    <string name="auth_verify">Verify</string>
+    <string name="auth_resend">Resend OTP</string>
+    <string name="auth_resend_in">Resend in %ds</string>
+    <string name="auth_error_invalid_phone">Enter a valid 10-digit number</string>
+    <string name="auth_error_invalid_otp">Invalid OTP — please try again</string>
+
+    <!-- Home -->
+    <string name="home_title">My Patients</string>
+    <string name="home_all">All</string>
+    <string name="home_high_risk">High Risk</string>
+    <string name="home_monitor">Monitor</string>
+    <string name="home_normal">Normal</string>
+    <string name="home_empty">No patients yet\nTap + to add your first patient</string>
+    <string name="home_follow_up_today">Follow-up today</string>
+    <string name="home_follow_up_overdue">Overdue</string>
+    <string name="home_add_patient">Add Patient</string>
+    <string name="home_search_hint">Search patients…</string>
+
+    <!-- Risk levels -->
+    <string name="risk_high">High Risk</string>
+    <string name="risk_monitor">Monitor</string>
+    <string name="risk_normal">Normal</string>
+    <string name="risk_refer">Refer to PHC immediately</string>
+
+    <!-- Checkup -->
+    <string name="checkup_vitals">Vitals</string>
+    <string name="checkup_symptoms">Symptoms</string>
+    <string name="checkup_observations">Observations</string>
+    <string name="checkup_bp_systolic">Systolic (mmHg)</string>
+    <string name="checkup_bp_diastolic">Diastolic (mmHg)</string>
+    <string name="checkup_weight">Weight (kg)</string>
+    <string name="checkup_fundal_height">Fundal height (cm)</string>
+    <string name="checkup_fhr">Fetal heart rate (bpm)</string>
+    <string name="checkup_fhr_optional">Fetal heart rate (bpm) — optional</string>
+    <string name="checkup_hemoglobin">Haemoglobin (g/dL) — optional</string>
+    <string name="checkup_next">Next</string>
+    <string name="checkup_submit">Get Assessment</string>
+    <string name="checkup_other_symptoms">Other symptoms (describe)</string>
+    <string name="checkup_other_observations">Other observations</string>
+
+    <!-- Newborn visit days -->
+    <string name="visit_day_1">Day 1</string>
+    <string name="visit_day_3">Day 3</string>
+    <string name="visit_day_7">Day 7</string>
+    <string name="visit_day_14">Day 14</string>
+    <string name="visit_day_28">Day 28</string>
+    <string name="visit_week_6">Week 6</string>
+
+    <!-- Assessment -->
+    <string name="assessment_title">Assessment</string>
+    <string name="assessment_noticed">What Sakhi noticed</string>
+    <string name="assessment_tell_patient">Tell the patient</string>
+    <string name="assessment_next_action">Next action</string>
+    <string name="assessment_follow_up">Follow-up date</string>
+    <string name="assessment_offline_badge">Offline assessment</string>
+    <string name="assessment_ai_pending">AI review pending — sync when connected</string>
+    <string name="assessment_phc_referral">Refer to PHC today</string>
+
+    <!-- Ask Sakhi (chat) -->
+    <string name="chat_title">Ask Sakhi</string>
+    <string name="chat_thinking">Sakhi is thinking…</string>
+    <string name="chat_input_hint">Ask a clinical question…</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_model_unavailable">AI model not downloaded. Tap to download.</string>
+    <string name="chat_refer_banner">Refer to PHC — this case needs clinical attention</string>
+
+    <!-- Model download -->
+    <string name="download_title">Download Sakhi AI</string>
+    <string name="download_subtitle">~2.6 GB — requires Wi-Fi recommended</string>
+    <string name="download_start">Download</string>
+    <string name="download_cancel">Cancel</string>
+    <string name="download_retry">Retry</string>
+    <string name="download_skip">Skip for now</string>
+    <string name="download_progress">%d%% downloaded</string>
+    <string name="download_verifying">Verifying…</string>
+    <string name="download_complete">Download complete</string>
+    <string name="download_failed">Download failed — tap retry</string>
+
+    <!-- General -->
+    <string name="loading">Loading…</string>
+    <string name="error_generic">Something went wrong — please try again</string>
+    <string name="offline_banner">You\'re offline — using local assessment</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="delete_data">Delete all my data</string>
+    <string name="delete_data_confirm">This will permanently delete all patient records from this device and from Sakhi\'s server. This cannot be undone.</string>
+    <string name="delete_data_confirm_button">Delete everything</string>
+    <string name="cancel">Cancel</string>
+    <string name="weeks_pregnant">%d weeks pregnant</string>
+    <string name="age_years">%d years</string>
+    <string name="born_days_ago">Born %d days ago</string>
+</resources>
